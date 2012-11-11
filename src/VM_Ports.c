@@ -36,11 +36,12 @@ static const uint8 BitTab8[8] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
+static uint8 dummy;
+
 void VM_InitPorts(void)
 {
 
 }
-
 
 void VM_GetSinglePort(void)
 {
@@ -50,10 +51,10 @@ void VM_GetSinglePort(void)
 
     if (port > ((uint8)7)) {
         msk    = port & ((uint8)0x07);
-        data   = S12PIM_REG8(PTH);
+        data   = HAL_BYTE_PORT1;
     } else {
         msk    = port;
-        data   = S12MEBI_REG8(PORTB);
+        data   = HAL_BYTE_PORT0;
     }
 
     msk = BitTab8[msk];
@@ -78,12 +79,12 @@ void VM_SetSinglePort(void)
 
     if (port > ((uint8)7)) {
         msk    = port & ((uint8)0x07);
-        dptr   = &S12PIM_REG8(DDRH);
-        pptr   = &S12PIM_REG8(PTH);
+        dptr   = &HAL_BYTE_PORT_DDR1;
+        pptr   = &HAL_BYTE_PORT1;
     } else {
         msk    = port;
-        dptr   = &S12MEBI_REG8(DDRB);
-        pptr   = &S12MEBI_REG8(PORTB);
+        dptr   = &HAL_BYTE_PORT_DDR0;
+        pptr   = &HAL_BYTE_PORT0;
     }
 
     msk = BitTab8[msk];
@@ -106,10 +107,10 @@ void VM_GetNibblePort(void)
 
     switch (port) {
         case 0: case 1:
-            data = S12MEBI_REG8(PORTB);
+            data = HAL_BYTE_PORT0;
             break;
         case 2: case 3:
-            data = S12PIM_REG8(PTH);
+            data = HAL_BYTE_PORT1;
             break;
         default:
             CC_ASSERT(FALSE, ERROR_ILLOPA);
@@ -134,24 +135,24 @@ void VM_SetNibblePort(void)
 
     switch (port) {
         case 0:
-            S12MEBI_REG8(PORTB)   &= ((uint8)0xF0);
-            S12MEBI_REG8(PORTB)   |= data;
-            S12MEBI_REG8(DDRB)    |= ((uint8)0x0F);
+            HAL_BYTE_PORT0   &= ((uint8)0xF0);
+            HAL_BYTE_PORT0   |= data;
+            HAL_BYTE_PORT_DDR0    |= ((uint8)0x0F);
             break;
         case 1:
-            S12MEBI_REG8(PORTB)   &= ((uint8)0x0F);
-            S12MEBI_REG8(PORTB)   |= data << 4;
-            S12MEBI_REG8(DDRB)    |= ((uint8)0xF0);
+            HAL_BYTE_PORT0   &= ((uint8)0x0F);
+            HAL_BYTE_PORT0   |= data << 4;
+            HAL_BYTE_PORT_DDR0    |= ((uint8)0xF0);
             break;
         case 2:
-            S12PIM_REG8(PTH)  &= ((uint8)0xF0);
-            S12PIM_REG8(PTH)  |= data;
-            S12PIM_REG8(DDRH) |= ((uint8)0x0F);
+            HAL_BYTE_PORT1  &= ((uint8)0xF0);
+            HAL_BYTE_PORT1  |= data;
+            HAL_BYTE_PORT_DDR1 |= ((uint8)0x0F);
             break;
         case 3:
-            S12PIM_REG8(PTH)  &= ((uint8)0x0F);
-            S12PIM_REG8(PTH)  |= data << 4;
-            S12PIM_REG8(DDRH) |= ((uint8)0xF0);
+            HAL_BYTE_PORT1  &= ((uint8)0x0F);
+            HAL_BYTE_PORT1  |= data << 4;
+            HAL_BYTE_PORT_DDR1 |= ((uint8)0xF0);
             break;
         default:
             CC_ASSERT(FALSE, ERROR_ILLOPA);
@@ -166,9 +167,9 @@ void VM_GetBytePort(void)
     port = LOBYTE(VM_PopW()) & BYTE_PORT_MASK;
 
     if (port == ((uint8)1)) {
-        data = S12PIM_REG8(PTH);
+        data = HAL_BYTE_PORT1;
     } else {
-        data = S12MEBI_REG8(PORTB);
+        data = HAL_BYTE_PORT0;
     }
 
     VM_PushW((uint16)data);
@@ -183,11 +184,11 @@ void VM_SetBytePort(void)
     port   = LOBYTE(VM_PopW()) & BYTE_PORT_MASK;
 
     if (port == ((uint8)1)) {
-        S12PIM_REG8(PTH)   = data;
-        S12PIM_REG8(DDRH)  = ((uint8)0xFF);
+        HAL_BYTE_PORT1   = data;
+        HAL_BYTE_PORT_DDR1  = ((uint8)0xFF);
     } else {
-        S12MEBI_REG8(PORTB)    = data;
-        S12MEBI_REG8(DDRB)     = ((uint8)0xFF);
+        HAL_BYTE_PORT0    = data;
+        HAL_BYTE_PORT_DDR0     = ((uint8)0xFF);
     }
 }
 
@@ -198,8 +199,8 @@ void VM_GetWordPort(void)
     uint16  data;
 
     port   = LOBYTE(VM_PopW()); /* ignorieren. */
-    data   = S12PIM_REG8(PTH) << 8;
-    data  |= S12MEBI_REG8(PORTB);
+    data   = HAL_BYTE_PORT1 << 8;
+    data  |= HAL_BYTE_PORT0;
     VM_PushW(data);
 }
 
@@ -212,9 +213,9 @@ void VM_SetWordPort(void)
     data   = VM_PopW();
     port   = LOBYTE(VM_PopW()); /* ignorieren. */
 
-    S12MEBI_REG8(PORTB)    = LOBYTE(data);
-    S12PIM_REG8(PTH)       = HIBYTE(data);
-    S12MEBI_REG8(DDRB)     = S12PIM_REG8(DDRH) = ((uint8)0xFF);
+    HAL_BYTE_PORT0    = LOBYTE(data);
+    HAL_BYTE_PORT1       = HIBYTE(data);
+    HAL_BYTE_PORT_DDR0     = HAL_BYTE_PORT_DDR1 = ((uint8)0xFF);
 }
 
 
@@ -225,9 +226,9 @@ void VM_DeactSinglePort(void)
     port = LOBYTE(VM_PopW()) & SINGLE_PORT_MASK;
 
     if (port > ((uint8)7)) {
-        S12PIM_REG8(DDRH) &= ~(BitTab8[port & ((uint8)0x07)]);
+        HAL_BYTE_PORT_DDR1 &= ~(BitTab8[port & ((uint8)0x07)]);
     } else {
-        S12MEBI_REG8(DDRB) &= ~(BitTab8[port]);
+        HAL_BYTE_PORT_DDR0 &= ~(BitTab8[port]);
     }
 }
 
@@ -240,16 +241,16 @@ void VM_DeactNibblePort(void)
 
     switch (port) {
         case 0:
-            S12MEBI_REG8(DDRB) &= ((uint8)0xF0);
+            HAL_BYTE_PORT_DDR0 &= ((uint8)0xF0);
             break;
         case 1:
-            S12MEBI_REG8(DDRB) &= ((uint8)0x0F);
+            HAL_BYTE_PORT_DDR0 &= ((uint8)0x0F);
             break;
         case 2:
-            S12PIM_REG8(DDRH) &= ((uint8)0xF0);
+            HAL_BYTE_PORT_DDR1 &= ((uint8)0xF0);
             break;
         case 3:
-            S12PIM_REG8(DDRH) &= ((uint8)0x0F);
+            HAL_BYTE_PORT_DDR1 &= ((uint8)0x0F);
             break;
         default:
             CC_ASSERT(FALSE, ERROR_ILLOPA);
@@ -264,9 +265,9 @@ void VM_DeactBytePort(void)
     port = LOBYTE(VM_PopW()) & BYTE_PORT_MASK;
 
     if (port == ((uint8)1)) {
-        S12PIM_REG8(DDRH) = ((uint8)0x00);
+        HAL_BYTE_PORT_DDR1 = ((uint8)0x00);
     } else {
-        S12MEBI_REG8(DDRB) = ((uint8)0x00);
+        HAL_BYTE_PORT_DDR0 = ((uint8)0x00);
     }
 }
 
@@ -276,7 +277,7 @@ void VM_DeactWordPort(void)
     uint8 port;
 
     port               = LOBYTE(VM_PopW()); /* ignorieren. */
-    S12PIM_REG8(DDRH)  = S12MEBI_REG8(DDRB) = ((uint8)0x00);
+    HAL_BYTE_PORT_DDR1  = HAL_BYTE_PORT_DDR0 = ((uint8)0x00);
 }
 
 
@@ -289,12 +290,12 @@ void VM_ToggleSinglePort(void)
 
     if (port > ((uint8)7)) {
         msk    = port & ((uint8)0x07);
-        dptr   = &S12PIM_REG8(DDRH);
-        pptr   = &S12PIM_REG8(PTH);
+        dptr   = &HAL_BYTE_PORT_DDR1;
+        pptr   = &HAL_BYTE_PORT1;
     } else {
         msk    = port;
-        dptr   = &S12MEBI_REG8(DDRB);
-        pptr   = &S12MEBI_REG8(PORTB);
+        dptr   = &HAL_BYTE_PORT_DDR0;
+        pptr   = &HAL_BYTE_PORT0;
     }
 
     msk = BitTab8[msk];
@@ -330,22 +331,16 @@ void VM_GetFreq(void)
 void VM_GetAdcPort(void)
 {
     uint8                       chn;
-    S12Atd_ConfigType const *   base;
+    sint16                      value;
 
     chn = LOBYTE(VM_PopW()) & ((uint8)0x0F);
 
-    if (chn > ((uint8)7)) {
-        base = ATD0;
-    } else {
-        base = ATD1;
-    }
+    HAL_GET_ADC_CHANNEL(chn, value);
 
-    chn &= ((uint8)0x07);
-
-    VM_PushW((sint16)S12Atd_GetChannel(base, chn));
+    VM_PushW(value);
 }
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_?_STOP_SEC_CODE
+    #define VM_PORTS_STOP_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */

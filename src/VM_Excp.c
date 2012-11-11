@@ -29,6 +29,7 @@
 
 void Exception(uint8 code)
 {
+    /* Wir sind am Arsch, verdammte Scheiﬂe :-) */
     CPU_BREAKPOINT();
     ShowStatus(code);
 }

@@ -52,7 +52,7 @@ static const VoidFunctionType FuncTab[] = {
 };
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_?_START_SEC_CODE
+    #define VM_HM_START_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
@@ -302,7 +302,7 @@ uint8 Hm_WriteConst(uint16 addr, uint16 data)
 }
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_?_STOP_SEC_CODE
+    #define VM_HM_STOP_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 

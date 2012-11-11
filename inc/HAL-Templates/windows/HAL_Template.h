@@ -23,7 +23,24 @@
 #if !defined(__HAL_TEMPLATE_H)
 #define __HAL_TEMPLATE_H
 
-#define HAL_GET_FREQUENCY1()
-#define HAL_GET_FREQUENCY2()
+#include "HAL_Defines.h"
+
+#define CPU_BREAKPOINT()
+#define CPU_NO_OPERATION()
+
+/* TODO: CriticalSections und 'Vm_Intr' Modul! */
+#define CPU_DISABLE_ALL_INTERRUPTS()
+#define CPU_ENABLE_ALL_INTERRUPTS()
+
+#define HAL_GET_FREQUENCY1()    23
+#define HAL_GET_FREQUENCY2()    42
+#define HAL_BYTE_PORT0          dummy
+#define HAL_BYTE_PORT1          dummy
+#define HAL_BYTE_PORT_DDR0      dummy
+#define HAL_BYTE_PORT_DDR1      dummy
+
+#define HAL_INIT()
+
+#define HAL_GET_ADC_CHANNEL(channel, value)
 
 #endif /* __HAL_TEMPLATE_H */

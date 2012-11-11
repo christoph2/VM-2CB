@@ -52,7 +52,7 @@ uint32 TMR_GetTofCount(void)
 
 void TMR_TimerTick(void)
 {
-    VM_SysVarTimerMS++;
+    VM_SysVarTimerMS++; /* TODO: Tick-Granularität (eine MS funktioniert unter Windows nicht wirklich zuverlässig...) */
 
     if ((((uint16)VM_SysVarTimerMS) % (uint16)1000) == (uint16)0) {
         VM_SysVarFreq1 = Cntr_GetFrequency1();

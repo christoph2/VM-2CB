@@ -21,6 +21,7 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 #include "VM.h"
+#include "Utl.h"
 
 /*
 **  Defines.
@@ -88,7 +89,7 @@ static void VM_RetCleanup(void);
 
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_?_START_SEC_CODE
+    #define VM_CORE_START_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
@@ -115,11 +116,7 @@ void VM_SysInit(void)
     VM_SysVarFreq1     = ((uint32)0x00000000UL);
     VM_SysVarFreq2     = ((uint32)0x00000000UL);
 
-    (void)S12Iic_Init(&IIC0);
-    (void)S12Atd_Init(ATD0);
-    (void)S12Atd_Init(ATD1);
-    (void)S12Ect_Init(&ECT_CFG);
-    (void)S12Pwm_Init();
+    HAL_INIT();
 
     TMR_Init();
 }
@@ -604,7 +601,6 @@ void VM_SetCodePage(uint16 pc)
 }
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_?_STOP_SEC_CODE
+    #define VM_CORE_STOP_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
-

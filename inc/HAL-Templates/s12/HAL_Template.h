@@ -25,8 +25,38 @@
 
 #include "HAL_Defines.h"
 
+#define CPU_BREAKPOINT()
+#define CPU_NO_OPERATION
+#define CPU_DISABLE_ALL_INTERRUPTS()
+#define CPU_ENABLE_ALL_INTERRUPTS()
+
 #define HAL_GET_FREQUENCY1()    S12ECT_REG16(PACN3) + ((uint32)Frequency1 * ACC_MAX)
 #define HAL_GET_FREQUENCY2()    S12ECT_REG16(PACN1) + ((uint32)Frequency2 * ACC_MAX)
+#define HAL_BYTE_PORT0          S12MEBI_REG8(PORTB)
+#define HAL_BYTE_PORT1          S12PIM_REG8(PTH)
+#define HAL_BYTE_PORT_DDR0      
+#define HAL_BYTE_PORT_DDR1              
 
+#define HAL_INIT()                      \
+    _BEGIN_BLOCK                        \
+        (void)S12Iic_Init(&IIC0);       \
+        (void)S12Atd_Init(ATD0);        \
+        (void)S12Atd_Init(ATD1);        \
+        (void)S12Ect_Init(&ECT_CFG);    \
+        (void)S12Pwm_Init();            \
+    _END_BLOCK
+
+#define HAL_GET_ADC_CHANNEL(channel, value)                     \
+    _BEGIN_BLOCK                                                \
+        S12Atd_ConfigType const *   base;                       \
+                                                                \
+        if ((channel) > ((uint8)7)) {                           \
+            base = ATD0;                                        \
+        } else {                                                \
+            base = ATD1;                                        \
+        }                                                       \
+        (channel) &= ((uint8)0x07);                             \
+        (value) = (sint16)S12Atd_GetChannel(base, (channel));   \
+    _END_BLOCK
 
 #endif /* __HAL_TEMPLATE_H */
