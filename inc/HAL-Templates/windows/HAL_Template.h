@@ -32,6 +32,8 @@
 #define CPU_DISABLE_ALL_INTERRUPTS()
 #define CPU_ENABLE_ALL_INTERRUPTS()
 
+#define HAL_RESET_MCU()
+
 #define HAL_GET_FREQUENCY1()    23
 #define HAL_GET_FREQUENCY2()    42
 #define HAL_BYTE_PORT0          dummy
@@ -55,6 +57,7 @@
 #define HAL_COM0_SEND(buffer, length)
 #define HAL_COM0_SETFORMAT(baudrate, parity, nbits)
 #define HAL_COM0_SENDBREAK()
+#define HAL_COM0_PUTSTRING(str)                         
 
 #define HAL_COM1_INIT()
 #define HAL_COM1_SETBAUDRATE(rate)
@@ -74,6 +77,10 @@
 #define HAL_I2C_WRITE(ch)                               (dummy())
 #define HAL_I2C_READ(ack)                               (dummy())
 #define HAL_I2C_READY()                                 (CC_TRUE)
+
+#define HAL_FLASH_ERASE_BANK(bank)                      (dummy())
+#define HAL_FLASH_ERASE_PROGRAM_WORD(page, addr, data)  (dummy())
+#define HAL_FLASH_SELECT_PAGE(page)
 
 
 #endif /* __HAL_TEMPLATE_H */

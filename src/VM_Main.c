@@ -22,8 +22,11 @@
  */
 #include "VM_Hm.h"
 
-void Vm_Init_Phase0(void);
+/*
+    TODO: Endianess als Cfg.-Parameter!
+*/
 
+void Vm_Init_Phase0(void);
 
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_MAIN_START_SEC_CODE

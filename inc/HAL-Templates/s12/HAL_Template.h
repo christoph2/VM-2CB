@@ -30,6 +30,8 @@
 #define CPU_DISABLE_ALL_INTERRUPTS()
 #define CPU_ENABLE_ALL_INTERRUPTS()
 
+#define HAL_RESET_MCU()         ((void)S12Crg_ResetMCU())
+
 #define HAL_GET_FREQUENCY1()    S12ECT_REG16(PACN3) + ((uint32)Frequency1 * ACC_MAX)
 #define HAL_GET_FREQUENCY2()    S12ECT_REG16(PACN1) + ((uint32)Frequency2 * ACC_MAX)
 #define HAL_BYTE_PORT0          S12MEBI_REG8(PORTB)
@@ -82,6 +84,7 @@
 #define HAL_COM0_SEND(buffer, length)               ((void)S12Sci_SendBuffer(SCI0, (buffer), (length)))
 #define HAL_COM0_SETFORMAT(baudrate, parity, nbits) ((void)S12Sci_SetFormat(SCI0, (baudrate), (parity), (nbits)))
 #define HAL_COM0_SENDBREAK()                        ((void)S12Sci_SendBreak(SCI0))
+#define HAL_COM0_PUTSTRING(str)                     ((void)S12Sci_PutString(SCI0, (str)))
 
 #define HAL_COM1_INIT()                             ((void)S12Sci_Init(SCI1))
 #define HAL_COM1_SETBAUDRATE(rate)                  ((void)S12Sci_SetBaud(SCI1, (rate)))
@@ -102,5 +105,8 @@
 #define HAL_I2C_READ(ack)                           (S12Iic_Read(&IIC0, (ack)))
 #define HAL_I2C_READY()                             (CC_TRUE)
 
+#define HAL_FLASH_ERASE_BANK(bank)                  (S12Fls_MassErase((bank)))
+#define HAL_FLASH_ERASE_PROGRAM_WORD(page, addr, data)  (S12Fls_ProgramWord((page), (addr), (data)))
+#define HAL_FLASH_SELECT_PAGE(page)                 ((void)S12Mmc_SetPPage((page)))
 
 #endif /* __HAL_TEMPLATE_H */

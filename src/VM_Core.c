@@ -222,7 +222,7 @@ void VM_UndefinedOpcode(void)
 
 void * VM_GetConstantPtr(uint16 addr)
 {
-    (void)S12Mmc_SetPPage(((uint8)(addr / (FLS_PAGE_SIZE / (uint16)2))) + FLS_PPAGE_BASE_CONST);
+    HAL_FLASH_SELECT_PAGE(((uint8)(addr / (FLS_PAGE_SIZE / (uint16)2))) + FLS_PPAGE_BASE_CONST);
 
     return (void *)((((addr % (FLS_PAGE_SIZE / (uint16)2)) << (uint16)1)) + FLS_PAGE_ADDR);
 }
@@ -230,7 +230,7 @@ void * VM_GetConstantPtr(uint16 addr)
 
 uint16 * VM_GetCodePtr(uint16 addr)
 {
-    (void)S12Mmc_SetPPage(((uint8)(addr / (FLS_PAGE_SIZE / (uint16)2))) + FLS_PPAGE_BASE_CODE);
+    HAL_FLASH_SELECT_PAGE(((uint8)(addr / (FLS_PAGE_SIZE / (uint16)2))) + FLS_PPAGE_BASE_CODE);
 
     return (uint16 *)((((addr % (FLS_PAGE_SIZE / (uint16)2)) << (uint16)1)) + FLS_PAGE_ADDR);
 }
@@ -597,7 +597,7 @@ void VM_Hook(void)
 
 void VM_SetCodePage(uint16 pc)
 {
-    (void)S12Mmc_SetPPage((uint8)((pc / (FLS_PAGE_SIZE / (uint16)2)) + FLS_PPAGE_BASE_CODE));
+    HAL_FLASH_SELECT_PAGE((uint8)((pc / (FLS_PAGE_SIZE / (uint16)2)) + FLS_PPAGE_BASE_CODE));
 }
 
 #if VM_MEMORY_MAPPING == STD_ON

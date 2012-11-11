@@ -56,6 +56,13 @@ static const VoidFunctionType FuncTab[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
+
+static uint8 dummy(void)
+{
+    return 0;
+}
+
+
 void Hm_Dispatcher(void)
 {
     uint8 ch;
@@ -63,7 +70,7 @@ void Hm_Dispatcher(void)
     ShowStatus(STATUS_HOSTMODE);
 
     FOREVER {
-        (void)S12Sci_Get(SCI0, &ch);
+        ch = HAL_COM0_GETCHAR();
 
         if (ch <= (uint8)(SIZEOF_ARRAY(FuncTab))) {
             FuncTab[ch]();
@@ -78,27 +85,27 @@ void Hm_Dispatcher(void)
 
 static void Hm_SendID(void)
 {
-    (void)S12Sci_PutString(SCI0, (uint8 *)VM_C_CCONTROL);
+    HAL_COM0_PUTSTRING((uint8 *)VM_C_CCONTROL);
 }
 
 
 static void Hm_SendDate(void)
 {
-    (void)S12Sci_PutString(SCI0, (uint8 *)VM_C_DATE);
+    HAL_COM0_PUTSTRING((uint8 *)VM_C_DATE);
 }
 
 
 static void Hm_SendVersion(void)
 {
-    (void)S12Sci_PutString(SCI0, (uint8 *)VM_C_VERSION);
+    HAL_COM0_PUTSTRING((uint8 *)VM_C_VERSION);
 }
 
 
 static void Hm_Start(void)
 {
     /* Start VM direct. */
-    IISR_ENTRY_POINT();
-    (void)S12Crg_ResetMCU();
+    /* IISR_ENTRY_POINT(); */
+    HAL_RESET_MCU();
 }
 
 
@@ -131,8 +138,8 @@ static void Hm_LoadHEX(void)
 
     do {
         addr = Hm_ReadWordBE();
-        (void)S12Sci_Get(SCI0, &len);
-        (void)S12Sci_Put(SCI0, len);
+        len = HAL_COM0_GETCHAR();
+        HAL_COM0_PUT(len);
 
         while (len--) {
             data = Hm_ReadWordBE();
@@ -147,7 +154,7 @@ static void Hm_EraseVMC(void)
 {
     CC_ASSERT((Hm_EraseVmcPages() == STD_OK), ERROR_BURN);
 
-    (void)S12Sci_Put(SCI0, HM_CMD_ERASE_VMC);
+    HAL_COM0_PUT(HM_CMD_ERASE_VMC);
 }
 
 
@@ -155,33 +162,32 @@ static void Hm_EraseHEX(void)
 {
     CC_ASSERT((Hm_EraseAsmPages() == STD_OK), ERROR_BURN);
 
-    (void)S12Sci_Put(SCI0, HM_CMD_ERASE_HEX);
+    HAL_COM0_PUT(HM_CMD_ERASE_HEX);
 }
 
 
 static void Hm_SetBaudHi(void)
 {
-    (void)S12Sci_SetBaud(SCI0, 57600L);
+    HAL_COM0_SETBAUDRATE(57600UL);
 }
 
 
 static void Hm_SetBaudDef(void)
 {
-    (void)S12Sci_SetBaud(SCI0, 19200L);
-
+    HAL_COM0_SETBAUDRATE(19200UL);
 }
 
 
 static void Hm_SetBaudTurbo(void)
 {
-    (void)S12Sci_SetBaud(SCI0, 115200L);
+    HAL_COM0_SETBAUDRATE(115200UL);
 }
 
 
 static void Hm_Reset(void)
 {
 /*  IISR_ENTRY_POINT(); */
-    (void)S12Crg_ResetMCU();
+    HAL_RESET_MCU();
 }
 
 
@@ -190,8 +196,8 @@ uint32 Hm_ReadLong(void)
     uint8 ch[4], i;
 
     for (i = (uint8)0x00; i < (uint8)4; ++i) {
-        (void)S12Sci_Get(SCI0, &ch[i]);
-        (void)S12Sci_Put(SCI0, ch[i]);
+        ch[i] = HAL_COM0_GETCHAR();
+        HAL_COM0_PUT(ch[i]);
     }
 
     /* LE==>BE Conversion.*/
@@ -203,11 +209,11 @@ uint16 Hm_ReadWordLE(void)
 {
     uint8 ch[2];
 
-    (void)S12Sci_Get(SCI0, &ch[0]);
-    (void)S12Sci_Put(SCI0, ch[0]);
+    ch[0] = HAL_COM0_GETCHAR();
+    HAL_COM0_PUT(ch[0]);
 
-    (void)S12Sci_Get(SCI0, &ch[1]);
-    (void)S12Sci_Put(SCI0, ch[1]);
+    ch[1] = HAL_COM0_GETCHAR();
+    HAL_COM0_PUT(ch[1]);
 
     /* LE==>BE Conversion.*/
     return MAKEWORD(ch[1], ch[0]);
@@ -218,11 +224,11 @@ uint16 Hm_ReadWordBE(void)
 {
     uint8 ch[2];
 
-    (void)S12Sci_Get(SCI0, &ch[0]);
-    (void)S12Sci_Put(SCI0, ch[0]);
+    ch[0] = HAL_COM0_GETCHAR();
+    HAL_COM0_PUT(ch[0]);
 
-    (void)S12Sci_Get(SCI0, &ch[1]);
-    (void)S12Sci_Put(SCI0, ch[1]);
+    ch[1] = HAL_COM0_GETCHAR();
+    HAL_COM0_PUT(ch[1]);
 
     return MAKEWORD(ch[0], ch[1]);
 }
@@ -246,7 +252,7 @@ uint8 Hm_EraseVmcPages(void)
     uint8   stat;
 
     for (i = (uint8)0x00; i < (uint8)(sizeof(Hm_CodeBanks)); ++i) {
-        stat = S12Fls_MassErase(Hm_CodeBanks[i]);
+        stat = HAL_FLASH_ERASE_BANK(Hm_CodeBanks[i]);
 
         if (stat != STD_OK) {
             return stat;
@@ -254,7 +260,7 @@ uint8 Hm_EraseVmcPages(void)
     }
 
     for (i = (uint8)0x00; i < (uint8)(sizeof(Hm_ConstBanks)); ++i) {
-        stat = S12Fls_MassErase(Hm_ConstBanks[i]);
+        stat = HAL_FLASH_ERASE_BANK(Hm_ConstBanks[i]);
 
         if (stat != STD_OK) {
             return stat;
@@ -290,14 +296,14 @@ uint8 Hm_EraseAsmPages(void)
 */
 uint8 Hm_WriteCode(uint16 addr, uint16 data)
 {
-    return S12Fls_ProgramWord((uint8)((addr / (FLS_PAGE_SIZE / (uint16)2)) + FLS_PPAGE_BASE_CODE),
+    return HAL_FLASH_ERASE_PROGRAM_WORD((uint8)((addr / (FLS_PAGE_SIZE / (uint16)2)) + FLS_PPAGE_BASE_CODE),
                               (((addr % (FLS_PAGE_SIZE / (uint16)2)) << 1) + FLS_PAGE_ADDR), data);
 }
 
 
 uint8 Hm_WriteConst(uint16 addr, uint16 data)
 {
-    return S12Fls_ProgramWord((uint8)((addr / (FLS_PAGE_SIZE / (uint16)2)) + FLS_PPAGE_BASE_CONST),
+    return HAL_FLASH_ERASE_PROGRAM_WORD((uint8)((addr / (FLS_PAGE_SIZE / (uint16)2)) + FLS_PPAGE_BASE_CONST),
                               (((addr % (FLS_PAGE_SIZE / (uint16)2)) << 1) + FLS_PAGE_ADDR), data);
 }
 
@@ -305,4 +311,3 @@ uint8 Hm_WriteConst(uint16 addr, uint16 data)
     #define VM_HM_STOP_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
-
