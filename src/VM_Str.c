@@ -51,7 +51,7 @@ static const VoidFunctionType FuncTab[] = {
 };
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_STRING_START_SEC_CODE
+    #define VM_STR_START_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
@@ -190,6 +190,6 @@ static void Str_Copy(Str * dst, Str * src)
 }
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_STRING_STOP_SEC_CODE
+    #define VM_STR_STOP_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
