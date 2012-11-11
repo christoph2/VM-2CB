@@ -23,4 +23,7 @@
 #if !defined(__HAL_TEMPLATE_H)
 #define __HAL_TEMPLATE_H
 
+#define HAL_GET_FREQUENCY1()
+#define HAL_GET_FREQUENCY2()
+
 #endif /* __HAL_TEMPLATE_H */

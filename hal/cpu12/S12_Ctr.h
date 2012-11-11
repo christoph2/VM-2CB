@@ -20,12 +20,10 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-#if !defined(__HAL_DEFINES_H)
-#define __HAL_DEFINES_H
+#if !defined(__S12_COUNTER_H)
+#define __S12_COUNTER_H
 
-#include "mcu/s12/inc/S12_Atd.h"
-#include "mcu/s12/inc/S12_Fls.h"
-#include "mcu/s12/inc/S12_Sci.h"
+#include "HAL_Defines.h"
 
+#endif /* __S12_COUNTER_H */
 
-#endif /* __HAL_DEFINES_H */

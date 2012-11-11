@@ -21,43 +21,46 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "VM_Cntr.h"
+#include "S12_Ctr.h"
 
-/*#define ACC_MAX ((uint32)0x00010000)*/
-#define ACC_MAX ((uint16)0xffff)
-
-static uint8 Frequency1, Frequency2;
-
-#if VM_MEMORY_MAPPING == STD_ON
-    #define VM_CNTR_START_SEC_CODE
-    #include "MemMap.h"
-#endif /* VM_MEMORY_MAPPING */
-
-void Cntr_Init(void)
+ISR1(PAOVIHandler)
 {
-    Cntr_Reset();
-
+    S12ECT_REG8(PAFLG) = PAOVF;
+/*    Frequency1+=ACC_MAX; */
+    Frequency1++;
 }
 
-void Cntr_Reset(void)
+ISR1(PBOVIHandler)
 {
-    Frequency1 = (uint8)0;
-    Frequency2 = (uint8)0;
+    S12ECT_REG8(PBFLG) = PBOVF;
+    Frequency1        += ACC_MAX;
+    /* PACN1 */
 }
 
-
-uint32 Cntr_GetFrequency1(void)
+ISR1(PORTHHandler)
 {
-    return (uint32)HAL_GET_FREQUENCY1();
+    if ((S12PIM_REG8(PIFH) & PIFH0) == PIFH0) {
+        S12PIM_REG8(PIFH) &= ~PIFH0;
+        VM_SysVarCnt1++;
+        /* todo: Hook aufrufen falls installiert. */
+    }
+
+    if ((S12PIM_REG8(PIFH) & PIFH1) == PIFH1) {
+        S12PIM_REG8(PIFH) &= ~PIFH1;
+        VM_SysVarCnt2++;
+        /* todo: Hook aufrufen falls installiert. */
+    }
+
+    if ((S12PIM_REG8(PIFH) & PIFH2) == PIFH2) {
+        S12PIM_REG8(PIFH) &= ~PIFH2;
+        VM_SysVarCnt3++;
+        /* todo: Hook aufrufen falls installiert. */
+    }
+
+    if ((S12PIM_REG8(PIFH) & PIFH3) == PIFH3) {
+        S12PIM_REG8(PIFH) &= ~PIFH3;
+        VM_SysVarCnt4++;
+        /* todo: Hook aufrufen falls installiert. */
+    }
 }
 
-
-uint32 Cntr_GetFrequency2(void)
-{
-    return (uint32)HAL_GET_FREQUENCY2();
-}
-
-#if VM_MEMORY_MAPPING == STD_ON
-    #define VM_CNTR_STOP_SEC_CODE
-    #include "MemMap.h"
-#endif /* VM_MEMORY_MAPPING */

@@ -25,4 +25,8 @@
 
 #include "HAL_Defines.h"
 
+#define HAL_GET_FREQUENCY1()    S12ECT_REG16(PACN3) + ((uint32)Frequency1 * ACC_MAX)
+#define HAL_GET_FREQUENCY2()    S12ECT_REG16(PACN1) + ((uint32)Frequency2 * ACC_MAX)
+
+
 #endif /* __HAL_TEMPLATE_H */

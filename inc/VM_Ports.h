@@ -24,12 +24,9 @@
 #define __PORT_H
 
 #include "VM.h"
-#include "mcu/s12/inc/S12_Atd.h"
 
 #if 0
 void InitPorts(void), InitADC(uint8 num);
-
-
 #endif
 
 void VM_InitPorts(void);
