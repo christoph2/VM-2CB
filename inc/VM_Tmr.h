@@ -25,9 +25,11 @@
 
 #include "VM.h"
 #include "VM_Cntr.h"
+#if 0
 #include "mcu/s12/inc/S12_Crg.h"
 #include "mcu/s12/inc/S12_Ect.h"
 #include "InstallISR/ISR.h"
+#endif
 
 typedef enum tagTimerTickResType {
     TIMER_TICK_RES1,
