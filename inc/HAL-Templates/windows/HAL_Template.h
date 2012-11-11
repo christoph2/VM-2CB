@@ -1,8 +1,8 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
- *                                      cpu12.gems@googlemail.com>
+ *  (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *                                       cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
  *
@@ -20,17 +20,7 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+#if !defined(__HAL_TEMPLATE_H)
+#define __HAL_TEMPLATE_H
 
-#if !defined(__HAL_H)
-#define __HAL_H
-
-#if defined(_MSC_VER)
-#include "windows/hal.h"
-#include "HAL-Templates\HAL_Defines.h"
-#include "HAL-Templates\HAL_Template.h"
-#elif defined(__GNUC__)
-#include "windows/hal.h"
-#error GCC!!!
-#endif
-
-#endif /* __HAL_H */
+#endif /* __HAL_TEMPLATE_H */

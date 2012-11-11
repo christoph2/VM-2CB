@@ -24,6 +24,7 @@
 #define __VM_HM_H
 
 #include "VM.h"
+
 #include "mcu/s12/inc/S12_Sci.h"
 #include "mcu/s12/inc/S12_Fls.h"
 
