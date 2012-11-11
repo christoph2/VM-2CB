@@ -44,4 +44,28 @@
 
 #define HAL_GET_ADC_CHANNEL(channel, value)
 
+#define HAL_COM0_INIT()
+#define HAL_COM0_SETBAUDRATE(rate)
+#define HAL_COM0_SETBUFFER(buffer, length)
+#define HAL_COM0_FLUSH()
+#define HAL_COM0_RXD()
+#define HAL_COM0_GETCHAR()
+#define HAL_COM0_READY()
+#define HAL_COM0_PUT(ch)
+#define HAL_COM0_SEND(buffer, length)
+#define HAL_COM0_SETFORMAT(baudrate, parity, nbits)
+#define HAL_COM0_SENDBREAK()
+
+#define HAL_COM1_INIT()
+#define HAL_COM1_SETBAUDRATE(rate)
+#define HAL_COM1_SETBUFFER(buffer, length)
+#define HAL_COM1_FLUSH()
+#define HAL_COM1_RXD()
+#define HAL_COM1_GETCHAR()
+#define HAL_COM1_READY()
+#define HAL_COM1_PUT(ch)
+#define HAL_COM1_SEND(buffer, length)
+#define HAL_COM1_SETFORMAT(baudrate, parity, nbits)
+#define HAL_COM1_SENDBREAK()
+
 #endif /* __HAL_TEMPLATE_H */

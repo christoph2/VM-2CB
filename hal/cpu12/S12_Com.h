@@ -20,12 +20,14 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-#if !defined(__VM_COM)
-#define __VM_COM
+#if !defined(__S12_COM_H)
+#define __S12_COM_H
 
-#include "VM.h"
-#include "VM_Excp.h"
+#include "mcu/s12/inc/S12_Sci.h"
 
-void HwCom(void), SwCom(void);
+DECLARE_ISR1_VECTOR(SCI0_Handler);
+DECLARE_ISR1_VECTOR(SCI1_Handler);
 
-#endif /* __VM_COM */
+
+
+#endif /* __S12_COM_H */

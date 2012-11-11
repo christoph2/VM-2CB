@@ -71,4 +71,29 @@
         (value) = (sint16)S12Atd_GetChannel(base, (channel));   \
     _END_BLOCK
 
+#define HAL_COM0_INIT()                             ((void)S12Sci_Init(SCI0))
+#define HAL_COM0_SETBAUDRATE(rate)                  ((void)S12Sci_SetBaud(SCI0, (rate)))
+#define HAL_COM0_SETBUFFER(buffer, length)          ((void)S12Sci_SetRxBuffer(SCI0, (buffer), (length)))
+#define HAL_COM0_FLUSH()                            ((void)S12Sci_RxBufFlush(SCI0))
+#define HAL_COM0_RXD()                              (S12Sci_RxBufIsEmpty(SCI0))
+#define HAL_COM0_GETCHAR()                          (S12Sci_RxBufGetCh(SCI0))
+#define HAL_COM0_READY()                            (S12Sci_TxReady(SCI0))
+#define HAL_COM0_PUT(ch)                            ((void)S12Sci_Put(SCI0, (ch)))
+#define HAL_COM0_SEND(buffer, length)               ((void)S12Sci_SendBuffer(SCI0, (buffer), (length)))
+#define HAL_COM0_SETFORMAT(baudrate, parity, nbits) ((void)S12Sci_SetFormat(SCI0, (baudrate), (parity), (nbits)))
+#define HAL_COM0_SENDBREAK()                        ((void)S12Sci_SendBreak(SCI0))
+
+#define HAL_COM1_INIT()                             ((void)S12Sci_Init(SCI1))
+#define HAL_COM1_SETBAUDRATE(rate)                  ((void)S12Sci_SetBaud(SCI1, (rate)))
+#define HAL_COM1_SETBUFFER(buffer, length)          ((void)S12Sci_SetRxBuffer(SCI1, (buffer), (length)))
+#define HAL_COM1_FLUSH()                            ((void)S12Sci_RxBufFlush(SCI1))
+#define HAL_COM1_RXD()                              (S12Sci_RxBufIsEmpty(SCI1))
+#define HAL_COM1_GETCHAR()                          (S12Sci_RxBufGetCh(SCI1))
+#define HAL_COM1_READY()                            (S12Sci_TxReady(SCI1))
+#define HAL_COM1_PUT(ch)                            ((void)S12Sci_Put(SCI1, (ch)))
+#define HAL_COM1_SEND(buffer, length)               ((void)S12Sci_SendBuffer(SCI1, (buffer), (length)))
+#define HAL_COM1_SETFORMAT(baudrate, parity, nbits) ((void)S12Sci_SetFormat(SCI1, (baudrate), (parity), (nbits)))
+#define HAL_COM1_SENDBREAK()                        ((void)S12Sci_SendBreak(SCI1))
+
+
 #endif /* __HAL_TEMPLATE_H */

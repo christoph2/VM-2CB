@@ -69,7 +69,7 @@ void HwCom(void)
 
 void Hwcom_Init(void)
 {
-    (void)S12Sci_Init(SCI0);
+    HAL_COM0_INIT();
 }
 
 
@@ -80,7 +80,7 @@ void Hwcom_SetSpeed(void)
     speed = (uint8)VM_PopW();         /* speed */
     CC_ASSERT(speed < SIZEOF_ARRAY(BaudLookupTable), ERROR_ILLOPA);
 
-    (void)S12Sci_SetBaud(SCI0, BaudLookupTable[speed]);
+    HAL_COM0_SETBAUDRATE(BaudLookupTable[speed]);
 }
 
 
@@ -92,14 +92,14 @@ void Hwcom_SetBuffer(void)
     length = (uint8)VM_PopW();              /* length */
     buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[]  */
 
-    /* todo: assertion */
-    (void)S12Sci_SetRxBuffer(SCI0, buf, length);
+    /* TODO: assertion */
+    HAL_COM0_SETBUFFER(buf, length);
 }
 
 
 void Hwcom_Flush(void)
 {
-    (void)S12Sci_RxBufFlush(SCI0);
+    HAL_COM0_FLUSH();
 }
 
 
@@ -107,7 +107,7 @@ void Hwcom_Rxd(void)
 {
     boolean empty;
 
-    (void)S12Sci_RxBufIsEmpty(SCI0, &empty);
+    empty = HAL_COM0_RXD();
 
     VM_PushW((sint16)(empty == TRUE ? CC_FALSE : CC_TRUE));
 }
@@ -117,7 +117,8 @@ void Hwcom_Get(void)
 {
     uint8 ch;
 
-    (void)S12Sci_RxBufGetCh(SCI0, &ch);
+    ch = HAL_COM0_GETCHAR();
+    
     VM_PushW((sint16)ch);
 }
 
@@ -126,7 +127,8 @@ void Hwcom_Ready(void)
 {
     boolean ready;
 
-    (void)S12Sci_TxReady(SCI0, &ready);
+    ready = HAL_COM0_READY();
+    
     (void)VM_PushW((sint16)(ready == TRUE ? CC_TRUE : CC_FALSE));
 }
 
@@ -135,8 +137,8 @@ void Hwcom_Put(void)
 {
     uint8 ch;
 
-    ch = (uint8)VM_PopW();            /* c */
-    (void)S12Sci_Put(SCI0, ch);
+    ch = (uint8)VM_PopW();
+    HAL_COM0_PUT(ch);
 }
 
 
@@ -148,7 +150,7 @@ void Hwcom_Send(void)
     length = (uint8)VM_PopW();              /* length */
     buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[] */
 
-    (void)S12Sci_SendBuffer(SCI0, buf, length);
+    HAL_COM0_SEND(buf, length);
 }
 
 
@@ -162,13 +164,13 @@ void Hwcom_SetFormat(void)
     parity     = (uint8)VM_PopW();          /* parity */
     baudrate   = (uint32)(uint16)VM_PopW(); /* baudrate */
 
-    (void)S12Sci_SetFormat(SCI0, baudrate, parity, nbits);
+    HAL_COM0_SETFORMAT(baudrate, parity, nbits);
 }
 
 
 void Hwcom_SendBreak(void)
 {
-    (void)S12Sci_SendBreak(SCI0);
+    HAL_COM0_SENDBREAK();
 }
 
 
@@ -186,7 +188,7 @@ void SwCom(void)
 
 void Swcom_Init(void)
 {
-    (void)S12Sci_Init(SCI1);
+    HAL_COM1_INIT();
 }
 
 
@@ -197,7 +199,7 @@ void Swcom_SetSpeed(void)
     speed = (uint8)VM_PopW();         /* speed */
     CC_ASSERT(speed < SIZEOF_ARRAY(BaudLookupTable), ERROR_ILLOPA);
 
-    (void)S12Sci_SetBaud(SCI1, BaudLookupTable[speed]);
+    HAL_COM1_SETBAUDRATE(BaudLookupTable[speed]);
 }
 
 
@@ -210,13 +212,13 @@ void Swcom_SetBuffer(void)
     buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[]  */
 
     /* todo: assertion */
-    (void)S12Sci_SetRxBuffer(SCI1, buf, length);
+    HAL_COM1_SETBUFFER(buf, length);
 }
 
 
 void Swcom_Flush(void)
 {
-    (void)S12Sci_RxBufFlush(SCI1);
+    HAL_COM1_FLUSH();
 }
 
 
@@ -224,8 +226,7 @@ void Swcom_Rxd(void)
 {
     boolean empty;
 
-    (void)S12Sci_RxBufIsEmpty(SCI1, &empty);
-
+    empty = HAL_COM1_RXD();
     VM_PushW((sint16)(empty == TRUE ? CC_FALSE : CC_TRUE));
 }
 
@@ -234,7 +235,7 @@ void Swcom_Get(void)
 {
     uint8 ch;
 
-    (void)S12Sci_RxBufGetCh(SCI1, &ch);
+    ch = HAL_COM1_GETCHAR();
     VM_PushW((sint16)ch);
 }
 
@@ -243,7 +244,7 @@ void Swcom_Ready(void)
 {
     boolean ready;
 
-    (void)S12Sci_TxReady(SCI1, &ready);
+    ready = HAL_COM1_READY();
     (void)VM_PushW((sint16)(ready == TRUE ? CC_TRUE : CC_FALSE));
 }
 
@@ -253,7 +254,7 @@ void Swcom_Put(void)
     uint8 ch;
 
     ch = (uint8)VM_PopW();            /* c */
-    (void)S12Sci_Put(SCI1, ch);
+    HAL_COM1_PUT(ch);
 }
 
 
@@ -265,7 +266,7 @@ void Swcom_Send(void)
     length = (uint8)VM_PopW();              /* length */
     buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[] */
 
-    (void)S12Sci_SendBuffer(SCI1, buf, length);
+    HAL_COM1_SEND(buf, length);
 }
 
 
@@ -279,13 +280,13 @@ void Swcom_SetFormat(void)
     parity     = (uint8)VM_PopW();          /* parity */
     baudrate   = (uint32)(uint16)VM_PopW(); /* baudrate */
 
-    (void)S12Sci_SetFormat(SCI1, baudrate, parity, nbits);
+    HAL_COM1_SETFORMAT(baudrate, parity, nbits);
 }
 
 
 void Swcom_SendBreak(void)
 {
-    (void)S12Sci_SendBreak(SCI1);
+    HAL_COM1_SENDBREAK();
 }
 
 
