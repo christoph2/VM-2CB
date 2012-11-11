@@ -26,12 +26,6 @@
 #include "VM.h"
 #include "VM_Cntr.h"
 
-#if 0
-#include "mcu/s12/inc/S12_Crg.h"
-#include "mcu/s12/inc/S12_Ect.h"
-#include "InstallISR/ISR.h"
-#endif
-
 typedef enum tagTimerTickResType {
     TIMER_TICK_RES1,
     TIMER_TICK_RES2,
@@ -42,12 +36,11 @@ typedef enum tagTimerTickResType {
 
 void    TMR_Init(void);
 uint32  TMR_GetTofCount(void);
+void    TMR_TimerTick(void);
 
 
 #if 0
 void TimerSetTickRes(TimerTickResType tr);
-
-
 #endif
 
 #endif  /* __VM_TMR_H */

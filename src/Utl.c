@@ -274,9 +274,9 @@ void Utl_Itoa(uint32 value, uint8 base, uint8 * buf)
         mod = value % base;
 
         if (mod < 10) {
-            buf[pos++] = '0' + mod;
+            buf[pos++] = '0' + (uint8)mod;
         } else {
-            buf[pos++] = 'A' + mod - (uint8)10;
+            buf[pos++] = 'A' + (uint8)mod - (uint8)10;
         }
 
         value /= base;

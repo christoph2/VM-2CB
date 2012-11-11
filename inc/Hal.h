@@ -26,8 +26,8 @@
 
 #if defined(_MSC_VER)
 #include "windows/hal.h"
-#include "HAL-Templates\HAL_Defines.h"
-#include "HAL-Templates\HAL_Template.h"
+#include "HAL-Templates/windows/HAL_Defines.h"
+#include "HAL-Templates/windows/HAL_Template.h"
 #elif defined(__GNUC__)
 #include "windows/hal.h"
 #error GCC!!!

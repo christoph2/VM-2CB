@@ -20,9 +20,14 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-#if !defined(__HAL_TEMPLATE_H)
-#define __HAL_TEMPLATE_H
+#if !defined(__S12_TIMER_H)
+#define __S12_TIMER_H
 
 #include "HAL_Defines.h"
+#include "mcu/s12/inc/S12_Crg.h"
+#include "mcu/s12/inc/S12_Ect.h"
+#include "InstallISR/ISR.h"
 
-#endif /* __HAL_TEMPLATE_H */
+
+#endif /* __S12_TIMER_H */
+

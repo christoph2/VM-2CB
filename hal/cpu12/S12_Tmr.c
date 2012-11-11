@@ -1,7 +1,4 @@
-/*
- *   2-CB (C-Control-II kompatible Virtuelle Maschine).
- *
- *  (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+/*  (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
  *                                       cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -20,9 +17,23 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-#if !defined(__HAL_TEMPLATE_H)
-#define __HAL_TEMPLATE_H
 
-#include "HAL_Defines.h"
+#include "S12_Tmr.h"
 
-#endif /* __HAL_TEMPLATE_H */
+void TMR_TimerTick(void);
+
+ISR1(TMR_TofHandler)
+{
+    S12ECT_REG8(TFLG2) = TOF;
+
+    TMR_TOF_Count++;
+}
+
+ISR1(SystemTimerHandler)
+{
+    S12ECT_REG8(MCFLG) = MCZF;
+
+    TMR_TimerTick();
+}
+
+

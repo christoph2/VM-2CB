@@ -25,9 +25,6 @@
 
 #include "VM.h"
 
-#include "mcu/s12/inc/S12_Sci.h"
-#include "mcu/s12/inc/S12_Fls.h"
-
 typedef enum tagHM_CommandType {
     HM_CMD_SEND_ID,
     HM_CMD_SEND_DATE,

@@ -45,24 +45,13 @@ void TMR_Init(void)
     TMR_TOF_Count = 0UL;
 }
 
-
-ISR1(TMR_TofHandler)
-{
-    S12ECT_REG8(TFLG2) = TOF;
-
-    TMR_TOF_Count++;
-}
-
 uint32 TMR_GetTofCount(void)
 {
     return TMR_TOF_Count;
 }
 
-
-ISR1(SystemTimerHandler)
+void TMR_TimerTick(void)
 {
-    S12ECT_REG8(MCFLG) = MCZF;
-
     VM_SysVarTimerMS++;
 
     if ((((uint16)VM_SysVarTimerMS) % (uint16)1000) == (uint16)0) {
