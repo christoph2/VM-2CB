@@ -24,7 +24,6 @@
 #define __VM_CNTR_H
 
 #include "VM.h"
-//#include "mcu/s12/inc/S12_Ect.h"
 #include "Hal.h"
 
 void    Cntr_Init(void);
@@ -34,4 +33,3 @@ uint32  Cntr_GetFrequency2(void);
 
 
 #endif /* __VM_CNTR_H */
-

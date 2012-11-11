@@ -98,4 +98,3 @@
 #define VM_SYSTEM_TIMER_FREQ    ((uint16)1000)        /* µSecs. */
 
 #endif /* __CCCONFIG_H */
-

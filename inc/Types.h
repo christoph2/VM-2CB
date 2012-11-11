@@ -125,6 +125,16 @@ typedef int             PtrDiffType;
     }                                      \
     _END_BLOCK                             
 
+typedef void (*VoidFunctionType)(void);
+
+#define FOREVER         while(TRUE)
+
+#define NOT_ADDRESSABLE register
+
+#define WAIT_FOR(cond) \
+    while (!(cond))    \
+        _BEGIN_BLOCK   \
+        _END_BLOCK
 
 #define _BEGIN_BLOCK    do {
 #define _END_BLOCK      } while (0)
@@ -140,6 +150,41 @@ typedef void (*VoidFunctionType)(void);
 #define GLUE3_2(a, b, c)        a ## b ## c
 #define GLUE3(a, b, c)          GLUE3_2(a, b, c)
 
+#define BREF(b, o)              (*(((uint8 *)(b) + (o))))
+#define BPTR(b, o)              ((((uint8 *)(b) + (o))))
+
+#define WREF(w, o)              (*((uint16 *)((uint8 *)(w) + (o))))
+#define WPTR(w, o)              (((uint16 *)((uint8 *)(w) + (o))))
+
+#define LREF(l, o)              (*((uint32 *)((uint8 *)(l) + (o))))
+#define LPTR(l, o)              (((uint32 *)((uint8 *)(l) + (o))))
+
+#define FREF(f, o)              (*((float64 *)((uint8 *)(f) + (o))))
+#define FPTR(f, o)              (((float64 *)((uint8 *)(f) + (o))))
+
+#define BYTE_REG(base, offs)    *(volatile uint8 *)BPTR((base), (offs))
+#define WORD_REG(base, offs)    *(volatile uint16 *)WPTR((base), (offs))
+
+#define BIT(n, type)            ((type)(1 << (n)))
+
+#define BIT0    ((uint16)0x01)
+#define BIT1    ((uint16)0x02)
+#define BIT2    ((uint16)0x04)
+#define BIT3    ((uint16)0x08)
+#define BIT4    ((uint16)0x10)
+#define BIT5    ((uint16)0x20)
+#define BIT6    ((uint16)0x40)
+#define BIT7    ((uint16)0x80)
+#define BIT8    ((uint16)0x0100)
+#define BIT9    ((uint16)0x0200)
+#define BIT10   ((uint16)0x0400)
+#define BIT11   ((uint16)0x0800)
+#define BIT12   ((uint16)0x1000)
+#define BIT13   ((uint16)0x2000)
+#define BIT14   ((uint16)0x4000)
+#define BIT15   ((uint16)0x8000)
+
+#define TENARY_COMPARE(id1, id2, mask)  (~((id1) ^ (id2)) | (~(mask)))
 
 #if defined(_C99_COMPILER)
     #define INLINE      inline

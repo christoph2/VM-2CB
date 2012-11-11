@@ -25,6 +25,7 @@
 
 #include "VM.h"
 #include "VM_Cntr.h"
+
 #if 0
 #include "mcu/s12/inc/S12_Crg.h"
 #include "mcu/s12/inc/S12_Ect.h"
@@ -50,4 +51,3 @@ void TimerSetTickRes(TimerTickResType tr);
 #endif
 
 #endif  /* __VM_TMR_H */
-

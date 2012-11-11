@@ -32,5 +32,3 @@
 #endif
 
 #endif /* __HAL_H */
-
-

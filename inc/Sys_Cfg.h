@@ -1,5 +1,5 @@
 /*
- * k_os (Konnex Operating-System based on the OSEK/VDX-Standard).
+ * 2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
  * (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
