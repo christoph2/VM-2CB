@@ -137,9 +137,9 @@ void Utl_MemCopy(void * RESTRICT dst, void * RESTRICT src, SizeType len)
     uint8 * pd = (uint8 *)dst;
     uint8 * ps = (uint8 *)src;
 
-    CC_ASSERT(dst != (void *)NULL);
-    CC_ASSERT(pd >= ps + len || ps >= pd + len);
-    CC_ASSERT(len != (SizeType)0);
+    CC_ASSERT(dst != (void *)NULL, ERROR_NULLPTR);
+    CC_ASSERT(pd >= ps + len || ps >= pd + len, ERROR_NULLPTR);
+    CC_ASSERT(len != (SizeType)0, ERROR_NULLPTR);
 
     while (len--) {
         *pd++ = *ps++;
@@ -152,7 +152,7 @@ void Utl_MemSet(void * dest, uint8 fill_char, SizeType len)
 {
     uint8 * p = (uint8 *)dest;
 
-    CC_ASSERT((dest != (void *)NULL));
+    CC_ASSERT((dest != (void *)NULL), ERROR_NULLPTR);
 
     while (len--) {
         *p++ = fill_char;
@@ -188,7 +188,7 @@ SizeType Utl_StrLen(const uint8 * src)
 
 void Utl_StrCat(uint8 * RESTRICT dst, const uint8 * RESTRICT src)
 {
-    ASSERT(dst != (void *)NULL);
+    CC_ASSERT(dst != (void *)NULL, ERROR_NULLPTR);
 
     while (*(dst++)) {
     }
@@ -202,7 +202,7 @@ void Utl_StrCat(uint8 * RESTRICT dst, const uint8 * RESTRICT src)
 
 void Utl_StrCpy(uint8 * RESTRICT dst, const uint8 * RESTRICT src)
 {
-    ASSERT(dst != (void *)NULL);
+    CC_ASSERT(dst != (void *)NULL, ERROR_NULLPTR);
 
     while ((*(dst++) = *(src++))) {
     }
@@ -227,7 +227,7 @@ void Utl_StrRev(uint8 * str)
     SizeType    dpos;
     uint8       ch;
 
-    ASSERT(str != (void *)NULL);
+    CC_ASSERT(str != (void *)NULL, ERROR_NULLPTR);
 
     for (idx = (SizeType)0, dpos = Utl_StrLen(str) - 1; dpos > idx; idx++, dpos--) {
         ch         = dpos[str];
@@ -239,7 +239,7 @@ void Utl_StrRev(uint8 * str)
 
 const uint8 * Utl_StrChr(const uint8 * str, uint8 ch)
 {
-    ASSERT(str != (void *)NULL);
+    CC_ASSERT(str != (void *)NULL, ERROR_NULLPTR);
 
     while (*str) {
         if (*(str++) == ch) {
@@ -257,7 +257,7 @@ void Utl_Itoa(uint32 value, uint8 base, uint8 * buf)
     uint8   pos = (uint8)0x00, swap_pos = (uint8)0x00;
     uint8   ch;
 
-    ASSERT(buf != (void *)NULL);
+    CC_ASSERT(buf != (void *)NULL, ERROR_NULLPTR);
 
     if (((sint32)value) < 0L && base == (uint8)10) {
         value      = (uint32)((sint32)value * -1L);

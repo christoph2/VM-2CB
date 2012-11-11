@@ -36,6 +36,7 @@
 #define ERROR_BURN          ((uint8)0x05)
 #define ERROR_MEMCORRPT     ((uint8)0x06)   /* (Flash-)Memory corrupted. */
 #define ERROR_OOM           ((uint8)0x07)   /* out of memory. */
+#define ERROR_NULLPTR       ((uint8)0x08)   /* NULL-pointer. */
 
 #define ERROR_EDOM          ((uint8)0x08)   /* Domain-Error, e.g. '5 % 0' .*/
 
