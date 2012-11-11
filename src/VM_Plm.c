@@ -100,6 +100,6 @@ static void Plm_ToneOut(uint16 tone)
 }
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_?_STOP_SEC_CODE
+    #define VM_PLM_STOP_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */

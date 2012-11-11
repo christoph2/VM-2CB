@@ -52,7 +52,7 @@ static const VoidFunctionType MFTab[] = {
 
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_?_START_SEC_CODE
+    #define VM_MATH_START_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 

@@ -37,13 +37,25 @@
 #define HAL_BYTE_PORT_DDR0      
 #define HAL_BYTE_PORT_DDR1              
 
-#define HAL_INIT()                      \
+#define HAL_INIT_PHASE0()               \
+    _BEGIN_BLOCK                        \
+        S12Mmc_Init();                  \
+        S12Mebi_Init(&MEBI);            \
+        S12Crg_Init();                  \
+        S12Pim_Init(&PIM);              \
+        S12Fls_Init();                  \
+        S12Sci_Init(SCI0);              \
+    _END_BLOCK
+
+#define HAL_INIT_PHASE1()               \
     _BEGIN_BLOCK                        \
         (void)S12Iic_Init(&IIC0);       \
         (void)S12Atd_Init(ATD0);        \
         (void)S12Atd_Init(ATD1);        \
         (void)S12Ect_Init(&ECT_CFG);    \
         (void)S12Pwm_Init();            \
+        (void)S12Sci_Init(SCI1);        \
+        (void)S12Spi_Init(SPI0);        \
     _END_BLOCK
 
 #define HAL_GET_ADC_CHANNEL(channel, value)                     \

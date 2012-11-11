@@ -39,7 +39,8 @@
 #define HAL_BYTE_PORT_DDR0      dummy
 #define HAL_BYTE_PORT_DDR1      dummy
 
-#define HAL_INIT()
+#define HAL_INIT_PHASE0()
+#define HAL_INIT_PHASE1()
 
 #define HAL_GET_ADC_CHANNEL(channel, value)
 

@@ -116,7 +116,7 @@ void VM_SysInit(void)
     VM_SysVarFreq1     = ((uint32)0x00000000UL);
     VM_SysVarFreq2     = ((uint32)0x00000000UL);
 
-    HAL_INIT();
+    HAL_INIT_PHASE1();
 
     TMR_Init();
 }

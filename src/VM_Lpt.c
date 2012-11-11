@@ -33,7 +33,7 @@ static const VoidFunctionType LptTab[] = {
 };
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_?_START_SEC_CODE
+    #define VM_LPT_START_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
@@ -80,6 +80,6 @@ void Lpt_Print(void)
 }
 
 #if VM_MEMORY_MAPPING == STD_ON
-    #define VM_?_STOP_SEC_CODE
+    #define VM_LPT_STOP_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
