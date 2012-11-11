@@ -108,6 +108,104 @@ typedef void *          pvoid;
 typedef unsigned int    SizeType;
 typedef int             PtrDiffType;
 
+/* Static  (compile time) Assertion. */
+#if defined(_C1x_COMPILER)
+#define STATIC_ASSERT(cond, msg) _Static_assert((cond), (msg))
+#else
+#define STATIC_ASSERT(cond, msg)                       \
+    struct  GLUE2 (__NEVER_USED_BY_ISO_C_, __LINE__) { \
+        uint8 x[(cond) ? 1 : -1];                      \
+    }
+#endif
+
+#define RETURN_VALUE_IF_FALSE(expr, value) \
+    _BEGIN_BLOCK                           \
+    if (!(expr)) {                         \
+        return (value);                    \
+    }                                      \
+    _END_BLOCK                             
+
+
+#define _BEGIN_BLOCK    do {
+#define _END_BLOCK      } while (0)
+
+typedef void (*VoidFunctionType)(void);
+
+#define TO_STRING_2(s)          # s
+#define TO_STRING(s)            TO_STRING_2(s)
+
+#define GLUE2_2(a, b)           a ## b
+#define GLUE2(a, b)             GLUE2_2(a, b)
+
+#define GLUE3_2(a, b, c)        a ## b ## c
+#define GLUE3(a, b, c)          GLUE3_2(a, b, c)
+
+
+#if defined(_C99_COMPILER)
+    #define INLINE      inline
+    #define RESTRICT    restrict
+#elif defined(_CPP_COMPILER)
+    #define INLINE      inline
+    #define RESTRICT
+#else
+#if !defined(INLINE)
+    #define INLINE
+#endif
+    #define RESTRICT
+#endif
+
+#if !defined(PROGRAM_STARTUP)
+#define PROGRAM_STARTUP int main        /* ISO-C only requires 'int main()'-signatures for hosted environments !!! */
+#endif /* PROGRAM_STARTUP */
+
+#define VOID_EXPRESSION()           ((void)0)
+
+#if !defined(UNREFERENCED_PARAMETER)
+#define UNREFERENCED_PARAMETER(p)   ((p) = (p))
+#endif
+
+#define MIN(a, b)                   (((a) > (b)) ? (b) : (a))
+#define MAX(a, b)                   (((a) > (b)) ? (a) : (b))
+
+#define BETWEEN(x, min, max)        (((x) >= (min)) && ((x) <= (max)))
+
+#define ABS(i)                      (((i) < 0) ? ((i) * -1) : ((i)))
+
+#define SWAP_INPLACE(a, b)  \
+    _BEGIN_BLOCK            \
+        (a)    = (a) ^ (b); \
+    (b)        = (a) ^ (b); \
+    (a)        = (a) ^ (b); \
+    _END_BLOCK
+
+#if !defined(LOBYTE)
+#define LOBYTE(w)                   ((uint8)((uint16)((uint16)(w) & 0x00ffU)))
+#endif
+
+#if !defined(HIBYTE)
+#define HIBYTE(w)                   ((uint8)((uint16)(((uint16)(w ) >> 8) & 0x00ffU)))
+#endif
+
+#if !defined(LOWORD)
+#define LOWORD(dw)                  ((uint16)((uint32)((uint32)(dw) & 0xffffU)))
+#endif
+
+#if !defined(HIWORD)
+#define HIWORD(dw)                  ((uint16)((uint32)(((uint32)(dw) >> 16) & 0xffffU)))
+#endif
+
+#define MAKEWORD(h, l)              ((((uint16)((h) & ((uint8)0xff))) <<  (uint16)8) | ((uint16)((l) & ((uint8)0xff))))
+#define MAKEDWORD(h, l)             ((((uint32)((h) & ((uint16)0xffffu))) << (uint32)16) | ((uint32)((l) & ((uint16)0xffffu))))
+
+#define INVERT_NIBBLE(b)            ((uint8)(((uint8) ~(b)) & ((uint8)0x0f)))
+
+#define SIZEOF_ARRAY(arr)           (sizeof((arr)) / sizeof((arr[0])))
+#define BEYOND_ARRAY(arr)           ((arr) + SIZE_OF_ARRAY((arr)))
+
+#if !defined(_countof)
+#define _countof(arr)		    SIZEOF_ARRAY(arr)
+#endif
+
 
 #if defined(__cplusplus)
 }
