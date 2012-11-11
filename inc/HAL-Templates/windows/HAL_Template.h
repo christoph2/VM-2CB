@@ -68,4 +68,12 @@
 #define HAL_COM1_SETFORMAT(baudrate, parity, nbits)
 #define HAL_COM1_SENDBREAK()
 
+#define HAL_I2C_INIT()
+#define HAL_I2C_START()
+#define HAL_I2C_STOP()
+#define HAL_I2C_WRITE(ch)
+#define HAL_I2C_READ(ack)
+#define HAL_I2C_READY()         (CC_TRUE)
+
+
 #endif /* __HAL_TEMPLATE_H */

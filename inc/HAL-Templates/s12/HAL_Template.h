@@ -95,5 +95,12 @@
 #define HAL_COM1_SETFORMAT(baudrate, parity, nbits) ((void)S12Sci_SetFormat(SCI1, (baudrate), (parity), (nbits)))
 #define HAL_COM1_SENDBREAK()                        ((void)S12Sci_SendBreak(SCI1))
 
+#define HAL_I2C_INIT()                              (S12Iic_Init(&IIC0))
+#define HAL_I2C_START()                             (S12Iic_Start(&IIC0))
+#define HAL_I2C_STOP()                              (S12Iic_Stop(&IIC0))
+#define HAL_I2C_WRITE(ch)                           (S12Iic_Write(&IIC0, (ch)))   
+#define HAL_I2C_READ(ack)                           (S12Iic_Read(&IIC0, (ack)))
+#define HAL_I2C_READY()                             (CC_TRUE)
+
 
 #endif /* __HAL_TEMPLATE_H */

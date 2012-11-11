@@ -46,7 +46,7 @@ void VM_Iic(void)
 
 void I2c_Init(void)
 {
-    S12Iic_Init(&IIC0);
+    HAL_I2C_INIT();
 }
 
 
@@ -55,8 +55,8 @@ void I2c_Start(void)
     uint8   device = LOBYTE(VM_PopW());
     boolean res;
 
-    S12Iic_Start(&IIC0);
-    res = S12Iic_Write(&IIC0, device);
+    HAL_I2C_START();
+    res = HAL_I2C_WRITE(device);
 
     VM_PushW((res == TRUE) ? CC_TRUE : CC_FALSE);
 
@@ -65,7 +65,7 @@ void I2c_Start(void)
 
 void I2c_Stop(void)
 {
-    S12Iic_Stop(&IIC0);
+    HAL_I2C_STOP();
 }
 
 
@@ -74,7 +74,7 @@ void I2c_Write(void)
     uint8   b = LOBYTE(VM_PopW());
     boolean res;
 
-    res = S12Iic_Write(&IIC0, b);
+    res = HAL_I2C_WRITE(b);
 
     VM_PushW((res == TRUE) ? CC_TRUE : CC_FALSE);
 }
@@ -84,7 +84,7 @@ void I2c_Read(void)
 {
     uint8 b;
 
-    S12Iic_Read(&IIC0, &b, TRUE);
+    b = HAL_I2C_READ(TRUE);
 
     VM_PushW((uint16)b);
 }
@@ -94,7 +94,7 @@ void I2c_ReadLast(void)
 {
     uint8 b;
 
-    S12Iic_Read(&IIC0, &b, FALSE);
+    b = HAL_I2C_READ(FALSE);
 
     VM_PushW((uint16)b);
 }
@@ -102,7 +102,7 @@ void I2c_ReadLast(void)
 
 void I2c_Ready(void)
 {
-    VM_PushW(CC_TRUE);  /* todo: Implementeren!!! */
+    VM_PushW(HAL_I2C_READY());
 }
 
 #if VM_MEMORY_MAPPING == STD_ON
