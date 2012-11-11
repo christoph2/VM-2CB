@@ -1,0 +1,6792 @@
+/*
+ *   2-CB (C-Control-II kompatible Virtuelle Maschine).
+ *
+ * (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *                                      cpu12.gems@googlemail.com>
+ *
+ * All Rights Reserved
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ *
+ * s. FLOSS-EXCEPTION.txt
+ */
+#if !defined(__MEMMAP_H)
+#define __MEMMAP_H
+
+/*
+**  Plain Memory-Mapping for IAR-HCS12 - we need a _LINKER-FILE_-Configuration Tool !!!
+*/
+/* This File is Configuration-Specific. */
+
+#define MEMMAP_VENDOR_ID        ((uint16)4711)
+#define MEMMAP_AR_MAJOR_VERSION ((uint8)1)
+#define MEMMAP_AR_MINOR_VERSION ((uint8)0)
+#define MEMMAP_AR_PATCH_VERSION ((uint8)0)
+#define MEMMAP_SW_MAJOR_VERSION ((uint8)0)
+#define MEMMAP_SW_MINOR_VERSION ((uint8)1)
+#define MEMMAP_SW_PATCH_VERSION ((uint8)0)
+
+#define MEMMAP_ERROR
+
+/*
+**
+**  Section-Start Keywords.
+**
+*/
+
+/*
+**  HW_CFG: .
+*/
+#if defined(HW_CFG_START_SEC_CODE)
+    #undef HW_CFG_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef HW_CFG_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CODE_SLOW)
+    #undef HW_CFG_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_START_SEC_CODE_LIB)
+    #undef HW_CFG_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_AL: .
+*/
+#elif defined(VM_AL_START_SEC_CODE)
+    #undef VM_AL_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_AL_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CODE_SLOW)
+    #undef VM_AL_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_START_SEC_CODE_LIB)
+    #undef VM_AL_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_CAL: .
+*/
+#elif defined(VM_CAL_START_SEC_CODE)
+    #undef VM_CAL_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CAL_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CODE_SLOW)
+    #undef VM_CAL_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_START_SEC_CODE_LIB)
+    #undef VM_CAL_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_CAN: .
+*/
+#elif defined(VM_CAN_START_SEC_CODE)
+    #undef VM_CAN_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CAN_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CODE_SLOW)
+    #undef VM_CAN_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_START_SEC_CODE_LIB)
+    #undef VM_CAN_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_CNTR: .
+*/
+#elif defined(VM_CNTR_START_SEC_CODE)
+    #undef VM_CNTR_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CNTR_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CODE_SLOW)
+    #undef VM_CNTR_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_START_SEC_CODE_LIB)
+    #undef VM_CNTR_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_COM: .
+*/
+#elif defined(VM_COM_START_SEC_CODE)
+    #undef VM_COM_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_COM_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CODE_SLOW)
+    #undef VM_COM_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_START_SEC_CODE_LIB)
+    #undef VM_COM_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_CORE: .
+*/
+#elif defined(VM_CORE_START_SEC_CODE)
+    #undef VM_CORE_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CORE_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CODE_SLOW)
+    #undef VM_CORE_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_START_SEC_CODE_LIB)
+    #undef VM_CORE_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_EXCP: .
+*/
+#elif defined(VM_EXCP_START_SEC_CODE)
+    #undef VM_EXCP_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_EXCP_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CODE_SLOW)
+    #undef VM_EXCP_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_START_SEC_CODE_LIB)
+    #undef VM_EXCP_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_HM: .
+*/
+#elif defined(VM_HM_START_SEC_CODE)
+    #undef VM_HM_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_HM_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CODE_SLOW)
+    #undef VM_HM_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_START_SEC_CODE_LIB)
+    #undef VM_HM_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_IIC: .
+*/
+#elif defined(VM_IIC_START_SEC_CODE)
+    #undef VM_IIC_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_IIC_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CODE_SLOW)
+    #undef VM_IIC_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_START_SEC_CODE_LIB)
+    #undef VM_IIC_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_LCD: .
+*/
+#elif defined(VM_LCD_START_SEC_CODE)
+    #undef VM_LCD_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LCD_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CODE_SLOW)
+    #undef VM_LCD_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_START_SEC_CODE_LIB)
+    #undef VM_LCD_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_LPT: .
+*/
+#elif defined(VM_LPT_START_SEC_CODE)
+    #undef VM_LPT_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LPT_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CODE_SLOW)
+    #undef VM_LPT_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_START_SEC_CODE_LIB)
+    #undef VM_LPT_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_LS: .
+*/
+#elif defined(VM_LS_START_SEC_CODE)
+    #undef VM_LS_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LS_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CODE_SLOW)
+    #undef VM_LS_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_START_SEC_CODE_LIB)
+    #undef VM_LS_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_MAIN: .
+*/
+#elif defined(VM_MAIN_START_SEC_CODE)
+    #undef VM_MAIN_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_MAIN_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CODE_SLOW)
+    #undef VM_MAIN_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_START_SEC_CODE_LIB)
+    #undef VM_MAIN_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_MATH: .
+*/
+#elif defined(VM_MATH_START_SEC_CODE)
+    #undef VM_MATH_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_MATH_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CODE_SLOW)
+    #undef VM_MATH_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_START_SEC_CODE_LIB)
+    #undef VM_MATH_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_OPS: .
+*/
+#elif defined(VM_OPS_START_SEC_CODE)
+    #undef VM_OPS_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_OPS_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CODE_SLOW)
+    #undef VM_OPS_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_START_SEC_CODE_LIB)
+    #undef VM_OPS_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_PLM: .
+*/
+#elif defined(VM_PLM_START_SEC_CODE)
+    #undef VM_PLM_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_PLM_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CODE_SLOW)
+    #undef VM_PLM_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_START_SEC_CODE_LIB)
+    #undef VM_PLM_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_PORTS: .
+*/
+#elif defined(VM_PORTS_START_SEC_CODE)
+    #undef VM_PORTS_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_PORTS_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CODE_SLOW)
+    #undef VM_PORTS_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_START_SEC_CODE_LIB)
+    #undef VM_PORTS_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_STR: .
+*/
+#elif defined(VM_STR_START_SEC_CODE)
+    #undef VM_STR_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_STR_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CODE_SLOW)
+    #undef VM_STR_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_START_SEC_CODE_LIB)
+    #undef VM_STR_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_SYSMSG: .
+*/
+#elif defined(VM_SYSMSG_START_SEC_CODE)
+    #undef VM_SYSMSG_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_SYSMSG_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CODE_SLOW)
+    #undef VM_SYSMSG_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_START_SEC_CODE_LIB)
+    #undef VM_SYSMSG_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_TMR: .
+*/
+#elif defined(VM_TMR_START_SEC_CODE)
+    #undef VM_TMR_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_TMR_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CODE_SLOW)
+    #undef VM_TMR_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_START_SEC_CODE_LIB)
+    #undef VM_TMR_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_TWB: .
+*/
+#elif defined(VM_TWB_START_SEC_CODE)
+    #undef VM_TWB_START_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_START_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_TWB_START_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CODE_SLOW)
+    #undef VM_TWB_START_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_START_SEC_CODE_LIB)
+    #undef VM_TWB_START_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+#endif
+
+/*
+**  HW_CFG: .
+*/
+#if defined(HW_CFG_STOP_SEC_CODE)
+    #undef HW_CFG_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef HW_CFG_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef HW_CFG_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CODE_SLOW)
+    #undef HW_CFG_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(HW_CFG_STOP_SEC_CODE_LIB)
+    #undef HW_CFG_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_AL: .
+*/
+#elif defined(VM_AL_STOP_SEC_CODE)
+    #undef VM_AL_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_AL_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_AL_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CODE_SLOW)
+    #undef VM_AL_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_AL_STOP_SEC_CODE_LIB)
+    #undef VM_AL_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_CAL: .
+*/
+#elif defined(VM_CAL_STOP_SEC_CODE)
+    #undef VM_CAL_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAL_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CAL_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CODE_SLOW)
+    #undef VM_CAL_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAL_STOP_SEC_CODE_LIB)
+    #undef VM_CAL_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_CAN: .
+*/
+#elif defined(VM_CAN_STOP_SEC_CODE)
+    #undef VM_CAN_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CAN_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CAN_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CODE_SLOW)
+    #undef VM_CAN_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_CAN_STOP_SEC_CODE_LIB)
+    #undef VM_CAN_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_CNTR: .
+*/
+#elif defined(VM_CNTR_STOP_SEC_CODE)
+    #undef VM_CNTR_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CNTR_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CNTR_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CODE_SLOW)
+    #undef VM_CNTR_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_CNTR_STOP_SEC_CODE_LIB)
+    #undef VM_CNTR_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_COM: .
+*/
+#elif defined(VM_COM_STOP_SEC_CODE)
+    #undef VM_COM_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_COM_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_COM_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CODE_SLOW)
+    #undef VM_COM_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_COM_STOP_SEC_CODE_LIB)
+    #undef VM_COM_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_CORE: .
+*/
+#elif defined(VM_CORE_STOP_SEC_CODE)
+    #undef VM_CORE_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_CORE_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_CORE_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CODE_SLOW)
+    #undef VM_CORE_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_CORE_STOP_SEC_CODE_LIB)
+    #undef VM_CORE_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_EXCP: .
+*/
+#elif defined(VM_EXCP_STOP_SEC_CODE)
+    #undef VM_EXCP_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_EXCP_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_EXCP_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CODE_SLOW)
+    #undef VM_EXCP_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_EXCP_STOP_SEC_CODE_LIB)
+    #undef VM_EXCP_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_HM: .
+*/
+#elif defined(VM_HM_STOP_SEC_CODE)
+    #undef VM_HM_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_HM_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_HM_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CODE_SLOW)
+    #undef VM_HM_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_HM_STOP_SEC_CODE_LIB)
+    #undef VM_HM_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_IIC: .
+*/
+#elif defined(VM_IIC_STOP_SEC_CODE)
+    #undef VM_IIC_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_IIC_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_IIC_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CODE_SLOW)
+    #undef VM_IIC_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_IIC_STOP_SEC_CODE_LIB)
+    #undef VM_IIC_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_LCD: .
+*/
+#elif defined(VM_LCD_STOP_SEC_CODE)
+    #undef VM_LCD_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LCD_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LCD_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CODE_SLOW)
+    #undef VM_LCD_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_LCD_STOP_SEC_CODE_LIB)
+    #undef VM_LCD_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_LPT: .
+*/
+#elif defined(VM_LPT_STOP_SEC_CODE)
+    #undef VM_LPT_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LPT_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LPT_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CODE_SLOW)
+    #undef VM_LPT_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_LPT_STOP_SEC_CODE_LIB)
+    #undef VM_LPT_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_LS: .
+*/
+#elif defined(VM_LS_STOP_SEC_CODE)
+    #undef VM_LS_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_LS_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_LS_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CODE_SLOW)
+    #undef VM_LS_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_LS_STOP_SEC_CODE_LIB)
+    #undef VM_LS_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_MAIN: .
+*/
+#elif defined(VM_MAIN_STOP_SEC_CODE)
+    #undef VM_MAIN_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MAIN_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_MAIN_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CODE_SLOW)
+    #undef VM_MAIN_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_MAIN_STOP_SEC_CODE_LIB)
+    #undef VM_MAIN_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_MATH: .
+*/
+#elif defined(VM_MATH_STOP_SEC_CODE)
+    #undef VM_MATH_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_MATH_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_MATH_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CODE_SLOW)
+    #undef VM_MATH_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_MATH_STOP_SEC_CODE_LIB)
+    #undef VM_MATH_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_OPS: .
+*/
+#elif defined(VM_OPS_STOP_SEC_CODE)
+    #undef VM_OPS_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_OPS_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_OPS_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CODE_SLOW)
+    #undef VM_OPS_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_OPS_STOP_SEC_CODE_LIB)
+    #undef VM_OPS_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_PLM: .
+*/
+#elif defined(VM_PLM_STOP_SEC_CODE)
+    #undef VM_PLM_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PLM_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_PLM_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CODE_SLOW)
+    #undef VM_PLM_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_PLM_STOP_SEC_CODE_LIB)
+    #undef VM_PLM_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_PORTS: .
+*/
+#elif defined(VM_PORTS_STOP_SEC_CODE)
+    #undef VM_PORTS_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_PORTS_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_PORTS_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CODE_SLOW)
+    #undef VM_PORTS_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_PORTS_STOP_SEC_CODE_LIB)
+    #undef VM_PORTS_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_STR: .
+*/
+#elif defined(VM_STR_STOP_SEC_CODE)
+    #undef VM_STR_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_STR_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_STR_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CODE_SLOW)
+    #undef VM_STR_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_STR_STOP_SEC_CODE_LIB)
+    #undef VM_STR_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_SYSMSG: .
+*/
+#elif defined(VM_SYSMSG_STOP_SEC_CODE)
+    #undef VM_SYSMSG_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_SYSMSG_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_SYSMSG_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CODE_SLOW)
+    #undef VM_SYSMSG_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_SYSMSG_STOP_SEC_CODE_LIB)
+    #undef VM_SYSMSG_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_TMR: .
+*/
+#elif defined(VM_TMR_STOP_SEC_CODE)
+    #undef VM_TMR_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TMR_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_TMR_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CODE_SLOW)
+    #undef VM_TMR_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_TMR_STOP_SEC_CODE_LIB)
+    #undef VM_TMR_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+
+/*
+**  VM_TWB: .
+*/
+#elif defined(VM_TWB_STOP_SEC_CODE)
+    #undef VM_TWB_STOP_SEC_CODE
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_NOINIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_NOINIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_NOINIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_NOINIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_NOINIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_NOINIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_NOINIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_NOINIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_NOINIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_NOINIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_POWER_ON_INIT_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_FAST_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_FAST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_FAST_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_FAST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_FAST_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_FAST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_FAST_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_FAST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_FAST_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_FAST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_INTERNAL_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_INTERNAL_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_INTERNAL_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_INTERNAL_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_INTERNAL_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_INTERNAL_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_INTERNAL_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_INTERNAL_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_INTERNAL_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_INTERNAL_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_BOOLEAN)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_8BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_16BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_32BIT)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_VAR_UNSPECIFIED)
+    #pragma dataseg=default
+    #undef VM_TWB_STOP_SEC_VAR_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONST_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONST_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONST_8BIT)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONST_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONST_16BIT)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONST_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONST_32BIT)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONST_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONST_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONST_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONFIG_DATA_BOOLEAN)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONFIG_DATA_BOOLEAN
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONFIG_DATA_8BIT)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONFIG_DATA_8BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONFIG_DATA_16BIT)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONFIG_DATA_16BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONFIG_DATA_32BIT)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONFIG_DATA_32BIT
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CONFIG_DATA_UNSPECIFIED)
+    #pragma constseg=default
+    #undef VM_TWB_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CODE_SLOW)
+    #undef VM_TWB_STOP_SEC_CODE_SLOW
+    #undef MEMMAP_ERROR
+#elif defined(VM_TWB_STOP_SEC_CODE_LIB)
+    #undef VM_TWB_STOP_SEC_CODE_LIB
+    #undef MEMMAP_ERROR
+#endif
+
+/*
+**
+**  Error-Check.
+**
+*/
+#if defined(MEMMAP_ERROR)
+    #error No valid memory mapping symbol defined.
+#endif
+
+#endif  /* __MEMMAP_H */
