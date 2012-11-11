@@ -37,6 +37,12 @@ static const VoidFunctionType I2cTab[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
+static uint8 dummy(void)
+{
+    return 0;
+}
+
+
 void VM_Iic(void)
 {
     CC_ASSERT(VM_OperandB < SIZEOF_ARRAY(I2cTab), ERROR_ILLOPA);
