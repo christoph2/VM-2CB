@@ -112,13 +112,13 @@ static void Hm_LoadVMC(void)
 
     for (idx = (uint16)0x0000U; idx < (uint16)(numConsts / (uint16)2); ++idx) {
         data = Hm_ReadWordBE();
-        CC_ASSERT((Hm_WriteConst(idx, data) == S12FLS_OK), ERROR_BURN);
+        CC_ASSERT((Hm_WriteConst(idx, data) == STD_OK), ERROR_BURN);
         CC_ASSERT((WREF(FLS_PAGE_ADDR, ((idx << 1) % FLS_PAGE_SIZE)) == data), ERROR_BURN);
     }
 
     for (idx = (uint16)0x0000U; idx < (uint16)numVMCs; ++idx) {
         data = Hm_ReadWordLE();
-        CC_ASSERT((Hm_WriteCode(idx, data) == S12FLS_OK), ERROR_BURN);
+        CC_ASSERT((Hm_WriteCode(idx, data) == STD_OK), ERROR_BURN);
         CC_ASSERT((WREF(FLS_PAGE_ADDR, ((idx << 1) % FLS_PAGE_SIZE)) == data), ERROR_BURN);
     }
 }
@@ -145,7 +145,7 @@ static void Hm_LoadHEX(void)
 
 static void Hm_EraseVMC(void)
 {
-    CC_ASSERT((Hm_EraseVmcPages() == S12FLS_OK), ERROR_BURN);
+    CC_ASSERT((Hm_EraseVmcPages() == STD_OK), ERROR_BURN);
 
     (void)S12Sci_Put(SCI0, HM_CMD_ERASE_VMC);
 }
@@ -153,7 +153,7 @@ static void Hm_EraseVMC(void)
 
 static void Hm_EraseHEX(void)
 {
-    CC_ASSERT((Hm_EraseAsmPages() == S12FLS_OK), ERROR_BURN);
+    CC_ASSERT((Hm_EraseAsmPages() == STD_OK), ERROR_BURN);
 
     (void)S12Sci_Put(SCI0, HM_CMD_ERASE_HEX);
 }
@@ -248,7 +248,7 @@ uint8 Hm_EraseVmcPages(void)
     for (i = (uint8)0x00; i < (uint8)(sizeof(Hm_CodeBanks)); ++i) {
         stat = S12Fls_MassErase(Hm_CodeBanks[i]);
 
-        if (stat != S12FLS_OK) {
+        if (stat != STD_OK) {
             return stat;
         }
     }
@@ -256,12 +256,12 @@ uint8 Hm_EraseVmcPages(void)
     for (i = (uint8)0x00; i < (uint8)(sizeof(Hm_ConstBanks)); ++i) {
         stat = S12Fls_MassErase(Hm_ConstBanks[i]);
 
-        if (stat != S12FLS_OK) {
+        if (stat != STD_OK) {
             return stat;
         }
     }
 
-    return S12FLS_OK;
+    return STD_OK;
 }
 
 
@@ -281,7 +281,7 @@ uint8 Hm_EraseAsmPages(void)
 
 #endif  /* FLS_USE_ASM_BANKS */
 
-    return S12FLS_OK;
+    return STD_OK;
 }
 
 

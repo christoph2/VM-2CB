@@ -102,6 +102,10 @@ typedef unsigned long   uint32_least;
 #define NULL        0
 #endif
 
+#if !defined(STD_OK)
+    #define STD_OK  ((uint8)0x01)
+#endif
+
 typedef float           float32;
 typedef double          float64;
 typedef void *          pvoid;
