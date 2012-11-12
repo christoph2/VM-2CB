@@ -26,8 +26,8 @@ __copyright__ = """
   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
-import vmcfile
-import vmcodes
+import vm2cb.vmcfile as vmcfile
+import vm2cb.vmcodes as vmcodes
 import os
 import sys
 
@@ -58,7 +58,6 @@ class CC2Disasm(object):
                 sys.stdout.write("        %s(0x%02X)\n" % (vmcodes.VmcA[opcode], operandb))
             elif typ == vmcodes.VM_CODE_B:
                 oc = opcode & ~vmcodes.VM_CODE_B
-                #sys.stdout.write("%02x    " % operandb)
                 if vmcodes.VmcB.has_key(opcode):
                     if opcode in vmcodes.SubFunctions:
                         sys.stdout.write("        %s(%s)\n" % (vmcodes.VmcB[opcode], vmcodes.SubFunctions[opcode][operandb] ))

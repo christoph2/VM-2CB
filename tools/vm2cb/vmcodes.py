@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: latin-1 -*-
 
-__version__="0.9.1"
-__description__=""
-__copyright__="""
+__version__ = "0.9.1"
+__description__= ""
+__copyright__ = """
    2-CB (C-Control-II kompatible Virtuelle Maschine).
 
   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
@@ -26,7 +26,7 @@ __copyright__="""
   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 
-ReverseDict=lambda d: dict([(value,key) for key,value in d.items()])
+ReverseDict = lambda d: dict([(value,key) for key,value in d.items()])
 
 VM_CODE_A = 0x0000
 VM_CODE_B = 0x0040
@@ -405,7 +405,7 @@ VM_RESTORE                  = ( VM_CODE_D | 14 )
 VM_CODE_INVALID             = ( VM_CODE_D | 63 )
 
 
-VmcA={
+VmcA = {
     VM_NOP_A:                   "NOP_A",
     VM_QUIT:                    "QUIT",
     VM_YIELD:                   "YIELD",
@@ -472,9 +472,9 @@ VmcA={
     VM_SYSJUMP:                 "SYSJUMP"
 }
 
-VmcAR=ReverseDict(VmcA)
+VmcAR = ReverseDict(VmcA)
 
-VmcB={
+VmcB = {
     VM_NOP_B:                   "NOP_B",
     VM_RESET:                   "RESET",
     VM_RUN:                     "RUN",
@@ -520,9 +520,9 @@ VmcB={
     VM_LCD:                     "LCD",
 }
 
-VmcBR=ReverseDict(VmcB)
+VmcBR = ReverseDict(VmcB)
 
-VmcC={
+VmcC = {
     VM_NOP_C:                   "NOP_C",
     VM_CALL:                    "CALL",
     VM_RETURN:                  "RETURN",
@@ -568,9 +568,9 @@ VmcC={
     VM_INC_LOAD_LOCAL_FLOAT:    "INC_LOAD_LOCAL_FLOAT",
 }
 
-VmcCR=ReverseDict(VmcC)
+VmcCR = ReverseDict(VmcC)
 
-VmcD={
+VmcD = {
 VM_NOP_D:                       "NOP_D",
 VM_RETURN_VALUE:                "RETURN_VALUE",
 
@@ -605,173 +605,199 @@ VM_RESTORE:                     "RESTORE",
 VM_CODE_INVALID:                "CODE_INVALID",
 }
 
-VmcDR=ReverseDict(VmcD)
+VmcDR = ReverseDict(VmcD)
 
-""""
- Vmcodes CalcTab[]={
-{CALC_INT_INT,"INT_INT"},
-{CALC_INT_LONG,"INT_LONG"},
-{CALC_INT_FLOAT,"INT_FLOAT"},
-{CALC_LONG_INT,"LONG_INT"},
-{CALC_LONG_LONG,"LONG_LONG"},
-{CALC_LONG_FLOAT,"LONG_FLOAT"},
-{CALC_FLOAT_INT,"FLOAT_INT"},
-{CALC_FLOAT_LONG,"FLOAT_LONG"},
-{CALC_FLOAT_FLOAT,"FLOAT_FLOAT"},
+CALC    = 1000
+ISYSVAR = 1001
+LSYSVAR = 1002
+
+SubFunctions = {
+    VM_MATH_FUNCTION: {
+        MATH_SQR:                   "SQR",
+        MATH_SQRT:                  "SQRT",
+        MATH_CURT:                  "CURT",
+        MATH_SIN:                   "SIN",
+        MATH_COS:                   "COS",
+        MATH_TAN:                   "TAN",
+        MATH_ASIN:                  "ASIN",
+        MATH_ACOS:                  "ACOS",
+        MATH_ATAN:                  "ATAN",
+        MATH_LOG:                   "LOG",
+        MATH_LN:                    "LN",
+        MATH_EXP:                   "EXP",
+        MATH_POW:                   "POW",
+        MATH_CEIL:                  "CEIL",
+        MATH_FLOOR:                 "FLOOR",
+    },
+
+    VM_STRING:  {
+        STRING_CLEAR:               "STRING_CLEAR",
+        STRING_GET_LENGTH:          "STRING_GET_LENGTH",
+        STRING_FILL:                "STRING_FILL",
+        STRING_PUT_CHAR:            "STRING_PUT_CHAR",
+        STRING_PUT_STRING:          "STRING_PUT_STRING",
+        STRING_PUT_CONST_STRING:    "STRING_PUT_CONST_STRING",
+        STRING_PUT_INT:             "STRING_PUT_INT",
+        STRING_PUT_LONG:            "STRING_PUT_LONG",
+        STRING_PUT_FLOAT:           "STRING_PUT_FLOAT",
+        STRING_PUT_FORMATTED_INT:   "STRING_PUT_FORMATTED_INT",
+        STRING_PUT_FORMATTED_LONG:  "STRING_PUT_FORMATTED_LONG",
+        STRING_PUT_FORMATTED_FLOAT: "STRING_PUT_FORMATTED_FLOAT",
+        STRING_PUT_BYTE_MASK:       "STRING_PUT_BYTE_MASK",
+    },
+
+    VM_PLM: {
+        PLM_INIT:                   "PLM_INIT",
+        PLM_SET_TIMEBASE:           "PLM_SET_TIMEBASE",
+        PLM_SET_PORTMODE:           "PLM_SET_PORTMODE",
+        PLM_SET_PERIODLENGTH:       "PLM_SET_PERIODLENGTH",
+        PLM_OUT:                    "PLM_OUT",
+        PLM_BEEP:                   "PLM_BEEP",
+    },
+
+    VM_HWCOM: {
+        HWCOM_INIT:                 "HWCOM_INIT",
+        HWCOM_SET_SPEED:            "HWCOM_SET_SPEED",
+        HWCOM_SET_BUFFER:           "HWCOM_SET_BUFFER",
+        HWCOM_FLUSH:                "HWCOM_FLUSH",
+        HWCOM_READY:                "HWCOM_READY",
+        HWCOM_PUT:                  "HWCOM_PUT",
+        HWCOM_SEND:                 "HWCOM_SEND",
+        HWCOM_RXD:                  "HWCOM_RXD",
+        HWCOM_GET:                  "HWCOM_GET",
+    },
+
+    VM_SWCOM: {
+        SWCOM_INIT:                 "SWCOM_INIT",
+        SWCOM_SET_SPEED:            "SWCOM_SET_SPEED",
+        SWCOM_SET_BUFFER:           "SWCOM_SET_BUFFER",
+        SWCOM_FLUSH:                "SWCOM_FLUSH",
+        SWCOM_READY:                "SWCOM_READY",
+        SWCOM_PUT:                  "SWCOM_PUT",
+        SWCOM_SEND:                 "SWCOM_SEND",
+        SWCOM_RXD:                  "SWCOM_RXD",
+        SWCOM_GET:                  "SWCOM_GET",
+    },
+
+    VM_LPT: {
+        LPT_INIT:                   "LPT_INIT",
+        LPT_FLUSH:                  "LPT_FLUSH",
+        LPT_READY:                  "LPT_READY",
+        LPT_PUT:                    "LPT_PUT",
+    },
+
+    VM_CAN: {
+       CAN_INIT:                    "CAN_INIT",
+       CAN_READY:                   "CAN_READY",
+       CAN_GET_ERROR:               "CAN_GET_ERROR",
+       CAN_SEND:                    "CAN_SEND",
+       CAN_PUBLISH:                 "CAN_PUBLISH",
+       CAN_GET_RTRCOUNT:            "CAN_GET_RTRCOUNT",
+       CAN_EXPECT:                  "CAN_EXPECT",
+       CAN_REQUEST:                 "CAN_REQUEST",
+       CAN_RXD:                     "CAN_RXD",
+       CAN_GET:                     "CAN_GET",
+    },
+
+    VM_I2C: {
+        I2C_INIT:                   "I2C_INIT",
+        I2C_START:                  "I2C_START",
+        I2C_STOP:                   "I2C_STOP",
+        I2C_WRITE:                  "I2C_WRITE",
+        I2C_READ:                   "I2C_READ",
+        I2C_READ_LAST:              "I2C_READ_LAST",
+        I2C_READY:                  "I2C_READY",
+    },
+
+    VM_TWB: {
+        TWB_INIT:                   "TWB_INIT",
+        TWB_IO:                     "TWB_IO",
+        TWB_RXD:                    "TWB_RXD",
+    },
+
+    VM_LCD: {
+       LCD_INIT:                    "LCD_INIT",
+       LCD_SHOW_CURSOR:             "LCD_SHOW_CURSOR",
+       LCD_CLEAR:                   "LCD_CLEAR",
+       LCD_CLREOL:                  "LCD_CLREOL",
+       LCD_GOTO:                    "LCD_GOTO",
+       LCD_HOME:                    "LCD_HOME",
+       LCD_SCROLL:                  "LCD_SCROLL",
+       LCD_READY:                   "LCD_READY",
+       LCD_PUT:                     "LCD_PUT",
+       LCD_PRINT:                   "LCD_PRINT",
+    },
+    ##
+    ##
+    ##
+    CALC: {
+       CALC_INT_INT:                "CALC_INT_INT",
+       CALC_INT_LONG:               "CALC_INT_LONG",
+       CALC_INT_FLOAT:              "CALC_INT_FLOAT",
+       CALC_LONG_INT:               "CALC_LONG_INT",
+       CALC_LONG_LONG:              "CALC_LONG_LONG",
+       CALC_LONG_FLOAT:             "CALC_LONG_FLOAT",
+       CALC_FLOAT_INT:              "CALC_FLOAT_INT",
+       CALC_FLOAT_LONG:             "CALC_FLOAT_LONG",
+       CALC_FLOAT_FLOAT:            "CALC_FLOAT_FLOAT",
+    },
+
+    ISYSVAR: {
+        ISYSVAR_YEAR:               "ISYSVAR_YEAR",
+        ISYSVAR_MONTH:              "ISYSVAR_MONTH",
+        ISYSVAR_DAY:                "ISYSVAR_DAY",
+        ISYSVAR_HOUR:               "ISYSVAR_HOUR",
+        ISYSVAR_MINUTE:             "ISYSVAR_MINUTE",
+        ISYSVAR_SECOND:             "ISYSVAR_SECOND",
+        ISYSVAR_DOW:                "ISYSVAR_DOW",
+        ISYSVAR_DST:                "ISYSVAR_DST",
+        ISYSVAR_ZONE:               "ISYSVAR_ZONE",
+        ISYSVAR_DCF_ERRCNT:         "ISYSVAR_DCF_ERRCNT",
+    },
+
+    LSYSVAR: {
+        LSYSVAR_TIMER_MS:           "LSYSVAR_TIMER_MS",
+        LSYSVAR_CNT_1:              "LSYSVAR_CNT_1",
+        LSYSVAR_CNT_2:              "LSYSVAR_CNT_2",
+        LSYSVAR_CNT_3:              "LSYSVAR_CNT_3",
+        LSYSVAR_CNT_4:              "LSYSVAR_CNT_4",
+        LSYSVAR_FREQ1:              "LSYSVAR_FREQ1",
+        LSYSVAR_FREQ2:              "LSYSVAR_FREQ2",
+    },
+
 }
 
- Vmcodes MathTab[]={
-{MATH_SQR,"SQR"},
-{MATH_SQRT,"SQRT"},
-{MATH_CURT,"CURT"},
-{MATH_SIN,"SIN"},
-{MATH_COS,"COS"},
-{MATH_TAN,"TAN"},
-{MATH_ASIN,"ASIN"},
-{MATH_ACOS,"ACOS"},
-{MATH_ATAN,"ATAN"},
-{MATH_LOG,"LOG"},
-{MATH_LN,"LN"},
-{MATH_EXP,"EXP"},
-{MATH_POW,"POW"},
-{MATH_CEIL,"CEIL"},
-{MATH_FLOOR,"FLOOR"},
+Multiple = {
+    VM_ADD:                 CALC,
+    VM_SUB:                 CALC,
+    VM_MUL:                 CALC,
+    VM_DIV:                 CALC,
+    VM_MOD:                 CALC,
+    VM_EQU:                 CALC,
+    VM_NEQU:                CALC,
+    VM_HI:                  CALC,
+    VM_HIS:                 CALC,
+    VM_LO:                  CALC,
+    VM_LOS:                 CALC,
+    VM_AND:                 CALC,
+    VM_NAND:                CALC,
+    VM_OR:                  CALC,
+    VM_NOR:                 CALC,
+    VM_XOR:                 CALC,
+    VM_NXOR:                CALC,
+    VM_SHL:                 CALC,
+    VM_SHR:                 CALC,
+    VM_ASR:                 CALC,
+    VM_ROL:                 CALC,
+    VM_ROR:                 CALC,
+    VM_MIN:                 CALC,
+    VM_MAX:                 CALC,
+
+    VM_LOAD_SYSVAR_INT:     ISYSVAR,
+    VM_STORE_SYSVAR_INT:    ISYSVAR,
+    VM_LOAD_SYSVAR_LONG:    LSYSVAR,
+    VM_STORE_SYSVAR_LONG:   LSYSVAR,
+
+
 }
-
- Vmcodes ISysVarsTab[]={
-{ISYSVAR_YEAR,"ISYSVAR_YEAR"},
-{ISYSVAR_MONTH,"ISYSVAR_MONTH"},
-{ISYSVAR_DAY,"ISYSVAR_DAY"},
-{ISYSVAR_HOUR,"ISYSVAR_HOUR"},
-{ISYSVAR_MINUTE,"ISYSVAR_MINUTE"},
-{ISYSVAR_SECOND,"ISYSVAR_SECOND"},
-{ISYSVAR_DOW,"ISYSVAR_DOW"},
-{ISYSVAR_DST,"ISYSVAR_DST"},
-{ISYSVAR_ZONE,"ISYSVAR_ZONE"},
-{ISYSVAR_DCF_ERRCNT,"ISYSVAR_DCF_ERRCNT"},
-}
-
- Vmcodes LSysVarsTab[]={
-{LSYSVAR_TIMER_MS,"LSYSVAR_TIMER_MS"},
-{LSYSVAR_CNT_1,"LSYSVAR_CNT_1"},
-{LSYSVAR_CNT_2,"LSYSVAR_CNT_2"},
-{LSYSVAR_CNT_3,"LSYSVAR_CNT_3"},
-{LSYSVAR_CNT_4,"LSYSVAR_CNT_4"},
-{LSYSVAR_FREQ1,"LSYSVAR_FREQ1"},
-{LSYSVAR_FREQ2,"LSYSVAR_FREQ2"},
-}
-
- Vmcodes StringTab[]={
-{STRING_CLEAR,"CLEAR"},
-{STRING_GET_LENGTH,"GET_LENGTH"},
-{STRING_FILL,"FILL"},
-{STRING_PUT_CHAR,"_PUT_CHAR"},
-{STRING_PUT_STRING,"PUT_STRING"},
-{STRING_PUT_CONST_STRING,"PUT_CONST_STRING"},
-{STRING_PUT_INT,"PUT_INT"},
-{STRING_PUT_LONG,"PUT_LONG"},
-{STRING_PUT_FLOAT,"PUT_FLOAT"},
-{STRING_PUT_FORMATTED_INT,"PUT_FORMATTED_INT"},
-{STRING_PUT_FORMATTED_LONG,"PUT_FORMATTED_LONG"},
-{STRING_PUT_FORMATTED_FLOAT,"PUT_FORMATTED_FLOAT"},
-{STRING_PUT_BYTE_MASK,"PUT_BYTE_MASK"},
-}
-
- Vmcodes PlmTab[]={
-{PLM_INIT,"INIT"},
-{PLM_SET_TIMEBASE,"SET_TIMEBASE"},
-{PLM_SET_PORTMODE,"SET_PORTMODE"},
-{PLM_SET_PERIODLENGTH,"SET_PERIODLENGTH"},
-{PLM_OUT,"OUT"},
-{PLM_BEEP,"BEEP"},
-}
-
- Vmcodes HwcomTab[]={
-{HWCOM_INIT,"INIT"},
-{HWCOM_SET_SPEED,"SET_SPEED"},
-{HWCOM_SET_BUFFER,"SET_BUFFER"},
-{HWCOM_FLUSH,"FLUSH"},
-{HWCOM_READY,"READY"},
-{HWCOM_PUT,"PUT"},
-{HWCOM_SEND,"SEND"},
-{HWCOM_RXD,"RXD"},
-{HWCOM_GET,"GET"},
-}
-
- Vmcodes SwcomTab[]={
-{SWCOM_INIT,"INIT"},
-{SWCOM_SET_SPEED,"SET_SPEED"},
-{SWCOM_SET_BUFFER,"SET_BUFFER"},
-{SWCOM_FLUSH,"FLUSH"},
-{SWCOM_READY,"READY"},
-{SWCOM_PUT,"PUT"},
-{SWCOM_SEND,"SEND"},
-{SWCOM_RXD,"RXD"},
-{SWCOM_GET,"GET"},
-{9,"SETFORMAT"},
-{10,"SENDBREAK"},
-}
-
- Vmcodes LptTab[]={
-{LPT_INIT,"INIT"},
-{LPT_FLUSH,"FLUSH"},
-{LPT_READY,"READY"},
-{LPT_PUT,"PUT"},
-{LPT_PRINT,"PRINT"},
-}
-
- Vmcodes CanTab[]={
-{CAN_INIT,"INIT"},
-{CAN_READY,"READY"},
-{CAN_GET_ERROR,"GET_ERROR"},
-{CAN_SEND,"SEND"},
-{CAN_PUBLISH,"PUBLISH"},
-{CAN_GET_RTRCOUNT,"GET_RTRCOUNT"},
-{CAN_EXPECT,"EXPECT"},
-{CAN_REQUEST,"REQUEST"},
-{CAN_RXD,"RXD"},
-{CAN_GET,"GET"},
-{10,"???"},
-{11,"GETID"},
-{12,"REQUESTX"},
-}
-
- Vmcodes IICTab[]={
-{I2C_INIT,"INIT"},
-{I2C_START,"START"},
-{I2C_STOP,"STOP"},
-{I2C_WRITE,"WRITE"},
-{I2C_READ,"READ"},
-{I2C_READ_LAST,"READ_LAST"},
-{I2C_READY,"READY"},
-}
-
- Vmcodes TwbTab[]={
-{TWB_INIT,"INIT"},
-{TWB_IO,"IO"},
-{TWB_RXD,"RXD"},
-}
-
- Vmcodes LcdTab[]={
-{LCD_INIT,"INIT"},
-{LCD_SHOW_CURSOR,"SHOW_CURSOR"},
-{LCD_CLEAR,"CLEAR"},
-{LCD_CLREOL,"CLREOL"},
-{LCD_GOTO,"GOTO"},
-{LCD_HOME,"HOME"},
-{LCD_SCROLL,"SCROLL"},
-{LCD_READY,"READY"},
-{LCD_PUT,"PUT"},
-{LCD_PRINT,"PRINT"},
-//{,""},
-}
-
-"""
-
-
-def test():
-    print ReverseDict(VmcB)
-
-if __name__=="__main__":
-    test()
 
