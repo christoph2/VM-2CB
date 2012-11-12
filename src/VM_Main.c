@@ -28,6 +28,8 @@
 
 void Vm_Init_Phase0(void);
 
+void Fls_Test(void);
+
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_MAIN_START_SEC_CODE
     #include "MemMap.h"
@@ -37,6 +39,7 @@ int main(void)
 {
     CPU_DISABLE_ALL_INTERRUPTS();
 
+    Fls_Test();
     Vm_Init_Phase0();
 
     TMR_Init();

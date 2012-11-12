@@ -20,35 +20,8 @@
  *  with this program; if not, write to the Free Software Foundation, Inc.,
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-#if !defined(__VM_EXCP_H)
-#define __VM_EXCP_H
-
-#include "VM.h"
-
-#define STATUS_RUNNING      ((uint8)0x08)
-#define STATUS_HOSTMODE     ((uint8)0x09)
-#define STATUS_BOOTMODUS    ((uint8)0x0a)
-
-#define ERROR_UNDOPC        ((uint8)0x01)
-#define ERROR_ILLOPA        ((uint8)0x02)
-#define ERROR_FPE           ((uint8)0x03)
-#define ERROR_DIV0          ((uint8)0x04)
-#define ERROR_BURN          ((uint8)0x05)
-#define ERROR_MEMCORRPT     ((uint8)0x06)   /* (Flash-)Memory corrupted. */
-#define ERROR_OOM           ((uint8)0x07)   /* out of memory. */
-#define ERROR_NULLPTR       ((uint8)0x08)   /* NULL-pointer. */
-
-#define ERROR_EDOM          ((uint8)0x09)   /* Domain-Error, e.g. '5 % 0' .*/
-
-#define CC_ASSERT(expr, code) \
-    _BEGIN_BLOCK              \
-    if (!(expr)) {            \
-        Exception((code));    \
-    }                         \
-    _END_BLOCK
-
-void    Exception(uint8 code);
-void    ShowStatus(uint8 code);
+#if !defined(__WIN_FLSEMU_H)
+#define __WIN_FLSEMU_H
 
 
-#endif  /* __VM_EXCP_H */
+#endif /* __WIN_FLSEMU_H */

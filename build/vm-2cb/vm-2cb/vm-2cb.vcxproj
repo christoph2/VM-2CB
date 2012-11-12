@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\hal\windows\Win_FlsEmu.c" />
     <ClCompile Include="..\..\..\src\Utl.c" />
     <ClCompile Include="..\..\..\src\VM_Al.c" />
     <ClCompile Include="..\..\..\src\VM_Cal.c" />
@@ -102,6 +103,7 @@
     <ClCompile Include="..\..\..\src\VM_Twb.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\hal\windows\Win_FlsEmu.h" />
     <ClInclude Include="..\..\..\inc\Hal.h" />
     <ClInclude Include="..\..\..\inc\ISR_Cfg.h" />
     <ClInclude Include="..\..\..\inc\MemMap.h" />
@@ -129,6 +131,10 @@
     <ClInclude Include="..\..\..\inc\VM_SysMsg.h" />
     <ClInclude Include="..\..\..\inc\VM_Tmr.h" />
     <ClInclude Include="..\..\..\inc\VM_Twb.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="vm-2cb.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
