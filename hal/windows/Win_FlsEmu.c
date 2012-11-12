@@ -22,22 +22,9 @@
  */
 
 #include "Win_FlsEmu.h"
-#include <assert.h>
 #include <string.h>
 #include <stdio.h>
 #include <Windows.h>
-
-
-/*
-**
-**  Hinweis: Auch wenn der Flash-Emulator funktionert so wie so soll, ist die gegenwärtige Lösung suboptimal,
-**           weil allgemeine Konzepte mit HC12 Spezifika vermischt werden...
-**
-*/
-
-/*
-**  TODO: C++ !!!
-*/
 
 #define KB(v)   ((v) * 0x400)
 #define MB(v)   ((v) * (0x400 * 0x400))
@@ -79,11 +66,6 @@ typedef struct tagFlsEmu_Traits {
     unsigned __int32 cycles;
     PersistentArrayType * persistentArray;
 } FlsEmu_Traits;
-
-/*
-**  Lokale Variablen.
-*/
-static DWORD pageSize;
 
 void printErrorMessage(wchar_t const * func, DWORD error);
 /*
@@ -157,7 +139,6 @@ static BOOL CreateFileView(HANDLE handle, DWORD length, FileViewType * fileView)
         return FALSE;
     }
 
-    /* TODO: Refactor to function; s. FlsEmu_MapView() */
     fileView->mappingAddress = (void *)MapViewOfFile(fileView->mappingHandle, FILE_MAP_ALL_ACCESS, 0, 0, length);
     if (fileView->mappingAddress == NULL) {
         CloseHandle(fileView->mappingHandle);
@@ -217,7 +198,7 @@ static void ClosePersitentArray(PersistentArrayType const * persistentArray)
     CloseHandle(persistentArray->fileHandle);
 }
 
-void * FlsEmu_BasePointer(FlsEmu_Traits * traits)
+void * BasePointer(FlsEmu_Traits * traits)
 {
     return traits->persistentArray->mappingAddress;
 }
@@ -263,44 +244,6 @@ void FlsEmu_Create(FlsEmu_Traits * traits)
     }
 }
 
-BOOL FlsEmu_MapView(FlsEmu_Traits * traits, unsigned __int32 offset, unsigned __int32 length)
-{
-    DWORD error;
-
-    assert((offset % pageSize) == 0);   /*  Offset must be a multiple of the allocation granularity! */
-
-    traits->persistentArray->mappingAddress = (void *)MapViewOfFile(traits->persistentArray->mappingHandle, FILE_MAP_ALL_ACCESS, 0, offset, length);
-    if (traits->persistentArray->mappingAddress == NULL) {
-        error = GetLastError();
-        printErrorMessage(L"FlsEmu_MapView", error);
-        CloseHandle(traits->persistentArray->mappingHandle);
-        return FALSE;
-    }
-    return TRUE;
-}
-
-void FlsEmu_SelectPage(FlsEmu_Traits * traits, unsigned __int8 page)
-{
-    unsigned __int32 offset;
-
-    offset = (traits->pageSize * page);
-    if (FlsEmu_MapView(traits, offset, traits->pageSize)) {
-
-    }
-}
-
-void FlsEmu_SelectBlock(FlsEmu_Traits * traits, unsigned __int8 block)
-{
-    unsigned __int16 offset, blockSize;
-
-    blockSize = (traits->memSize / traits->blockCount);
-    offset = (blockSize * block);
-
-     if (FlsEmu_MapView(traits, offset, blockSize)) {
-
-    }
-}
-
 void FlsEmu_EraseSector(FlsEmu_Traits * traits, unsigned __int32 address)
 {
     unsigned __int32 mask = (unsigned __int32)traits->sectorSize - 1UL;
@@ -317,27 +260,11 @@ void FlsEmu_EraseSector(FlsEmu_Traits * traits, unsigned __int32 address)
 
 void FlsEmu_ErasePage(FlsEmu_Traits * traits, unsigned __int8 page)
 {
-    unsigned __int8 * ptr = (unsigned __int8 * )FlsEmu_BasePointer(&S12D512FlashArray);
+    unsigned __int8 * ptr = (unsigned __int8 * )BasePointer(&S12D512FlashArray);
 
     FillMemory(ptr + (traits->pageSize * page), traits->pageSize, traits->erasedValue);
 }
 
-
-void FlsEmu_EraseBlock(FlsEmu_Traits * traits, unsigned __int8 block)
-{
-    /* TODO: Nur den entsprechenden Block mappen!!! */
-    unsigned __int8 * ptr;
-    unsigned __int16 offset, blockSize;
-
-    assert(block < (traits->blockCount));
-
-    blockSize = (traits->memSize / traits->blockCount);
-    offset = (blockSize * block);
-
-    ptr = (unsigned __int8 * )FlsEmu_BasePointer(&S12D512FlashArray) + offset;
-
-    FillMemory(ptr, blockSize, traits->erasedValue);
-}
 
 void FlsEmu_Close(FlsEmu_Traits * traits)
 {
@@ -365,26 +292,12 @@ void printErrorMessage(wchar_t const * func, DWORD error)
     }
 }
 
-DWORD getPageSize(void)
-{
-    SYSTEM_INFO info;
-
-    GetSystemInfo(&info);
-    return info.dwPageSize;
-}
 
 void Fls_Test(void)
 {
-    int idx;
- 
-    pageSize = getPageSize();
 
     FlsEmu_Create(&S12D512EEPROMArray);
     FlsEmu_Create(&S12D512FlashArray);
-
-    for (idx = 0; idx < S12D512FlashArray.blockCount; ++idx) {
-        FlsEmu_EraseBlock(&S12D512FlashArray, idx);
-    }
 
     FlsEmu_Close(&S12D512EEPROMArray);
     FlsEmu_Close(&S12D512FlashArray);
