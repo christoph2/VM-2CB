@@ -21,7 +21,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
  */
-#include "Utl.h"
+#include "Ustl.h"
 
 const uint8 Utl_SetBitTab8[8] = {
     (uint8)0x01, (uint8)0x02, (uint8)0x04, (uint8)0x08, (uint8)0x10, (uint8)0x20, (uint8)0x40, (uint8)0x80
@@ -251,7 +251,7 @@ const uint8 * Utl_StrChr(const uint8 * str, uint8 ch)
 }
 
 
-void Utl_Itoa(uint32 value, uint8 base, uint8 * buf)
+void Utl_Itoa(sint32 value, uint8 base, uint8 * buf)
 {
     uint32  mod;
     uint8   pos = (uint8)0x00, swap_pos = (uint8)0x00;
