@@ -62,15 +62,22 @@ typedef /*@signed-integral-type@*/ int_least16_t    sint16_least;
 typedef /*@unsigned-integral-type@*/ uint_least16_t uint16_least;
 typedef /*@signed-integral-type@*/ int_least32_t    sint32_least;
 typedef /*@unsigned-integral-type@*/ uint_least32_t uint32_least;
+#elif defined(_MSC_VER)
 
-#if !defined(TRUE)
-    #define TRUE    ((boolean)true)
-#endif
+typedef unsigned __int8     boolean;
+typedef signed __int8       sint8;
+typedef unsigned __int8     uint8;
+typedef signed __int16      sint16;
+typedef unsigned __int16    uint16;
+typedef signed __int32      sint32;
+typedef unsigned __int32    uint32;
 
-#if !defined(FALSE)
-    #define FALSE   ((boolean)false)
-#endif
-
+typedef signed __int8       sint8_least;
+typedef unsigned __int8     uint8_least;
+typedef signed __int16      sint16_least;
+typedef unsigned __int16    uint16_least;
+typedef signed __int32      sint32_least;
+typedef unsigned __int32    uint32_least;
 #else
 /* Types  */
 typedef unsigned char   boolean;
@@ -88,14 +95,14 @@ typedef unsigned short  uint16_least;
 typedef signed long     sint32_least;
 typedef unsigned long   uint32_least;
 
+#endif
+
 #if !defined(TRUE)
     #define TRUE    ((boolean)1)
 #endif
 
 #if !defined(FALSE)
     #define FALSE   ((boolean)0)
-#endif
-
 #endif
 
 #if !defined(NULL)
