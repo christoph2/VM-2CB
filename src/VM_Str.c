@@ -135,36 +135,65 @@ static void Str_PutInt(void)
 
 static void Str_PutLong(void)
 {
+    uint32  value  = (uint32)VM_PopL();
+    Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
+    uint8   len    = str->len;
 
+    if (len < MAX_STR_LEN) {
+
+    }
 }
 
 
 static void Str_PutFloat(void)
 {
+    float64  value  = (float64)VM_PopF();
+    Str *    str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
+    uint8    len    = str->len;
 
+    if (len < MAX_STR_LEN) {
+
+    }
 }
 
 
 static void Str_PutFormattedInt(void)
 {
+    uint16  format = (uint16)VM_PopW();
+    uint16  value  = (uint16)VM_PopW();
+    Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
+    uint8   len    = str->len;
 
 }
 
 
 static void Str_PutFormattedLong(void)
 {
+    uint16  format = (uint16)VM_PopW();
+    uint32  value  = (uint32)VM_PopL();
+    Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
+    uint8   len    = str->len;
 
 }
 
 
 static void Str_PutFormattedFloat(void)
 {
+    uint16   format = (uint16)VM_PopW();
+    float64  value  = (float64)VM_PopF();
+    Str *    str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
+    uint8    len    = str->len;
 
 }
 
 
 static void Str_PutByteMask(void)
 {
+    uint16  c0     = (uint16)VM_PopW();
+    uint16  c1     = (uint16)VM_PopW();
+    uint16  value  = (uint16)VM_PopW();
+    Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
+    uint8   len    = str->len;
 
 }
 
