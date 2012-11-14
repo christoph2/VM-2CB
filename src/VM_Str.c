@@ -94,11 +94,11 @@ static void Str_Fill(void)
 
 static void Str_PutChar(void)
 {
-    uint8   Ch     = (uint8)VM_PopW();
+    uint8   ch     = (uint8)VM_PopW();
     Str *   str    = (Str *)BPTR(VM_UserRAM, VM_PopW());
 
     if (str->len < MAX_STR_LEN) {
-        str->data[str->len++] = Ch;
+        str->data[str->len++] = ch;
     }
 }
 

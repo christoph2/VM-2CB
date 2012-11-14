@@ -20,4 +20,4 @@ setup(
         ],
     },
     install_requires = ['pyserial', ]
-}
+)
