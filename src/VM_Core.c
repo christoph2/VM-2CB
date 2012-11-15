@@ -70,22 +70,22 @@ VM_TCBType *    VM_CurrentThread;
 /*
 **  Local Variables.
 */
-static uint8    VM_CurrentTID;
-static uint8    VM_OpsToExecute;
-static uint8    VM_NumThreads;
-static uint16   VM_ProgramCounter;
+STATIC uint8    VM_CurrentTID;
+STATIC uint8    VM_OpsToExecute;
+STATIC uint8    VM_NumThreads;
+STATIC uint16   VM_ProgramCounter;
 
-static uint8    VM_RAMPool[12000 - TESTING];
+STATIC uint8    VM_RAMPool[12000 - TESTING];
 uint8 *         VM_UserRAM;
 uint8 *         VM_UserCode, * VM_UserConstants;
 
-static const uint8 *    VM_SystemRAM       = &VM_RAMPool[0];
-static const uint8 *    VM_CANBufferPool   =
+STATIC const uint8 *    VM_SystemRAM       = &VM_RAMPool[0];
+STATIC const uint8 *    VM_CANBufferPool   =
     &VM_RAMPool[sizeof(VM_RAMPool) - ((VM_CAN_BUFFER_SIZE * VM_NUM_CAN_BUFFERS) + (uint16)1)];
 
-static void VM_SetCodePage(uint16 pc);
-static void VM_InitThread(uint8 num);
-static void VM_RetCleanup(void);
+STATIC void VM_SetCodePage(uint16 pc);
+STATIC void VM_InitThread(uint8 num);
+STATIC void VM_RetCleanup(void);
 
 
 #if VM_MEMORY_MAPPING == STD_ON
@@ -154,7 +154,7 @@ void VM_InitThreads(void)
 void VM_InitThread(uint8 num)
 {
     uint8 *         th_init_ptr;
-    static uint16   sp = (uint16)0x0000U; /* keep track of current SP. */
+    STATIC uint16   sp = (uint16)0x0000U; /* keep track of current SP. */
     VM_TCBType *    th_ptr;
 
     th_init_ptr    = (uint8 *)VM_GetConstantPtr((uint16)(((((uint16)THREAD_INIT_SIZE * num)) + (uint16)2) >> (uint16)1));
@@ -187,7 +187,7 @@ boolean VM_BlankCheck(void)
 
 void VM_Schedule(void)
 {
-    static uint16 op;
+    STATIC uint16 op;
 
     FOREVER {
 #if defined(VM_USE_WATCHDOG)
@@ -473,7 +473,7 @@ void VM_ReturnValue(void)
 }
 
 
-static void VM_RetCleanup(void)
+STATIC void VM_RetCleanup(void)
 {
     uint16 * fp;
 

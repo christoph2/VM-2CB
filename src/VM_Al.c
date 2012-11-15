@@ -30,9 +30,9 @@ typedef union tagALType {
 
 typedef void (*FuncType)(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void ArithmetricOperation(const FuncType * table);
-static void ComparationOperation(const FuncType * table);
-static void Unimplemented(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void ArithmetricOperation(const FuncType * table);
+STATIC void ComparationOperation(const FuncType * table);
+STATIC void Unimplemented(const ALType * Param1, const ALType * Param2, ALType * Result);
 
 
 /*
@@ -40,25 +40,25 @@ static void Unimplemented(const ALType * Param1, const ALType * Param2, ALType *
 **  Arithmetric Operations.
 **
 */
-static void AddInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void AddLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void AddFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void AddInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void AddLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void AddFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void SubInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void SubLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void SubFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void SubInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void SubLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void SubFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void MulInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void MulLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void MulFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void MulInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void MulLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void MulFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void DivInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void DivLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void DivFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void DivInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void DivLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void DivFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void ModInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void ModLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void ModFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void ModInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void ModLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void ModFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
 
 /*
@@ -66,53 +66,23 @@ static void ModFloat(const ALType * Param1, const ALType * Param2, ALType * Resu
 **  Logic Operations.
 **
 */
-static void AndInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void AndLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void AndInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void AndLong(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void NandInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void NandLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void NandInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void NandLong(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void OrInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void OrLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void OrInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void OrLong(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void NorInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void NorLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void NorInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void NorLong(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void XorInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void XorLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void XorInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void XorLong(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void NxorInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void NxorLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-
-
-/*
-**
-**  Compare Operations.
-**
-*/
-static void EquInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void EquLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void EquFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
-
-static void NeqInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void NeqLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void NeqFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
-
-static void HiInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void HiLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void HiFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
-
-static void HisInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void HisLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void HisFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
-
-static void LoInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void LoLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void LoFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
-
-static void LosInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void LosLong(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void LosFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void NxorInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void NxorLong(const ALType * Param1, const ALType * Param2, ALType * Result);
 
 
 /*
@@ -120,107 +90,137 @@ static void LosFloat(const ALType * Param1, const ALType * Param2, ALType * Resu
 **  Compare Operations.
 **
 */
-static void ShlInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void ShlLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void EquInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void EquLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void EquFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void ShrInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void ShrLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void NeqInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void NeqLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void NeqFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void AsrInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void AsrLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void HiInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void HiLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void HiFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void RolInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void RolLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void HisInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void HisLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void HisFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
-static void RorInt(const ALType * Param1, const ALType * Param2, ALType * Result);
-static void RorLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void LoInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void LoLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void LoFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
+
+STATIC void LosInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void LosLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void LosFloat(const ALType * Param1, const ALType * Param2, ALType * Result);
 
 
-static const FuncType AddTable[] = {
+/*
+**
+**  Compare Operations.
+**
+*/
+STATIC void ShlInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void ShlLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+
+STATIC void ShrInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void ShrLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+
+STATIC void AsrInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void AsrLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+
+STATIC void RolInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void RolLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+
+STATIC void RorInt(const ALType * Param1, const ALType * Param2, ALType * Result);
+STATIC void RorLong(const ALType * Param1, const ALType * Param2, ALType * Result);
+
+
+STATIC const FuncType AddTable[] = {
     AddInt, AddLong, AddFloat
 };
 
-static const FuncType SubTable[] = {
+STATIC const FuncType SubTable[] = {
     SubInt, SubLong, SubFloat
 };
 
-static const FuncType MulTable[] = {
+STATIC const FuncType MulTable[] = {
     MulInt, MulLong, MulFloat
 };
 
-static const FuncType DivTable[] = {
+STATIC const FuncType DivTable[] = {
     DivInt, DivLong, DivFloat
 };
 
-static const FuncType ModTable[] = {
+STATIC const FuncType ModTable[] = {
     ModInt, ModLong, ModFloat
 };
 
-static const FuncType AndTable[] = {
+STATIC const FuncType AndTable[] = {
     AndInt, AndLong, Unimplemented
 };
 
-static const FuncType NandTable[] = {
+STATIC const FuncType NandTable[] = {
     NandInt, NandLong, Unimplemented
 };
 
-static const FuncType OrTable[] = {
+STATIC const FuncType OrTable[] = {
     OrInt, OrLong, Unimplemented
 };
 
-static const FuncType NorTable[] = {
+STATIC const FuncType NorTable[] = {
     NorInt, NorLong, Unimplemented
 };
 
-static const FuncType XorTable[] = {
+STATIC const FuncType XorTable[] = {
     XorInt, XorLong, Unimplemented
 };
 
-static const FuncType NxorTable[] = {
+STATIC const FuncType NxorTable[] = {
     NxorInt, NxorLong, Unimplemented
 };
 
-static const FuncType EquTable[] = {
+STATIC const FuncType EquTable[] = {
     EquInt, EquLong, EquFloat
 };
 
-static const FuncType NeqTable[] = {
+STATIC const FuncType NeqTable[] = {
     NeqInt, NeqLong, NeqFloat
 };
 
-static const FuncType HiTable[] = {
+STATIC const FuncType HiTable[] = {
     HiInt, HiLong, HiFloat
 };
 
-static const FuncType HisTable[] = {
+STATIC const FuncType HisTable[] = {
     HisInt, HisLong, HisFloat
 };
 
-static const FuncType LoTable[] = {
+STATIC const FuncType LoTable[] = {
     LoInt, LoLong, LoFloat
 };
 
-static const FuncType LosTable[] = {
+STATIC const FuncType LosTable[] = {
     LosInt, LosLong, LosFloat
 };
 
-static const FuncType ShlTable[] = {
+STATIC const FuncType ShlTable[] = {
     ShlInt, ShlLong, Unimplemented
 };
 
-static const FuncType ShrTable[] = {
+STATIC const FuncType ShrTable[] = {
     ShrInt, ShrLong, Unimplemented
 };
 
-static const FuncType AsrTable[] = {
+STATIC const FuncType AsrTable[] = {
     AsrInt, AsrLong, Unimplemented
 };
 
-static const FuncType RolTable[] = {
+STATIC const FuncType RolTable[] = {
     RolInt, RolLong, Unimplemented
 };
 
-static const FuncType RorTable[] = {
+STATIC const FuncType RorTable[] = {
     RorInt, RorLong, Unimplemented
 };
 
@@ -229,7 +229,7 @@ static const FuncType RorTable[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-static void ArithmetricOperation(const FuncType * table)
+STATIC void ArithmetricOperation(const FuncType * table)
 {
     ALType  Param1;
     ALType  Param2;
@@ -296,7 +296,7 @@ static void ArithmetricOperation(const FuncType * table)
 }
 
 
-static void ComparationOperation(const FuncType * table)
+STATIC void ComparationOperation(const FuncType * table)
 {
     ALType  Param1;
     ALType  Param2;

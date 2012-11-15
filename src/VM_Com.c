@@ -22,30 +22,30 @@
  */
 #include "VM_Com.h"
 
-static void Hwcom_Init(void), Hwcom_SetSpeed(void), Hwcom_SetBuffer(void);
-static void Hwcom_Flush(void), Hwcom_Ready(void), Hwcom_Put(void);
-static void Hwcom_Send(void), Hwcom_Rxd(void), Hwcom_Get(void);
-static void Hwcom_SetFormat(void), Hwcom_SendBreak(void);
+STATIC void Hwcom_Init(void), Hwcom_SetSpeed(void), Hwcom_SetBuffer(void);
+STATIC void Hwcom_Flush(void), Hwcom_Ready(void), Hwcom_Put(void);
+STATIC void Hwcom_Send(void), Hwcom_Rxd(void), Hwcom_Get(void);
+STATIC void Hwcom_SetFormat(void), Hwcom_SendBreak(void);
 
-static void Swcom_Init(void), Swcom_SetSpeed(void), Swcom_SetBuffer(void);
-static void Swcom_Flush(void), Swcom_Ready(void), Swcom_Put(void);
-static void Swcom_Send(void), Swcom_Rxd(void), Swcom_Get(void);
-static void Swcom_SetFormat(void), Swcom_SendBreak(void);
+STATIC void Swcom_Init(void), Swcom_SetSpeed(void), Swcom_SetBuffer(void);
+STATIC void Swcom_Flush(void), Swcom_Ready(void), Swcom_Put(void);
+STATIC void Swcom_Send(void), Swcom_Rxd(void), Swcom_Get(void);
+STATIC void Swcom_SetFormat(void), Swcom_SendBreak(void);
 
 
-static const VoidFunctionType HwComTab[] = {
+STATIC const VoidFunctionType HwComTab[] = {
     Hwcom_Init,      Hwcom_SetSpeed, Hwcom_SetBuffer, Hwcom_Flush,
     Hwcom_Ready,     Hwcom_Put,      Hwcom_Send,      Hwcom_Rxd,  Hwcom_Get,
     Hwcom_SetFormat, Hwcom_SendBreak
 };
 
-static const VoidFunctionType SwComTab[] = {
+STATIC const VoidFunctionType SwComTab[] = {
     Swcom_Init,      Swcom_SetSpeed, Swcom_SetBuffer, Swcom_Flush,
     Swcom_Ready,     Swcom_Put,      Swcom_Send,      Swcom_Rxd,  Swcom_Get,
     Swcom_SetFormat, Swcom_SendBreak
 };
 
-static const uint32 BaudLookupTable[] = {
+STATIC const uint32 BaudLookupTable[] = {
     (uint32)300,  (uint32)600,   (uint32)1200,  (uint32)2400,  (uint32)4800,
     (uint32)9600, (uint32)19200, (uint32)38400, (uint32)57600, (uint32)115200
 };
@@ -55,7 +55,7 @@ static const uint32 BaudLookupTable[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-static uint8 dummy(void)
+STATIC uint8 dummy(void)
 {
     return 0;
 }

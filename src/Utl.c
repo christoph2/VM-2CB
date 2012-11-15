@@ -49,7 +49,7 @@ const uint16 Utl_ClearBitTab16[16] = {
 #define BIT_8(n) ((const uint8[8]) {1, 2, 4, 8, 16, 32, 64, 128})[n];
 #endif
 
-static uint32 NextRandomNumber = 1;
+STATIC uint32 NextRandomNumber = 1;
 
 #if 0
 boolean Utl_BitGet(uint16 w, uint8 num)

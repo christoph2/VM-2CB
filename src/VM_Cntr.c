@@ -26,7 +26,7 @@
 /*#define ACC_MAX ((uint32)0x00010000)*/
 #define ACC_MAX ((uint16)0xffff)
 
-static uint8 Frequency1, Frequency2;
+STATIC uint8 Frequency1, Frequency2;
 
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_CNTR_START_SEC_CODE

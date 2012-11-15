@@ -23,14 +23,14 @@
 
 #include "VM_Can.h"
 
-static void Can_Init(void), Can_Ready(void), Can_Error(void);
-static void Can_Send(void), Can_Publish(void), Can_RtrCount(void);
-static void Can_Expect(void), Can_Request(void), Can_Rxd(void);
-static void Can_Get(void), Can_SetParameter(void);
-static void Can_GetID(void), Can_RequestX(void);
+STATIC void Can_Init(void), Can_Ready(void), Can_Error(void);
+STATIC void Can_Send(void), Can_Publish(void), Can_RtrCount(void);
+STATIC void Can_Expect(void), Can_Request(void), Can_Rxd(void);
+STATIC void Can_Get(void), Can_SetParameter(void);
+STATIC void Can_GetID(void), Can_RequestX(void);
 
 
-static const VoidFunctionType CanTab[] = {
+STATIC const VoidFunctionType CanTab[] = {
     Can_Init,         Can_Ready,  Can_Error,   Can_Send, Can_Publish,
     Can_RtrCount,     Can_Expect, Can_Request, Can_Rxd,  Can_Get,
     Can_SetParameter, Can_GetID,  Can_RequestX

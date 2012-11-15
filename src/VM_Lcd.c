@@ -23,12 +23,12 @@
 
 #include "VM_Lcd.h"
 
-static void Lcd_init(void), Lcd_show_cursor(void), Lcd_clear(void);
-static void Lcd_clreol(void), Lcd_goto(void), Lcd_home(void);
-static void Lcd_scroll(void), Lcd_ready(void), Lcd_put(void), Lcd_print(void);
+STATIC void Lcd_init(void), Lcd_show_cursor(void), Lcd_clear(void);
+STATIC void Lcd_clreol(void), Lcd_goto(void), Lcd_home(void);
+STATIC void Lcd_scroll(void), Lcd_ready(void), Lcd_put(void), Lcd_print(void);
 
 
-static const VoidFunctionType LcdTab[] = {
+STATIC const VoidFunctionType LcdTab[] = {
     Lcd_init, Lcd_show_cursor, Lcd_clear, Lcd_clreol, Lcd_goto,
     Lcd_home, Lcd_scroll,      Lcd_ready, Lcd_put,    Lcd_print
 };

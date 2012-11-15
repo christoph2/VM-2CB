@@ -21,11 +21,16 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#define  _CRT_SECURE_NO_WARNINGS    1
+
 #include "VM_Str.h"
+#include <stdio.h>
+#include <string.h>
+
 
 #define MAX_STR_LEN ((uint8)30)
 
-static void it(uint8 * buf, sint16 num);
+STATIC void it(uint8 * buf, sint16 num);
 
 
 typedef struct tagStr {
@@ -33,22 +38,24 @@ typedef struct tagStr {
     uint8   len;
 } Str;
 
-static void Str_Clear(void), Str_GetLength(void), Str_Fill(void);
-static void Str_PutChar(void), Str_PutString(void), Str_PutConstString(void);
-static void Str_PutInt(void), Str_PutLong(void), Str_PutFloat(void);
-static void Str_PutFormattedInt(void), Str_PutFormattedLong(void);
-static void Str_PutFormattedFloat(void), Str_PutByteMask(void);
+STATIC void Str_Clear(void), Str_GetLength(void), Str_Fill(void);
+STATIC void Str_PutChar(void), Str_PutString(void), Str_PutConstString(void);
+STATIC void Str_PutInt(void), Str_PutLong(void), Str_PutFloat(void);
+STATIC void Str_PutFormattedInt(void), Str_PutFormattedLong(void);
+STATIC void Str_PutFormattedFloat(void), Str_PutByteMask(void);
 
-static void Str_Copy(Str * dst, Str * src);
+STATIC void Str_Copy(Str * dst, Str * src);
 
 
-static const VoidFunctionType FuncTab[] = {
+STATIC const VoidFunctionType FuncTab[] = {
     Str_Clear,            Str_GetLength,         Str_Fill,            Str_PutChar,
     Str_PutString,        Str_PutConstString,    Str_PutInt,
     Str_PutLong,          Str_PutFloat,          Str_PutFormattedInt,
     Str_PutFormattedLong, Str_PutFormattedFloat,
     Str_PutByteMask
 };
+
+STATIC uint8 * Str_ScratchBuffer[MAX_STR_LEN + 1];
 
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_STR_START_SEC_CODE
@@ -62,7 +69,7 @@ void VM_String(void)
 }
 
 
-static void Str_Clear(void)
+STATIC void Str_Clear(void)
 {
     Str * str = (Str *)BPTR(VM_UserRAM, VM_PopW());
 
@@ -73,13 +80,13 @@ static void Str_Clear(void)
 }
 
 
-static void Str_GetLength(void)
+STATIC void Str_GetLength(void)
 {
     VM_PushW((sint16)((Str *)BPTR(VM_UserRAM, VM_PopW()))->len);
 }
 
 
-static void Str_Fill(void)
+STATIC void Str_Fill(void)
 {
     uint8   filler = (uint8)VM_PopW();
     uint8   offset = (uint8)VM_PopW();
@@ -92,7 +99,7 @@ static void Str_Fill(void)
 }
 
 
-static void Str_PutChar(void)
+STATIC void Str_PutChar(void)
 {
     uint8   ch     = (uint8)VM_PopW();
     Str *   str    = (Str *)BPTR(VM_UserRAM, VM_PopW());
@@ -103,7 +110,7 @@ static void Str_PutChar(void)
 }
 
 
-static void Str_PutString(void)
+STATIC void Str_PutString(void)
 {
     Str *   src    = (Str *)BPTR(VM_UserRAM, VM_PopW());
     Str *   dst    = (Str *)BPTR(VM_UserRAM, VM_PopW());
@@ -112,7 +119,7 @@ static void Str_PutString(void)
 }
 
 
-static void Str_PutConstString(void)
+STATIC void Str_PutConstString(void)
 {
     Str *   src    = (Str *)VM_GetConstantPtr((uint16)VM_PopW());
     Str *   dst    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
@@ -121,80 +128,111 @@ static void Str_PutConstString(void)
 }
 
 
-static void Str_PutInt(void)
+STATIC void Str_PutInt(void)
 {
-    uint16  value  = (uint16)VM_PopW();
+    sint16  value  = VM_PopW();
     Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
     uint8   len    = str->len;
+    uint8   byteCount;
 
     if (len < MAX_STR_LEN) {
-
+        byteCount = MAX_STR_LEN - len;
+        sprintf((char * )Str_ScratchBuffer, "%d", value);
+        strncpy((char * )str->data[str->len], (char *)Str_ScratchBuffer, byteCount);
+        len += byteCount;
     }
 }
 
 
-static void Str_PutLong(void)
+STATIC void Str_PutLong(void)
 {
     uint32  value  = (uint32)VM_PopL();
     Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
     uint8   len    = str->len;
+    uint8   byteCount;
 
     if (len < MAX_STR_LEN) {
+        byteCount = MAX_STR_LEN - len;
+        sprintf((char * )Str_ScratchBuffer, "%ld", value);
+        strncpy((char * )str->data[str->len], (char *)Str_ScratchBuffer, byteCount);
+        len += byteCount;
 
     }
 }
 
 
-static void Str_PutFloat(void)
+STATIC void Str_PutFloat(void)
 {
-    float64  value  = (float64)VM_PopF();
+    float64  value  = VM_PopF();
     Str *    str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
     uint8    len    = str->len;
+    uint8    byteCount;
 
     if (len < MAX_STR_LEN) {
+        byteCount = MAX_STR_LEN - len;
+        sprintf((char * )Str_ScratchBuffer, "%f", value);
+        strncpy((char * )str->data[str->len], (char *)Str_ScratchBuffer, byteCount);
+        len += byteCount;
 
     }
 }
 
 
-static void Str_PutFormattedInt(void)
+STATIC void Str_PutFormattedInt(void)
 {
-    uint16  format = (uint16)VM_PopW();
+    sint16  format = VM_PopW();
     uint16  value  = (uint16)VM_PopW();
     Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
     uint8   len    = str->len;
-
+    uint8   byteCount;
+    
+    if (len < MAX_STR_LEN) {
+        byteCount = MAX_STR_LEN - len;
+    }
 }
 
 
-static void Str_PutFormattedLong(void)
+STATIC void Str_PutFormattedLong(void)
 {
-    uint16  format = (uint16)VM_PopW();
+    sint16  format = VM_PopW();
     uint32  value  = (uint32)VM_PopL();
     Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
     uint8   len    = str->len;
-
+    uint8   byteCount;
+    
+    if (len < MAX_STR_LEN) {
+        byteCount = MAX_STR_LEN - len;
+    }
 }
 
 
-static void Str_PutFormattedFloat(void)
+STATIC void Str_PutFormattedFloat(void)
 {
-    uint16   format = (uint16)VM_PopW();
-    float64  value  = (float64)VM_PopF();
+    sint16   format = VM_PopW();
+    float64  value  = VM_PopF();
     Str *    str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
     uint8    len    = str->len;
+    uint8    byteCount;
+    
+    if (len < MAX_STR_LEN) {
+        byteCount = MAX_STR_LEN - len;
+    }
 
 }
 
 
-static void Str_PutByteMask(void)
+STATIC void Str_PutByteMask(void)
 {
     uint16  c0     = (uint16)VM_PopW();
     uint16  c1     = (uint16)VM_PopW();
     uint16  value  = (uint16)VM_PopW();
     Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
     uint8   len    = str->len;
-
+    uint8   byteCount;
+    
+    if (len < MAX_STR_LEN) {
+        byteCount = MAX_STR_LEN - len;
+    }
 }
 
 
@@ -203,7 +241,7 @@ static void Str_PutByteMask(void)
 **      Helper-Functions.
 **
 */
-static void Str_Copy(Str * dst, Str * src)
+STATIC void Str_Copy(Str * dst, Str * src)
 {
     uint8 i, j;
 

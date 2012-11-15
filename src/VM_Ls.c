@@ -39,12 +39,12 @@
 /*
 **  Local Variables.
 */
-static uint16  * const VM_SysVars16[] = {
+STATIC uint16  * const VM_SysVars16[] = {
     &VM_SysVarYear,   &VM_SysVarMonth, &VM_SysVarDay, &VM_SysVarHour, &VM_SysVarMinute,
     &VM_SysVarSecond, &VM_SysVarDow,   &VM_SysVarDst, &VM_SysVarZone, &VM_SysVarDcfErrCnt
 };
 
-static uint32 * const VM_SysVars32[] = {
+STATIC uint32 * const VM_SysVars32[] = {
     &VM_SysVarTimerMS, &VM_SysVarCnt1,  &VM_SysVarCnt2, &VM_SysVarCnt3,
     &VM_SysVarCnt4,    &VM_SysVarFreq1, &VM_SysVarFreq2
 };

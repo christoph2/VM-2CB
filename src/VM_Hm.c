@@ -24,29 +24,29 @@
 #include "VM_Hm.h"
 #include "VM_Excp.h"
 
-static uint32   Hm_ReadLong(void);
-static uint16   Hm_ReadWordLE(void), Hm_ReadWordBE(void);
+STATIC uint32   Hm_ReadLong(void);
+STATIC uint16   Hm_ReadWordLE(void), Hm_ReadWordBE(void);
 
-static void Hm_SendID(void), Hm_SendDate(void), Hm_SendVersion(void), Hm_Start(void);
-static void Hm_LoadVMC(void), Hm_EraseVMC(void), Hm_EraseHEX(void), Hm_LoadHEX(void);
-static void Hm_SetBaudHi(void), Hm_SetBaudDef(void), Hm_SetBaudTurbo(void), Hm_Reset(void);
+STATIC void Hm_SendID(void), Hm_SendDate(void), Hm_SendVersion(void), Hm_Start(void);
+STATIC void Hm_LoadVMC(void), Hm_EraseVMC(void), Hm_EraseHEX(void), Hm_LoadHEX(void);
+STATIC void Hm_SetBaudHi(void), Hm_SetBaudDef(void), Hm_SetBaudTurbo(void), Hm_Reset(void);
 
-static uint8    Hm_WriteCode(uint16 addr, uint16 data);
-static uint8    Hm_WriteConst(uint16 addr, uint16 data);
-static uint8    Hm_EraseVmcPages(void);
-static uint8    Hm_EraseAsmPages(void);
+STATIC uint8    Hm_WriteCode(uint16 addr, uint16 data);
+STATIC uint8    Hm_WriteConst(uint16 addr, uint16 data);
+STATIC uint8    Hm_EraseVmcPages(void);
+STATIC uint8    Hm_EraseAsmPages(void);
 
 
-static const uint8  Hm_CodeBanks[]     = FLS_CODE_BANKS;
-static const uint8  Hm_ConstBanks[]    = FLS_CONST_BANKS;
+STATIC const uint8  Hm_CodeBanks[]     = FLS_CODE_BANKS;
+STATIC const uint8  Hm_ConstBanks[]    = FLS_CONST_BANKS;
 #if defined(FLS_USE_ASM_BANKS)
-static const uint8 Hm_AsmBanks[] = FLS_ASM_BANKS;
+STATIC const uint8 Hm_AsmBanks[] = FLS_ASM_BANKS;
 #endif  /* FLS_USE_ASM_BANKS */
 
 /*
 **      Jump-Table.
 */
-static const VoidFunctionType FuncTab[] = {
+STATIC const VoidFunctionType FuncTab[] = {
     Hm_SendID,   Hm_SendDate, Hm_SendVersion, Hm_Start,      Hm_LoadVMC, Hm_LoadHEX,
     Hm_EraseVMC, Hm_EraseHEX, Hm_SetBaudHi,   Hm_SetBaudDef, Hm_SetBaudTurbo
 };
@@ -57,7 +57,7 @@ static const VoidFunctionType FuncTab[] = {
 #endif /* VM_MEMORY_MAPPING */
 
 
-static uint8 dummy(void)
+STATIC uint8 dummy(void)
 {
     return 0;
 }
@@ -83,25 +83,25 @@ void Hm_Dispatcher(void)
 }
 
 
-static void Hm_SendID(void)
+STATIC void Hm_SendID(void)
 {
     HAL_COM0_PUTSTRING((uint8 *)VM_C_CCONTROL);
 }
 
 
-static void Hm_SendDate(void)
+STATIC void Hm_SendDate(void)
 {
     HAL_COM0_PUTSTRING((uint8 *)VM_C_DATE);
 }
 
 
-static void Hm_SendVersion(void)
+STATIC void Hm_SendVersion(void)
 {
     HAL_COM0_PUTSTRING((uint8 *)VM_C_VERSION);
 }
 
 
-static void Hm_Start(void)
+STATIC void Hm_Start(void)
 {
     /* Start VM direct. */
     /* IISR_ENTRY_POINT(); */
@@ -109,7 +109,7 @@ static void Hm_Start(void)
 }
 
 
-static void Hm_LoadVMC(void)
+STATIC void Hm_LoadVMC(void)
 {
     uint32  numConsts, numVMCs;
     uint16  data, idx;
@@ -131,7 +131,7 @@ static void Hm_LoadVMC(void)
 }
 
 
-static void Hm_LoadHEX(void)
+STATIC void Hm_LoadHEX(void)
 {
     uint16  addr, data;
     uint8   len;
@@ -150,7 +150,7 @@ static void Hm_LoadHEX(void)
 }
 
 
-static void Hm_EraseVMC(void)
+STATIC void Hm_EraseVMC(void)
 {
     CC_ASSERT((Hm_EraseVmcPages() == STD_OK), ERROR_BURN);
 
@@ -158,7 +158,7 @@ static void Hm_EraseVMC(void)
 }
 
 
-static void Hm_EraseHEX(void)
+STATIC void Hm_EraseHEX(void)
 {
     CC_ASSERT((Hm_EraseAsmPages() == STD_OK), ERROR_BURN);
 
@@ -166,25 +166,25 @@ static void Hm_EraseHEX(void)
 }
 
 
-static void Hm_SetBaudHi(void)
+STATIC void Hm_SetBaudHi(void)
 {
     HAL_COM0_SETBAUDRATE(57600UL);
 }
 
 
-static void Hm_SetBaudDef(void)
+STATIC void Hm_SetBaudDef(void)
 {
     HAL_COM0_SETBAUDRATE(19200UL);
 }
 
 
-static void Hm_SetBaudTurbo(void)
+STATIC void Hm_SetBaudTurbo(void)
 {
     HAL_COM0_SETBAUDRATE(115200UL);
 }
 
 
-static void Hm_Reset(void)
+STATIC void Hm_Reset(void)
 {
 /*  IISR_ENTRY_POINT(); */
     HAL_RESET_MCU();

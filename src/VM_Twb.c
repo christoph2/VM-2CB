@@ -23,10 +23,10 @@
 
 #include "VM_Twb.h"
 
-static void Twb_Init(void), Twb_Rxd(void), Twb_Io(void);
+STATIC void Twb_Init(void), Twb_Rxd(void), Twb_Io(void);
 
 
-static const VoidFunctionType TwbTab[] = {
+STATIC const VoidFunctionType TwbTab[] = {
     Twb_Init, Twb_Rxd, Twb_Io
 };
 

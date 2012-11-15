@@ -210,6 +210,12 @@ typedef void (*VoidFunctionType)(void);
     #define RESTRICT
 #endif
 
+#if defined(_SWIG)  /* TODO: Üerprüfen! */
+#define STATIC
+#else
+#define STATIC static
+#endif
+
 #if !defined(PROGRAM_STARTUP)
 #define PROGRAM_STARTUP int main        /* ISO-C only requires 'int main()'-signatures for hosted environments !!! */
 #endif /* PROGRAM_STARTUP */

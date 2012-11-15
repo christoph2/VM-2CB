@@ -26,7 +26,7 @@
 /*
 ** Oktave von A (220Hz) bis GIS1 (415,4Hz) auf der Zeitbasis 2 (800ns).
 */
-static const uint16 __tone_tab[12] = {
+STATIC const uint16 __tone_tab[12] = {
     /* 56818,53625,50628,47783,45922,42560,40167,37913,35796,33784,31888,30091 */
     0xDDF2, 0xD179, 0xC5C4, 0xBAA7, 0xB362, 0xA640, 0x9CE7, 0x9419, 0x8BD4, 0x83F8, 0x7C90, 0x758B
 };
@@ -34,17 +34,17 @@ static const uint16 __tone_tab[12] = {
 /*
 **  Module-Function-Prototypes.
 */
-static void Plm_Init(void), Plm_SetTB(void), Plm_SetPM(void), Plm_SetPL(void), Plm_Out(void), Plm_Beep(void);
+STATIC void Plm_Init(void), Plm_SetTB(void), Plm_SetPM(void), Plm_SetPL(void), Plm_Out(void), Plm_Beep(void);
 
 
 /*
 **  Sprungtabelle.
 */
-static const VoidFunctionType FuncTab[PLM_CODE_MAX + 1] = {
+STATIC const VoidFunctionType FuncTab[PLM_CODE_MAX + 1] = {
     Plm_Init, Plm_SetTB, Plm_SetPM, Plm_SetPL, Plm_Out, Plm_Beep
 };
 
-static void Plm_ToneOut(uint16 tone);
+STATIC void Plm_ToneOut(uint16 tone);
 
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_PLM_START_SEC_CODE
@@ -58,43 +58,43 @@ void VM_Plm(void)
 }
 
 
-static void Plm_Init(void)
+STATIC void Plm_Init(void)
 {
 
 }
 
 
-static void Plm_SetTB(void)
+STATIC void Plm_SetTB(void)
 {
 
 }
 
 
-static void Plm_SetPM(void)
+STATIC void Plm_SetPM(void)
 {
 
 }
 
 
-static void Plm_SetPL(void)
+STATIC void Plm_SetPL(void)
 {
 
 }
 
 
-static void Plm_Out(void)
+STATIC void Plm_Out(void)
 {
 
 }
 
 
-static void Plm_Beep(void)
+STATIC void Plm_Beep(void)
 {
 
 }
 
 
-static void Plm_ToneOut(uint16 tone)
+STATIC void Plm_ToneOut(uint16 tone)
 {
 
 }

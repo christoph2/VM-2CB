@@ -23,11 +23,11 @@
 
 #include "VM_Lpt.h"
 
-static void Lpt_Init(void), Lpt_Flush(void), Lpt_Ready(void);
-static void Lpt_Put(void), Lpt_Print(void);
+STATIC void Lpt_Init(void), Lpt_Flush(void), Lpt_Ready(void);
+STATIC void Lpt_Put(void), Lpt_Print(void);
 
 
-static const VoidFunctionType LptTab[] = {
+STATIC const VoidFunctionType LptTab[] = {
     Lpt_Init, Lpt_Flush, Lpt_Ready,
     Lpt_Put,  Lpt_Print
 };

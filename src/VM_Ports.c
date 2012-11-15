@@ -23,7 +23,7 @@
 
 #include "VM_Ports.h"
 
-static const uint8 BitTab8[8] = {
+STATIC const uint8 BitTab8[8] = {
     (uint8)0x01, (uint8)0x02, (uint8)0x04, (uint8)0x08, (uint8)0x10, (uint8)0x20, (uint8)0x40, (uint8)0x80
 };
 
@@ -36,7 +36,7 @@ static const uint8 BitTab8[8] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-static uint8 dummy;
+STATIC uint8 dummy;
 
 void VM_InitPorts(void)
 {

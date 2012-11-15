@@ -33,7 +33,7 @@
 **
 */
 
-static uint32 TMR_TOF_Count;
+STATIC uint32 TMR_TOF_Count;
 
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_TMR_START_SEC_CODE

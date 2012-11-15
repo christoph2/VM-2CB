@@ -23,11 +23,11 @@
 
 #include "VM_Iic.h"
 
-static void I2c_Init(void), I2c_Start(void), I2c_Stop(void), I2c_Write(void);
-static void I2c_Read(void), I2c_ReadLast(void), I2c_Ready(void);
+STATIC void I2c_Init(void), I2c_Start(void), I2c_Stop(void), I2c_Write(void);
+STATIC void I2c_Read(void), I2c_ReadLast(void), I2c_Ready(void);
 
 
-static const VoidFunctionType I2cTab[] = {
+STATIC const VoidFunctionType I2cTab[] = {
     I2c_Init, I2c_Start,    I2c_Stop, I2c_Write,
     I2c_Read, I2c_ReadLast, I2c_Ready
 };
@@ -37,7 +37,7 @@ static const VoidFunctionType I2cTab[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-static uint8 dummy(void)
+STATIC uint8 dummy(void)
 {
     return 0;
 }
