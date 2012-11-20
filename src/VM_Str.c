@@ -30,13 +30,12 @@
 
 #define MAX_STR_LEN ((uint8)30)
 
-STATIC void it(uint8 * buf, sint16 num);
-
 
 typedef struct tagStr {
     uint8   data[MAX_STR_LEN];
     uint8   len;
 } Str;
+
 
 STATIC void Str_Clear(void), Str_GetLength(void), Str_Fill(void);
 STATIC void Str_PutChar(void), Str_PutString(void), Str_PutConstString(void);
@@ -45,7 +44,7 @@ STATIC void Str_PutFormattedInt(void), Str_PutFormattedLong(void);
 STATIC void Str_PutFormattedFloat(void), Str_PutByteMask(void);
 
 STATIC void Str_Copy(Str * dst, Str * src);
-
+STATIC void putMask(uint8 value, uint8 c0, uint8 c1, uint8 * str);
 
 STATIC const VoidFunctionType FuncTab[] = {
     Str_Clear,            Str_GetLength,         Str_Fill,            Str_PutChar,
@@ -55,7 +54,7 @@ STATIC const VoidFunctionType FuncTab[] = {
     Str_PutByteMask
 };
 
-STATIC uint8 * Str_ScratchBuffer[MAX_STR_LEN + 1];
+STATIC uint8 Str_ScratchBuffer[MAX_STR_LEN + 1];
 
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_STR_START_SEC_CODE
@@ -223,15 +222,23 @@ STATIC void Str_PutFormattedFloat(void)
 
 STATIC void Str_PutByteMask(void)
 {
-    uint16  c0     = (uint16)VM_PopW();
-    uint16  c1     = (uint16)VM_PopW();
-    uint16  value  = (uint16)VM_PopW();
-    Str *   str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
-    uint8   len    = str->len;
-    uint8   byteCount;
+    uint8  c0     = (uint8)VM_PopW();
+    uint8  c1     = (uint8)VM_PopW();
+    uint8  value  = (uint8)VM_PopW();
+    Str *  str    = (Str *)BPTR(VM_UserRAM, (uint16)VM_PopW());
+    uint8  len    = str->len;
+    uint8  byteCount, idx;
     
+    putMask(value, c0, c1, (uint8 *)Str_ScratchBuffer);
+
     if (len < MAX_STR_LEN) {
-        byteCount = MAX_STR_LEN - len;
+        byteCount = MIN((MAX_STR_LEN - len), (Utl_StrLen(Str_ScratchBuffer) - 1));
+
+        idx = len;
+        while (byteCount) {
+            str->data[idx++] = Str_ScratchBuffer[byteCount--];
+        }
+        str->len = idx;
     }
 }
 
@@ -254,6 +261,32 @@ STATIC void Str_Copy(Str * dst, Str * src)
             dst->len++;
         }
     }
+}
+
+STATIC void putMask(uint8 value, uint8 c0, uint8 c1, uint8 * str)
+{
+    uint8 q;
+    uint16 r;
+    uint16 s;
+    uint8 idx;
+ 
+    idx = (uint8)0x00;
+  
+    s = value;
+    while (s) {
+        q = s >> 1;
+        r = s % 2;
+
+        if (r == (uint8)0x01) {
+            Str_ScratchBuffer[idx] = c1;
+        } else {
+            Str_ScratchBuffer[idx] = c0;    
+        }
+  
+        s = q;
+        ++idx;
+    }
+    str[idx] = '\x0';
 }
 
 #if VM_MEMORY_MAPPING == STD_ON

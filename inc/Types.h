@@ -210,7 +210,7 @@ typedef void (*VoidFunctionType)(void);
     #define RESTRICT
 #endif
 
-#if defined(_SWIG)  /* TODO: Üerprüfen! */
+#if defined(SWIG)
 #define STATIC
 #else
 #define STATIC static
