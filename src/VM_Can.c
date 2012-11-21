@@ -48,6 +48,11 @@ void VM_Can(void)
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
+static int dummy(void)
+{
+    return 0;
+}
+
 void Can_Init(void)
 {
     uint16  special_mask;
@@ -57,60 +62,87 @@ void Can_Init(void)
     special_mask   = (uint16)VM_PopW();
     global_mask    = (uint16)VM_PopW();
     speed          = (uint8)VM_PopW();
+
+    HAL_CAN_INIT(speed, global_mask, special_mask);
 }
 
 
 void Can_Ready(void)
 {
-
+    uint8  channel = (uint8)VM_PopW();              /*channel */
+   
+    VM_PushW((sint16)HAL_CAN_READY(channel));
 }
 
 
 void Can_Error(void)
 {
-
+    VM_PushW((sint16)HAL_CAN_ERROR());
 }
 
 
 void Can_Send(void)
 {
+    uint8 length   = (uint8)VM_PopW();              /* length */
+    uint8 * buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[]  */
+    uint16 id      = (uint16)VM_PopW();             /* id */
+    uint8  channel = (uint8)VM_PopW();              /*channel */
 
+    HAL_CAN_SEND(channel, id, buf, length);
 }
 
 
 void Can_Publish(void)
 {
+    uint8 length   = (uint8)VM_PopW();              /* length */
+    uint8 * buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[]  */
+    uint16 id      = (uint16)VM_PopW();             /* id */
+    uint8  channel = (uint8)VM_PopW();              /*channel */
 
+    HAL_CAN_PUBLISH(channel, id, buf, length);
 }
 
 
 void Can_RtrCount(void)
 {
-
+    uint8  channel = (uint8)VM_PopW();              /*channel */
+    
+    VM_PushW((sint16)HAL_CAN_RTRCOUNT());
 }
 
 
 void Can_Expect(void)
 {
+    uint16 id      = (uint16)VM_PopW();             /* id */
+    uint8  channel = (uint8)VM_PopW();              /*channel */
 
+    HAL_CAN_EXPECT(channel, id);
 }
 
 
 void Can_Request(void)
 {
+    uint8  channel = (uint8)VM_PopW();              /*channel */
+
+    HAL_CAN_REQUEST(channel);
 
 }
 
 
 void Can_Rxd(void)
 {
+    uint8  channel = (uint8)VM_PopW();              /*channel */
 
+    VM_PushW((sint16)HAL_CAN_RXD(channel));
 }
 
 
 void Can_Get(void)
 {
+    uint8 * buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[]  */
+    uint8  channel = (uint8)VM_PopW();              /*channel */
 
+    HAL_CAN_GET(channel, buf);
 }
 
 

@@ -90,4 +90,15 @@
 #define HAL_PLM_BEEP(tone)
 #define HAL_PLM_TONEOUT(tone)
 
+#define HAL_CAN_INIT(speed, global_mask, special_mask)
+#define HAL_CAN_READY(channel)                          (dummy())
+#define HAL_CAN_ERROR()                                 (dummy())
+#define HAL_CAN_SEND(channel, id, buf, lengt)
+#define HAL_CAN_PUBLISH(channel, id, buf, length)
+#define HAL_CAN_RTRCOUNT()                              (dummy())
+#define HAL_CAN_EXPECT(channel, id)
+#define HAL_CAN_REQUEST(channel)
+#define HAL_CAN_RXD(channel)                            (dummy())
+#define HAL_CAN_GET(channel, buf)
+
 #endif /* __HAL_TEMPLATE_H */
