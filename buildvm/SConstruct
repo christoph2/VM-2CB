@@ -1,0 +1,42 @@
+
+import os, sys
+
+env = Environment()
+env.Decider('MD5-timestamp')
+
+includes=Split("""
+./
+../inc
+../hal
+""")
+
+
+sources=Split("""
+../src/Utl.c
+../src/Hal.c
+../src/VM_Al.c
+../src/VM_Cal.c
+../src/VM_Can.c
+../src/VM_Cntr.c
+../src/VM_Com.c
+../src/VM_Core.c
+../src/VM_Excp.c
+../src/VM_Hm.c
+../src/VM_Iic.c
+../src/VM_Lcd.c
+../src/VM_Lpt.c
+../src/VM_Ls.c
+../src/VM_Main.c
+../src/VM_Math.c
+../src/VM_Ops.c
+../src/VM_Plm.c
+../src/VM_Ports.c
+../src/VM_Str.c
+../src/VM_SysMsg.c
+../src/VM_Tmr.c
+../src/VM_Twb.c
+""")
+
+
+env.Program(target = 'vm2cb', source = sources, CPPPATH = includes) 
+
