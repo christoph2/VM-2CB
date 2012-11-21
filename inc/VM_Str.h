@@ -26,8 +26,17 @@
 #include "VM.h"
 #include "Utl.h"
 
+
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 void VM_String(void);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __VM_STR_H */
 

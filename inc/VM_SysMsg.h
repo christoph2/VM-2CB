@@ -25,6 +25,11 @@
 
 #include "VM.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 extern const uint8  VM_C_VERSION[];
 extern const uint8  VM_C_CCONTROL[];
 extern const uint8  VM_C_DATE[];
@@ -55,6 +60,10 @@ extern const uint8  VM_C_FPE_STUF[];
 extern const uint8  VM_C_FPE_FLUF[];
 extern const uint8  VM_C_ILL_BUS[];
 extern const uint8  VM_C_FPE_FLOF[];
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif /* __VM_SYSMSG_H */
 

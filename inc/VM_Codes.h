@@ -23,6 +23,11 @@
 #if !defined(__VMCODES_H)
 #define __VMCODES_H
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 #define VM_CODE_A                       ((uint16)0x0000)
 #define VM_CODE_B                       ((uint16)0x0040)
 #define VM_CODE_C                       ((uint16)0x0080)
@@ -416,6 +421,10 @@
 #define VM_RESTORE                      ( VM_CODE_D | 14 )
 
 #define VM_CODE_INVALID                 ( VM_CODE_D | 63 )
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __VMCODES_H */
 

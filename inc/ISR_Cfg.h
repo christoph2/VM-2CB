@@ -23,6 +23,12 @@
 #if !defined(__ISR_CFG_H)
 #define __ISR_CFG_H
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
+
 DECLARE_ISR1_VECTOR(ATD0_Vector);
 #define ATD0_VECTOR     ATD0_Vector
 
@@ -73,6 +79,10 @@ DECLARE_ISR1_VECTOR(CAN0ErrorVector);
 DECLARE_ISR1_VECTOR(CAN0WakupVector);
 #define CAN0W_VECTOR    CAN0WakupVector
 #endif
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif /* __ISR_CFG_H */
 

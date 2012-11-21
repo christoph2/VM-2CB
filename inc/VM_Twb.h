@@ -25,8 +25,16 @@
 
 #include "VM.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 void VM_Twb(void);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif /* __VM_TWB_H */
 

@@ -27,6 +27,12 @@
 
 #include "Kdk_Cpus.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
+
 #define CPU_FAMILY          CPU12_S12
 #define CPU_DERIVATE        CPU12_S12DP256B     /* CPU12_HC12DG128A  */
 
@@ -34,6 +40,10 @@
 #define BUS_FREQUENCY_MAX   ((uint16)25000u)
 
 /* #define S12ECT_USE_TIMER_OVERFLOW_INTR */
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif /* __SYS_CFG_H */
 

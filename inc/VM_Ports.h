@@ -25,6 +25,11 @@
 
 #include "VM.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 #if 0
 void InitPorts(void), InitADC(uint8 num);
 #endif
@@ -38,6 +43,9 @@ void    VM_ToggleSinglePort(void);
 void    VM_PulseSinglePort(void), VM_GetCount(void), VM_GetFreq(void);
 void    VM_GetAdcPort(void);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __PORT_H */
 

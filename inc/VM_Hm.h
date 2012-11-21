@@ -25,6 +25,11 @@
 
 #include "VM.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 typedef enum tagHM_CommandType {
     HM_CMD_SEND_ID,
     HM_CMD_SEND_DATE,
@@ -45,6 +50,9 @@ void Hm_Dispatcher(void);
 boolean Hm_ButtonBootstrapMode(void);
 boolean Hm_ButtonHostMode(void);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __VM_HM_H */
 

@@ -32,6 +32,12 @@
 #include "VM_SysMsg.h"
 #include "VM_Tmr.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
+
 #define FLOAT_SIZE  ((uint16)sizeof(float64))
 STATIC_ASSERT(FLOAT_SIZE == (uint16)8, "Floating-Point-Type must be 8 Bytes!!!");
 
@@ -130,6 +136,9 @@ void    VM_Hook(void);
 void    VM_Reset(void);
 void    VM_Debug(void);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __VM_H */
 

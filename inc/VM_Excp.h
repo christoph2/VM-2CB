@@ -25,6 +25,11 @@
 
 #include "VM.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 #define STATUS_RUNNING      ((uint8)0x08)
 #define STATUS_HOSTMODE     ((uint8)0x09)
 #define STATUS_BOOTMODUS    ((uint8)0x0a)
@@ -50,5 +55,8 @@
 void    Exception(uint8 code);
 void    ShowStatus(uint8 code);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __VM_EXCP_H */

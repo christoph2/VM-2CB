@@ -26,6 +26,15 @@
 #include "VM.h"
 #include "VM_Excp.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 void HwCom(void), SwCom(void);
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif /* __VM_COM */

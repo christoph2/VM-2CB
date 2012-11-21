@@ -25,6 +25,11 @@
 #if !defined(__MEMMAP_H)
 #define __MEMMAP_H
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 /*
 **  Plain Memory-Mapping for IAR-HCS12 - we need a _LINKER-FILE_-Configuration Tool !!!
 */
@@ -6788,5 +6793,9 @@
 #if defined(MEMMAP_ERROR)
     #error No valid memory mapping symbol defined.
 #endif
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __MEMMAP_H */

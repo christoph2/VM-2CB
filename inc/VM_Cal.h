@@ -31,7 +31,15 @@
 
 #include "Types.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 boolean Cal_IsLeapYear(uint16 year);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif /* __VM_CAL */

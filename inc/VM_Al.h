@@ -27,6 +27,11 @@
 #include "VM_Excp.h"
 #include <math.h>
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 void    VM_Add(void), VM_Sub(void), VM_Mul(void), VM_Div(void), VM_Mod(void);
 void    VM_And(void), VM_Nand(void), VM_Or(void), VM_Nor(void), VM_Xor(void), VM_Nxor(void);
 void    VM_Equ(void), VM_Neq(void), VM_Hi(void), VM_His(void), VM_Lo(void), VM_Los(void);
@@ -36,6 +41,9 @@ void    VM_CastLongToInt(void), VM_CastIntToLong(void);
 void    VM_CastFloatToInt(void), VM_CastFloatToLong(void);
 void    VM_CastIntToFloat(void), VM_CastLongToFloat(void);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __VM_AL_H */
 

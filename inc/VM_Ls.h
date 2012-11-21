@@ -25,7 +25,12 @@
 
 #include "VM.h"
 
-void VM_LoadByteImmidiate(void), VM_LoadImmidiateInt(void);
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
+void 	VM_LoadByteImmidiate(void), VM_LoadImmidiateInt(void);
 
 void    VM_LoadLocalByte(void), VM_LoadLocalInt(void), VM_LoadLocalLong(void), VM_LoadLocalFloat(void);
 void    VM_StoreLocalByte(void), VM_StoreLocalInt(void), VM_StoreLocalLong(void), VM_StoreLocalFloat(void);
@@ -43,7 +48,7 @@ void    VM_IncLoadByte(void), VM_IncLoadInt(void), VM_IncLoadLong(void), VM_IncL
 void    VM_IncLoadRefByte(void), VM_IncLoadRefInt(void), VM_IncLoadRefLong(void), VM_IncLoadRefFloat(void);
 void    VM_IncLoadLocalByte(void), VM_IncLoadLocalInt(void), VM_IncLoadLocalLong(void), VM_IncLoadLocalFloat(void);
 
-void VM_LoadSysvarInt(void), VM_LoadSysvarLong(void), VM_StoreSysvarInt(void), VM_StoreSysvarLong(void);
+void 	VM_LoadSysvarInt(void), VM_LoadSysvarLong(void), VM_StoreSysvarInt(void), VM_StoreSysvarLong(void);
 
 void    VM_LoadConstByte(void), VM_LoadConstInt(void), VM_LoadConstLong(void), VM_LoadConstFloat(void);
 void    VM_LoadRefConstByte(void), VM_LoadRefConstInt(void), VM_LoadRefConstLong(void), VM_LoadRefConstFloat(void);
@@ -54,6 +59,9 @@ void    VM_LoadAbsoluteByte(void), VM_LoadAbsoluteInt(void), VM_LoadAbsoluteLong
 void    VM_PutInt(void), VM_PutLong(void), VM_PutFloat(void);
 void    VM_GetInt(void), VM_GetLong(void), VM_GetFloat(void);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __VM_LS_H */
 

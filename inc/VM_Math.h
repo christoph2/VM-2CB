@@ -27,14 +27,22 @@
 #include "VM_Excp.h"
 #include <math.h>
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 void    VM_InvertInt(void), VM_InvertLong(void), VM_InvertFloat(void);
 void    VM_NegInt(void), VM_NegLong(void), VM_NegFloat(void);
 void    VM_AbsInt(void), VM_AbsLong(void), VM_AbsFloat(void);
 
-void VM_Min(void), VM_Max(void);
+void 	VM_Min(void), VM_Max(void);
 
-void VM_MathFunction(void);
+void 	VM_MathFunction(void);
 
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif /* __VM_MATH_H */
 

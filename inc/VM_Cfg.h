@@ -23,6 +23,11 @@
 #if !defined(__CCCONFIG_H)
 #define __CCCONFIG_H
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 /* #define VM_TARGET_S12_DP512 */
 #define VM_TARGET_S12_DP256
 
@@ -96,5 +101,9 @@
 /* #define VM_USE_WATCHDOG */
 
 #define VM_SYSTEM_TIMER_FREQ    ((uint16)1000)        /* µSecs. */
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif /* __CCCONFIG_H */

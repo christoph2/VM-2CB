@@ -26,10 +26,19 @@
 #include "VM.h"
 #include "Hal.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 void    Cntr_Init(void);
 void    Cntr_Reset(void);
 uint32  Cntr_GetFrequency1(void);
 uint32  Cntr_GetFrequency2(void);
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 
 #endif /* __VM_CNTR_H */

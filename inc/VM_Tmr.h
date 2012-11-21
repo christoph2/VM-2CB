@@ -26,6 +26,11 @@
 #include "VM.h"
 #include "VM_Cntr.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
 typedef enum tagTimerTickResType {
     TIMER_TICK_RES1,
     TIMER_TICK_RES2,
@@ -42,5 +47,9 @@ void    TMR_TimerTick(void);
 #if 0
 void TimerSetTickRes(TimerTickResType tr);
 #endif
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif  /* __VM_TMR_H */
