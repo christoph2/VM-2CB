@@ -109,4 +109,12 @@
 #define HAL_FLASH_ERASE_PROGRAM_WORD(page, addr, data)  (S12Fls_ProgramWord((page), (addr), (data)))
 #define HAL_FLASH_SELECT_PAGE(page)                 ((void)S12Mmc_SetPPage((page)))
 
+#define HAL_PLM_INIT()
+#define HAL_PLM_SETTB(channel, timebase)
+#define HAL_PLM_SETPM(channel, mode)
+#define HAL_PLM_SETPL(channel, length)
+#define HAL_PLM_OUT(channel, value)
+#define HAL_PLM_BEEP(tone)
+#define HAL_PLM_TONEOUT(tone)
+
 #endif /* __HAL_TEMPLATE_H */

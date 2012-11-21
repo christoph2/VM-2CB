@@ -60,43 +60,57 @@ void VM_Plm(void)
 
 STATIC void Plm_Init(void)
 {
-
+    HAL_PLM_INIT();
 }
 
 
 STATIC void Plm_SetTB(void)
 {
+    uint16 timebase = (uint16)VM_PopW();
+    uint8 channel   = (uint8)VM_PopW();
 
+    HAL_PLM_SETTB(channel, timebase);
 }
 
 
 STATIC void Plm_SetPM(void)
 {
+    uint16 mode   = (uint16)VM_PopW();
+    uint8 channel = (uint8)VM_PopW();
 
+    HAL_PLM_SETPM(channel, mode);
 }
 
 
 STATIC void Plm_SetPL(void)
 {
-
+    uint16 length = (uint16)VM_PopW();
+    uint8 channel = (uint8)VM_PopW();
+    
+    HAL_PLM_SETPL(channel, length);
 }
 
 
 STATIC void Plm_Out(void)
 {
+    uint16 value  = (uint16)VM_PopW();
+    uint8 channel = (uint8)VM_PopW();
 
+    HAL_PLM_OUT(channel, value);
 }
 
 
 STATIC void Plm_Beep(void)
 {
+    uint16 tone = (uint16)VM_PopW();
 
+    HAL_PLM_BEEP(tone);
 }
 
 
 STATIC void Plm_ToneOut(uint16 tone)
 {
-
+    HAL_PLM_TONEOUT(tone);
 }
 
 #if VM_MEMORY_MAPPING == STD_ON
