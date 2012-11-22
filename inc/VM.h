@@ -136,6 +136,8 @@ void    VM_Hook(void);
 void    VM_Reset(void);
 void    VM_Debug(void);
 
+int dummy(void);
+
 #if defined(__cplusplus)
 }
 #endif  /* __cplusplus */

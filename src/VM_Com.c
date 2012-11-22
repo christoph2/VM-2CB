@@ -55,11 +55,6 @@ STATIC const uint32 BaudLookupTable[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-STATIC uint8 dummy(void)
-{
-    return 0;
-}
-
 /*
 **
 **  HwCom

@@ -36,10 +36,10 @@
 
 #define HAL_GET_FREQUENCY1()    23
 #define HAL_GET_FREQUENCY2()    42
-#define HAL_BYTE_PORT0          dummy
-#define HAL_BYTE_PORT1          dummy
-#define HAL_BYTE_PORT_DDR0      dummy
-#define HAL_BYTE_PORT_DDR1      dummy
+#define HAL_BYTE_PORT0          dummy_port
+#define HAL_BYTE_PORT1          dummy_port
+#define HAL_BYTE_PORT_DDR0      dummy_port
+#define HAL_BYTE_PORT_DDR1      dummy_port
 
 #define HAL_INIT_PHASE0()
 #define HAL_INIT_PHASE1()

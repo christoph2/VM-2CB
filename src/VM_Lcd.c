@@ -38,10 +38,6 @@ STATIC const VoidFunctionType LcdTab[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-STATIC int dummy(void)
-{
-    return 1;
-}
 
 void VM_Lcd(void)
 {

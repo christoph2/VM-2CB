@@ -56,13 +56,6 @@ STATIC const VoidFunctionType FuncTab[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-
-STATIC uint8 dummy(void)
-{
-    return 0;
-}
-
-
 void Hm_Dispatcher(void)
 {
     uint8 ch;

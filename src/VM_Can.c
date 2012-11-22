@@ -48,11 +48,6 @@ void VM_Can(void)
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-static int dummy(void)
-{
-    return 0;
-}
-
 void Can_Init(void)
 {
     uint16  special_mask;

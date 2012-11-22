@@ -31,12 +31,13 @@ STATIC const uint8 BitTab8[8] = {
 #define NIBBLE_PORT_MASK    ((uint8)0x03)       /* 4 Nibble-Ports. */
 #define BYTE_PORT_MASK      ((uint8)0x01)       /* 2 Byte-Ports. */
 
+STATIC uint8 dummy_port;
+
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_PORTS_START_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-STATIC uint8 dummy;
 
 void VM_InitPorts(void)
 {
