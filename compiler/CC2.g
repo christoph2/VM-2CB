@@ -5,8 +5,8 @@ options {
 // debug = false;
    output = AST;
    ASTLabelType = CommonTree;
-// backtrack=true;
-   memoize=true;
+   backtrack = true;
+   memoize = true;
 }
 
 tokens {
@@ -123,7 +123,8 @@ function_call
 
 
 builtin_invocation
-        :       'wait' primary_expression SEMI;
+        :       'wait' primary_expression SEMI
+        ;
 
 assignment
         :       ID ASSIGN primary_expression SEMI
@@ -164,6 +165,7 @@ multiplicative_expression
         ;
 
 unaryExpr:          unary_operator? atom;
+        //;
 
 atom
         : scalar_value
@@ -172,7 +174,8 @@ atom
         ;
 
 
-unary_operator:      '+' | '-' | NOT;
+unary_operator:      '+' | '-' | NOT
+        ;
 
 
 numerical_type
@@ -203,77 +206,124 @@ scalar_value
 // ----------------------------------------------------------------------------
 //                               KEYWORDS
 // ----------------------------------------------------------------------------
-AND                     : 'and'
-                        | '&' ;
-BREAK           : 'break';
-BYTE            :'byte';
-CAPTURE         :'capture';
-CONST           :'const';
-CONTINUE        :'continue';
-DO                      :'do';
-ELSE            :'else';
-FLOAT           :'float';
-FOR                     :'for';
-FUNCTION        :'function';
-HALT            :'halt';
-IF                      :'if';
-INLINE          :'inline';
-INT                     :'int';
-LONG            :'long';
-LOOP            :'loop';
-MOD                     :'mod'
-                        | '%';
+AND             : 'and'
+                | '&'
+                ;
+BREAK           : 'break'
+                ;
+BYTE            :'byte'
+                ;
+CAPTURE         :'capture'
+                ;
+CONST           :'const'
+                ;
+CONTINUE        :'continue'
+                ;
+DO              :'do'
+                ;
+ELSE            :'else'
+                ;
+FLOAT           :'float'
+                ;
+FOR             :'for'
+                ;
+FUNCTION        :'function'
+                ;
+HALT            :'halt'
+                ;
+IF              :'if'
+                ;
+INLINE          :'inline'
+                ;
+INT             :'int'
+                ;
+LONG            :'long'
+                ;
+LOOP            :'loop'
+                ;
+MOD             :'mod'
+                | '%'
+                ;
 NAND            :'nand'
-                        | '!&';
-NOR                     :'nor'
-                        | '!|';
-NOT                     :'not'
-                        | '!';
-OR                      :'or'
-                        | '|';
-QUIT            :'quit';
-RELEASE         :'release';
-RESET           :'reset';
-RESUME          :'resume';
-RETURN          :'return';
-RETURNS         :'returns';
-RUN                     :'run';
-SHL                     :'shl'
-                        | '<<';
-SHR                     :'shr'
-                        | '>>';
-SLEEP           :'sleep';
-STEP            :'step';
-STRING          :'string';
-THREAD          :'thread';
-TYPE            :'type';
-WAIT            :'wait';
-WHILE           :'while';
-XOR                     :'xor'
-                        | '^';
-YIELD           :'yield';
+                | '!&'
+                ;
+NOR             :'nor'
+                | '!|'
+                ;
+NOT             :'not'
+                | '!'
+                ;
+OR              :'or'
+                | '|'
+                ;
+QUIT            :'quit'
+                ;
+RELEASE         :'release'
+                ;
+RESET           :'reset'
+                ;
+RESUME          :'resume'
+                ;
+RETURN          :'return'
+                ;
+RETURNS         :'returns'
+                ;
+RUN             :'run'
+                ;
+SHL             :'shl'
+                | '<<'
+                ;
+SHR             :'shr'
+                | '>>'
+                ;
+SLEEP           :'sleep'
+                ;
+STEP            :'step'
+                ;
+STRING          :'string'
+                ;
+THREAD          :'thread'
+                ;
+TYPE            :'type'
+                ;
+WAIT            :'wait'
+                ;
+WHILE           :'while'
+                ;
+XOR             :'xor'
+                | '^'
+                ;
+YIELD           :'yield'
+                ;
 
-ASSIGN          : '=' ;
+ASSIGN          : '='
+                ;
+LPAREN          : '('
+                ;
+RPAREN          : ')'
+                ;
+LCURLY          : '{'
+                ;
+RCURLY          : '}'
+                ;
+LBRACK          : '['
+                ;
+RBRACK          : ']'
+                ;
+COMMA           : ','
+                ;
+SEMI            : ';'
+                ;
+range           : '...'
+                ;
+DOT             : '.'
+                ;
 
-LPAREN  :       '(' ;
-RPAREN  :       ')' ;
+ID              : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+                ;
 
-LCURLY  :       '{' ;
-RCURLY  :       '}' ;
-LBRACK  :       '['     ;
-RBRACK  :       ']'     ;
-
-COMMA   :       ',' ;
-SEMI    :       ';'     ;
-range   :       '...'   ;
-DOT             :       '.'     ;
-
-ID      :       ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
-        ;
-
-INT_CONST
-                :       '0'..'9'+
-        ;
+INT_CONST       : '0'..'9'+
+                ;
 
 /*
 DEC_INT
@@ -283,56 +333,48 @@ BIN_INT
 */
 
 
-FLOAT_CONST
-        :   ('0'..'9')+ '.' ('0'..'9')* EXPONENT?
-        |   '.' ('0'..'9')+ EXPONENT?
-        |   ('0'..'9')+ EXPONENT
-        ;
+FLOAT_CONST     : ('0'..'9')+ '.' ('0'..'9')* EXPONENT?
+                |   '.' ('0'..'9')+ EXPONENT?
+                |   ('0'..'9')+ EXPONENT
+                ;
 
-COMMENT
-        :   '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-        |   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
-        ;
+COMMENT         : '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
+                | '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
+                ;
 
-WS      :       ( ' '
-        |       '\t'
-        |       '\r'
-        |       '\n'
-        )       {$channel=HIDDEN;}
-        ;
+WS              : ( ' '
+                |   '\t'
+                |   '\r'
+                |   '\n') {$channel=HIDDEN;}
+                ;
 
-STRING_CONST
-        :       '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
-        ;
+STRING_CONST    : '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+                ;
 
-CHAR    :       '\'' ( ESC_SEQ | ~('\''|'\\') ) '\''
-        ;
-
-fragment
-EXPONENT
-                :       ('e'|'E') ('+'|'-')? ('0'..'9')+
+CHAR            : '\'' ( ESC_SEQ | ~('\''|'\\') ) '\''
                 ;
 
 fragment
-HEX_DIGIT
-                :       ('0'..'9'|'a'..'f'|'A'..'F')
+EXPONENT        : ('e'|'E') ('+'|'-')? ('0'..'9')+
                 ;
 
 fragment
-ESC_SEQ
-        :       '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
-        |       UNICODE_ESC
-        |   OCTAL_ESC
-        ;
+HEX_DIGIT       : ('0'..'9'|'a'..'f'|'A'..'F')
+                ;
 
 fragment
-OCTAL_ESC
-        :       '\\' ('0'..'3') ('0'..'7') ('0'..'7')
-        |   '\\' ('0'..'7') ('0'..'7')
-        |   '\\' ('0'..'7')
-        ;
+ESC_SEQ         : '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
+                | UNICODE_ESC
+                | OCTAL_ESC
+                ;
 
 fragment
-UNICODE_ESC
-        :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
-        ;
+OCTAL_ESC       : '\\' ('0'..'3') ('0'..'7') ('0'..'7')
+                | '\\' ('0'..'7') ('0'..'7')
+                | '\\' ('0'..'7')
+                ;
+
+fragment
+UNICODE_ESC     : '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
+                ;
+

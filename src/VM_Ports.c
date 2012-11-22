@@ -40,7 +40,7 @@ STATIC uint8 dummy;
 
 void VM_InitPorts(void)
 {
-
+    HAL_PORTS_INIT();
 }
 
 void VM_GetSinglePort(void)

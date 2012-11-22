@@ -3,10 +3,11 @@ import antlr3
 from CC2Lexer import CC2Lexer
 from CC2Parser import CC2Parser
 
+import codecs
 
 def main(fname):
     ##input = antlr3.ANTLRInputStream(sys.stdin)
-    input = antlr3.StringStream(open(fname).read())
+    input = antlr3.StringStream(codecs.open(fname, encoding = 'utf-8').read())
     lexer = CC2Lexer(input)
 
     tokens = antlr3.CommonTokenStream(lexer)
@@ -22,6 +23,6 @@ def main(fname):
     nodes.setTokenStream(tokens)
 
 if __name__ == '__main__':
-    main(r'C:\projekte\csProjects\cc2_12\compiler\demo.c2p.vmc')
+    main(sys.argv[1])
 
 

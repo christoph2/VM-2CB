@@ -89,6 +89,7 @@
 #define HAL_PLM_OUT(channel, value)
 #define HAL_PLM_BEEP(tone)
 #define HAL_PLM_TONEOUT(tone)
+#define HAL_PORTS_INIT()
 
 #define HAL_CAN_INIT(speed, global_mask, special_mask)
 #define HAL_CAN_READY(channel)                          (dummy())
