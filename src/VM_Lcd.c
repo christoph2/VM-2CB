@@ -38,6 +38,11 @@ STATIC const VoidFunctionType LcdTab[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
+STATIC int dummy(void)
+{
+    return 1;
+}
+
 void VM_Lcd(void)
 {
     CC_ASSERT(VM_OperandB < SIZEOF_ARRAY(LcdTab), ERROR_ILLOPA);
@@ -47,76 +52,73 @@ void VM_Lcd(void)
 
 void Lcd_init(void)
 {
-
+    HAL_LCD_INIT();
 }
 
 
 void Lcd_show_cursor(void)
 {
-    uint8 yesno;
+    uint8 yesno = (uint8)VM_PopW();
 
-    yesno = (uint8)VM_PopW();
+    HAL_LCD_SHOWCURSOR(yesno);
 }
 
 
 void Lcd_clear(void)
 {
-
+    HAL_LCD_CLEAR();
 }
 
 
 void Lcd_clreol(void)
 {
-
+    HAL_LCD_CLREOL();
 }
 
 
 void Lcd_goto(void)
 {
-    uint8   pos;
-    uint8   line;
+    uint8   pos  = (uint8)VM_PopW();
+    uint8   line = (uint8)VM_PopW();
 
-    pos    = (uint8)VM_PopW();
-    line   = (uint8)VM_PopW();
+    HAL_LCD_GOTO(pos, line);
 }
 
 
 void Lcd_home(void)
 {
-
+    HAL_LCD_HOME();
 }
 
 
 void Lcd_scroll(void)
 {
-    uint8 pos;
+    uint8 pos = (uint8)VM_PopW();
 
-    pos = (uint8)VM_PopW();
+    HAL_LCD_SCROLL(pos);
 }
 
 
 void Lcd_ready(void)
 {
-    VM_PushW(CC_TRUE);
+    VM_PushW(HAL_LCD_READY());
 }
 
 
 void Lcd_put(void)
 {
-    uint8 ch;
+    uint8 ch = (uint8)VM_PopW();
 
-    ch = (uint8)VM_PopW();
+    HAL_LCD_PUT(ch);
 }
 
 
 void Lcd_print(void)
 {
-    uint8   length;
-    uint8 * buf;
+    uint8   length = (uint8)VM_PopW();              /* length */
+    uint8 * buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[] */
 
-    length = (uint8)VM_PopW();              /* length */
-    buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[] */
-
+    HAL_LCD_PRINT(buf, length);
 }
 
 #if VM_MEMORY_MAPPING == STD_ON

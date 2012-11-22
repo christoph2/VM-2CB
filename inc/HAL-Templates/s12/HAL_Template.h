@@ -131,4 +131,16 @@
 #define HAL_CAN_RXD(channel)                            (dummy())
 #define HAL_CAN_GET(channel, buf)
 
+#define HAL_LCD_INIT()
+#define HAL_LCD_SHOWCURSOR(yesno)
+#define HAL_LCD_CLEAR()
+#define HAL_LCD_CLREOL()
+#define HAL_LCD_GOTO(pos, line)
+#define HAL_LCD_HOME()
+#define HAL_LCD_SCROLL(pos)
+#define HAL_LCD_READY()                                  (dummy())
+#define HAL_LCD_PUT(ch)
+#define HAL_LCD_PRINT(buf, length)
+
+
 #endif /* __HAL_TEMPLATE_H */
