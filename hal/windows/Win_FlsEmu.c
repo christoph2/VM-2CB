@@ -21,7 +21,7 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "Win_FlsEmu.h"
+#include "hal/windows/Win_FlsEmu.h"
 #include <assert.h>
 #include <string.h>
 #include <stdio.h>

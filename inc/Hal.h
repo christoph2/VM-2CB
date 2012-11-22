@@ -25,11 +25,11 @@
 #define __HAL_H
 
 #if defined(_MSC_VER)
-#include "windows/hal.h"
+#include "hal/windows/hal.h"
 #include "HAL-Templates/windows/HAL_Defines.h"
 #include "HAL-Templates/windows/HAL_Template.h"
 #elif defined(__GNUC__)
-#include "windows/hal.h"
+#include "hal/windows/hal.h"
 #error GCC!!!
 #endif
 
