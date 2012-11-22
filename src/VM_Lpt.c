@@ -46,37 +46,36 @@ void VM_Lpt(void)
 
 void Lpt_Init(void)
 {
-
+    HAL_LPT_INIT();
 }
 
 
 void Lpt_Flush(void)
 {
-
+    HAL_LPT_FLUSH();
 }
 
 
 void Lpt_Ready(void)
 {
-    VM_PushW(CC_TRUE);
+    VM_PushW(HAL_LPT_READY());
 }
 
 
 void Lpt_Put(void)
 {
-    uint8 ch;
+    uint8 ch = (uint8)VM_PopW()
 
-    ch = (uint8)VM_PopW();
+    HAL_LPT_PUT(ch);
 }
 
 
 void Lpt_Print(void)
 {
-    uint8   length;
-    uint8 * buf;
-
-    length = (uint8)VM_PopW();              /* length */
-    buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[] */
+    uint8   length = (uint8)VM_PopW();              /* length */
+    uint8 * buf    = BPTR(VM_UserRAM, VM_PopW());   /* buf[] */
+    
+    HAL_LPT_PRINT(buf, length);
 }
 
 #if VM_MEMORY_MAPPING == STD_ON

@@ -113,5 +113,12 @@
 #define HAL_LCD_PUT(ch)
 #define HAL_LCD_PRINT(buf, length)
 
+#define HAL_LPT_INIT()
+#define HAL_LPT_FLUSH()
+#define HAL_LPT_READY()                                  (dummy())
+#define HAL_LPT_PUT(ch)
+#define HAL_LPT_PRINT(buf, length)
+
+
 
 #endif /* __HAL_TEMPLATE_H */
