@@ -271,9 +271,9 @@ uint8 Hm_EraseAsmPages(void)
     uint8   stat;
 
     for (i = (uint8)0x00; i < (uint8)(sizeof(Hm_AsmBanks)); ++i) {
-        stat = S12Fls_MassErase(Hm_AsmBanks[i]);
+        stat = HAL_FLASH_ERASE_BANK(Hm_AsmBanks[i]);
 
-        if (stat != S12FLS_ERR_OK) {
+        if (stat != STD_OK) {
             return stat;
         }
     }
