@@ -37,11 +37,6 @@ STATIC const VoidFunctionType I2cTab[] = {
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-STATIC uint8 dummy(void)
-{
-    return 0;
-}
-
 
 void VM_Iic(void)
 {
