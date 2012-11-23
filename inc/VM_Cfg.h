@@ -28,6 +28,37 @@ extern "C"
 {
 #endif  /* __cplusplus */
 
+#if defined(_MSC_VER)
+
+#define FLS_PPAGE_OFFSET    ((uint8)0x20)
+#define FLS_SECTOR_SIZE     ((uint16)1024U)
+#define FLS_NUM_CODE_PAGES  ((uint8)2)
+#define FLS_NUM_CONST_PAGES ((uint8)2)
+#define FLS_NUM_ASM_PAGES   ((uint8)2)
+#define FLS_CODE_BANKS      {(uint8)0x02}
+#define FLS_CONST_BANKS     {(uint8)0x03}
+#define FLS_ASM_BANKS       {(uint8)0x01}
+#define FLS_USE_ASM_BANKS
+#define VM_RAM_SIZE         ((uint16)0x3800U
+
+#define VM_RAM_START            (((uint16)0x4000U) - VM_RAM_SIZE)
+
+#define FLS_PPAGE_BASE_CONST    ((uint8)FLS_PPAGE_OFFSET)
+#define FLS_PPAGE_BASE_CODE     ((uint8)FLS_PPAGE_OFFSET + FLS_NUM_CONST_PAGES)
+
+#define FLS_NUM_BANKS           ((uint8)1)
+
+#define FLS_PAGE_ADDR           ((uint16)0x8000U)
+#define FLS_PAGE_SIZE           ((uint16)0x10000U)  /* NB: MUST MATCH system allocation granularity!!! */
+
+#define EE_BASE                 ((uint16)0x0400U)
+#define EE_LEN                  (VM_RAM_START - EE_BASE)
+
+/* #define VM_USE_WATCHDOG */
+
+#define VM_SYSTEM_TIMER_FREQ    ((uint16)1000)        /* µSecs. */
+
+#else
 /* #define VM_TARGET_S12_DP512 */
 #define VM_TARGET_S12_DP256
 
@@ -101,6 +132,8 @@ extern "C"
 /* #define VM_USE_WATCHDOG */
 
 #define VM_SYSTEM_TIMER_FREQ    ((uint16)1000)        /* µSecs. */
+
+#endif /* MSC_VER */
 
 #if defined(__cplusplus)
 }
