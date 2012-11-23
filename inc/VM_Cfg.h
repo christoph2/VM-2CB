@@ -49,7 +49,7 @@ extern "C"
 #define FLS_NUM_BANKS           ((uint8)1)
 
 #define FLS_PAGE_ADDR           ((uint16)0x8000U)
-#define FLS_PAGE_SIZE           ((uint16)0x10000U)  /* NB: MUST MATCH system allocation granularity!!! */
+#define FLS_PAGE_SIZE           ((uint32)0x10000U)  /* NB: MUST MATCH system allocation granularity!!! */
 
 #define EE_BASE                 ((uint16)0x0400U)
 #define EE_LEN                  (VM_RAM_START - EE_BASE)
