@@ -266,15 +266,35 @@ void FlsEmu_Create(FlsEmu_Traits * traits)
     }
 }
 
+BOOL FlsEmu_Flush(FlsEmu_Traits * traits)
+{
+    DWORD error;
+    MEMORY_BASIC_INFORMATION  info;    
+    
+
+    if (VirtualQuery(traits->persistentArray->mappingAddress, &info, sizeof(MEMORY_BASIC_INFORMATION)) == 0) {
+        error = GetLastError();
+        printErrorMessage(L"VirtualQuery", error);
+    }
+
+    if (!FlushViewOfFile(traits->persistentArray->mappingAddress, info.RegionSize)) {
+        error = GetLastError();
+        printErrorMessage(L"FlushViewOfFile", error);
+        return FALSE;
+    }
+    if (!FlushFileBuffers(traits->persistentArray->fileHandle)) {
+        error = GetLastError();
+        printErrorMessage(L"FlushFileBuffers", error);
+        return FALSE;
+    }
+    return TRUE;
+}
+
 BOOL FlsEmu_MapView(FlsEmu_Traits * traits, unsigned __int32 offset, unsigned __int32 length)
 {
     DWORD error;
-    MEMORY_BASIC_INFORMATION  info;
 
     assert((offset % pageSize) == 0);   /*  Offset must be a multiple of the allocation granularity! */
-
-    VirtualQuery(traits->persistentArray->mappingAddress, &info, sizeof(MEMORY_BASIC_INFORMATION));
-
 
     error = UnmapViewOfFile(traits->persistentArray->mappingAddress);
     if (error == 0UL) {
@@ -283,8 +303,6 @@ BOOL FlsEmu_MapView(FlsEmu_Traits * traits, unsigned __int32 offset, unsigned __
         CloseHandle(traits->persistentArray->mappingHandle);
         return FALSE;
     }
-    error = FlushViewOfFile(traits->persistentArray->mappingAddress, info.RegionSize);
-    FlushFileBuffers(traits->persistentArray->fileHandle);
 
     traits->persistentArray->mappingAddress = (void *)MapViewOfFile(traits->persistentArray->mappingHandle, FILE_MAP_ALL_ACCESS, 0, offset, length);
     if (traits->persistentArray->mappingAddress == NULL) {
