@@ -22,6 +22,7 @@
  */
 
 #include "hal/windows/Win_FlsEmu.h"
+#include "VM_Cfg.h"
 #include <assert.h>
 #include <string.h>
 #include <stdio.h>
@@ -58,6 +59,7 @@ typedef struct tagPersistentArrayType {
     HANDLE fileHandle;
     HANDLE mappingHandle;
     void * mappingAddress;
+    unsigned __int16 currentPage;
 } PersistentArrayType;
 
 
@@ -73,7 +75,7 @@ typedef struct tagFlsEmu_Traits {
     unsigned __int32 memSize;
     unsigned __int8  writeSize;
     unsigned __int16 sectorSize;
-    unsigned __int16 pageSize;
+    unsigned __int32 pageSize;
     unsigned __int8 blockCount;
     unsigned __int8 erasedValue;
     unsigned __int32 cycles;
@@ -101,13 +103,13 @@ static FlsEmu_Traits S12D512FlashArray = {
     L"VM2CB_Flash",
     KB(512),
     2,
-    512,
-    KB(16),
+    FLS_SECTOR_SIZE,
+    FLS_PAGE_SIZE,
     4,
     0xff,
     10,
 };
-
+// sort of complicated for an embedded systems guy..
 
 static FlsEmu_Traits S12D512EEPROMArray = {
     L"VM2CB_EEPROM",
@@ -267,8 +269,22 @@ void FlsEmu_Create(FlsEmu_Traits * traits)
 BOOL FlsEmu_MapView(FlsEmu_Traits * traits, unsigned __int32 offset, unsigned __int32 length)
 {
     DWORD error;
+    MEMORY_BASIC_INFORMATION  info;
 
     assert((offset % pageSize) == 0);   /*  Offset must be a multiple of the allocation granularity! */
+
+    VirtualQuery(traits->persistentArray->mappingAddress, &info, sizeof(MEMORY_BASIC_INFORMATION));
+
+
+    error = UnmapViewOfFile(traits->persistentArray->mappingAddress);
+    if (error == 0UL) {
+        error = GetLastError();
+        printErrorMessage(L"FlsEmu_MapView", error);
+        CloseHandle(traits->persistentArray->mappingHandle);
+        return FALSE;
+    }
+    error = FlushViewOfFile(traits->persistentArray->mappingAddress, info.RegionSize);
+    FlushFileBuffers(traits->persistentArray->fileHandle);
 
     traits->persistentArray->mappingAddress = (void *)MapViewOfFile(traits->persistentArray->mappingHandle, FILE_MAP_ALL_ACCESS, 0, offset, length);
     if (traits->persistentArray->mappingAddress == NULL) {
@@ -284,6 +300,9 @@ void FlsEmu_SelectPage(FlsEmu_Traits * traits, unsigned __int8 page)
 {
     unsigned __int32 offset;
 
+    if (traits->persistentArray->currentPage == page) {
+        return; /* Noting to do. */
+    }
     offset = (traits->pageSize * page);
     if (FlsEmu_MapView(traits, offset, traits->pageSize)) {
 
@@ -397,7 +416,8 @@ void Fls_Test(void)
         FlsEmu_EraseBlock(&S12D512FlashArray, idx);
     }
 
-    FlsEmu_SelectPage(&S12D512FlashArray, 22);
+    FlsEmu_SelectPage(&S12D512FlashArray, 2);
+    FlsEmu_SelectPage(&S12D512FlashArray, 5);
     ptr = (unsigned __int8 *)FlsEmu_BasePointer(&S12D512FlashArray);
     for (idx = 0; idx <= S12D512FlashArray.pageSize; ++idx) {
 
