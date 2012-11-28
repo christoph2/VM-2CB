@@ -40,8 +40,8 @@
 **  TODO: C++ !!!
 */
 
-#define KB(v)   ((v) * 0x400)
-#define MB(v)   ((v) * (0x400 * 0x400))
+#define KB(v)   (((unsigned __int32)((v))) * 0x400UL)
+#define MB(v)   (((unsigned __int32)((v))) * (0x400UL * 0x400UL))
 
 #define FILL_CHAR   0xff
 
@@ -261,20 +261,20 @@ void FlsEmu_Create(FlsEmu_Traits * traits)
         error = GetLastError();
         printErrorMessage(L"CreatePersitentArray", error);
     } else if (result == NEW_FILE) {
-        memcpy(temp.mappingAddress, traits, sizeof(FlsEmu_Traits));
-        ZeroMemory((unsigned __int8 *)temp.mappingAddress + sizeof(FlsEmu_Traits), sizeof(unsigned __int32));
+        CopyMemory(temp.mappingAddress, traits, sizeof(FlsEmu_Traits));
+        SecureZeroMemory((unsigned __int8 *)temp.mappingAddress + sizeof(FlsEmu_Traits), sizeof(unsigned __int32));
     }
 }
 
 BOOL FlsEmu_Flush(FlsEmu_Traits * traits)
 {
     DWORD error;
-    MEMORY_BASIC_INFORMATION  info;    
-    
+    MEMORY_BASIC_INFORMATION  info;
 
     if (VirtualQuery(traits->persistentArray->mappingAddress, &info, sizeof(MEMORY_BASIC_INFORMATION)) == 0) {
         error = GetLastError();
         printErrorMessage(L"VirtualQuery", error);
+        return FALSE;
     }
 
     if (!FlushViewOfFile(traits->persistentArray->mappingAddress, info.RegionSize)) {
@@ -282,11 +282,13 @@ BOOL FlsEmu_Flush(FlsEmu_Traits * traits)
         printErrorMessage(L"FlushViewOfFile", error);
         return FALSE;
     }
+
     if (!FlushFileBuffers(traits->persistentArray->fileHandle)) {
         error = GetLastError();
         printErrorMessage(L"FlushFileBuffers", error);
         return FALSE;
     }
+
     return TRUE;
 }
 
@@ -361,7 +363,7 @@ void FlsEmu_ErasePage(FlsEmu_Traits * traits, unsigned __int8 page)
 }
 
 
-void FlsEmu_EraseBlock(FlsEmu_Traits * traits, unsigned __int8 block)
+void FlsEmu_EraseBlock(FlsEmu_Traits * traits, unsigned __int16 block)
 {
     /* TODO: Nur den entsprechenden Block mappen!!! */
     unsigned __int8 * ptr;
@@ -421,7 +423,7 @@ DWORD getAllocationGranularity(void)
 
 void Fls_Test(void)
 {
-    int idx;
+    unsigned __int16  idx;
     unsigned __int8 * ptr;
  
     pageSize = getPageSize();
@@ -434,11 +436,10 @@ void Fls_Test(void)
         FlsEmu_EraseBlock(&S12D512FlashArray, idx);
     }
 
-    FlsEmu_SelectPage(&S12D512FlashArray, 2);
-    FlsEmu_SelectPage(&S12D512FlashArray, 5);
-    ptr = (unsigned __int8 *)FlsEmu_BasePointer(&S12D512FlashArray);
-    for (idx = 0; idx <= S12D512FlashArray.pageSize; ++idx) {
-
+    for (idx = 0; idx < S12D512FlashArray.memSize / S12D512FlashArray.pageSize; ++idx) {
+        FlsEmu_SelectPage(&S12D512FlashArray, idx);
+        ptr = (unsigned __int8 *)FlsEmu_BasePointer(&S12D512FlashArray);
+        FillMemory(ptr, S12D512FlashArray.pageSize, idx + 0x10);
     }
 
     FlsEmu_Close(&S12D512EEPROMArray);
