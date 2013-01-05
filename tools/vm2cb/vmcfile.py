@@ -7,7 +7,7 @@ __description__ = "VMC-File-Parser for the C-Control II."
 __copyright__ = """
    2-CB (C-Control-II kompatible Virtuelle Maschine).
 
-  (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+  (C) 2007-2013 by Christoph Schueler <github.com/Christoph2,
                                        cpu12.gems@googlemail.com>
 
    All Rights Reserved
@@ -31,7 +31,7 @@ import cStringIO
 import re
 import sys
 
-class InvalidVMCFile(Exception): pass
+class InvalidVMCFileError(Exception): pass
 
 VMC_FILE = re.compile(r'''
         CC2VMC\s
@@ -62,5 +62,5 @@ class VMCReader(object):
             assert self.numberOfConstantBytes == len(self.constBytes)
             assert self.numberOfCodeWords == len(self.codeWords)
         else:
-            pass # todo: Error-Handling.
+	    raise InvalidVMCFileError("'%s' doesn't seem to be a valid .VMC file." % infFile.name)
 
