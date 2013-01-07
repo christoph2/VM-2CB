@@ -42,44 +42,40 @@ uint16 VM_SP = (uint16)0x0000;
 
 void VM_PushW(sint16 w)
 {
-
+    WREF(VM_UserRAM, VM_SP) = (uint16)w;
     VM_SP += 2U;
 }
 
 
 sint16 VM_PopW(void)
 {
-    VM_SP -= 2U;
-    return NULL;
+    return (sint16)WREF(VM_UserRAM, (VM_SP -= 2U));
 }
 
 
 void VM_PushL(sint32 l)
 {
+    LREF(VM_UserRAM, VM_SP)   = (uint32)l;
     VM_SP += 4U;
 }
 
 
 sint32 VM_PopL(void)
 {
-
-    VM_SP-= 4U;
-    return NULL;
+    return (sint32)LREF(VM_UserRAM, (VM_SP-= 4U));
 }
 
 
 void VM_PushF(float64 f)
 {
+    FREF(VM_UserRAM, VM_SP)   = (float64)f;
     VM_SP += sizeof(float64);
-
 }
 
 
 float64 VM_PopF(void)
 {
-
-    VM_SP -= sizeof(float64);
-    return NULL;
+    return FREF(VM_UserRAM, (VM_SP -= sizeof(float64)));
 }
 
 void setRAMPointer(unsigned char * ptr)
