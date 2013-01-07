@@ -38,8 +38,8 @@ def makeExtension(name):
                 #'-features "autodoc"',
                 '-MD',
                 '-O',
-                '-modern',
-                '-modernargs',
+                #'-modern',
+                #'-modernargs',
                 '-keyword'
         ]
 
