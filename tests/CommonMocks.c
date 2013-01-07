@@ -93,3 +93,8 @@ void setConstPointer(uint8 * ptr)
     VM_UserConstants = ptr;
 }
 
+int dummy(void)
+{
+    return 0;
+}
+
