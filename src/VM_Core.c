@@ -264,7 +264,7 @@ sint32 VM_PopL(void)
 
 void VM_PushF(float64 f)
 {
-    FREF(VM_UserRAM, VM_CurrentThread->T_SP)   = f;
+    FREF(VM_UserRAM, VM_CurrentThread->T_SP)   = (float64)f;
     VM_CurrentThread->T_SP                    += FLOAT_SIZE;
 }
 
