@@ -31,7 +31,8 @@ uint32 VM_SysVarCnt4, VM_SysVarFreq1, VM_SysVarFreq2;
 
 
 uint8 * VM_UserRAM;
-uint8 * VM_UserCode, * VM_UserConstants;
+uint8 * VM_UserConstants;
+uint8 * VM_UserCode;
 uint8 VM_OperandB;
 uint16 VM_OperandW;
 uint16 VM_MemoryUsage;
@@ -40,13 +41,13 @@ VM_TCBType * VM_CurrentThread;
 
 void * VM_GetConstantPtr(uint16 addr)
 {
-  return NULL;
+  return VM_UserConstants + addr;
 }
 
 
 uint16 * VM_GetCodePtr(uint16 addr)
 {
-  return NULL;
+  return (uint16*)(VM_UserCode + addr);
 }
 
 
@@ -94,12 +95,12 @@ void setRAMPointer(unsigned char * ptr)
 	VM_UserRAM = ptr;
 }
 
-void setCodePointer(unsigned char * ptr)
+void setCodePointer(uint16 * ptr)
 {
-	VM_UserCode = ptr;
+	VM_UserCode = (uint8*)ptr;
 }
 
-void setConstPointer(unsigned char * ptr)
+void setConstPointer(uint8 * ptr)
 {
 	VM_UserConstants = ptr;
 }

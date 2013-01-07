@@ -101,7 +101,7 @@ uint16 *    VM_GetCodePtr(uint16 addr);
 #if defined(_MSC_VER)
 /* Functions needed for testing. */
 void setRAMPointer(unsigned char * ptr);
-void setCodePointer(unsigned char * ptr);
+void setCodePointer(unsigned short * ptr);
 void setConstPointer(unsigned char * ptr);
 #endif /* _MSC_VER */
 
