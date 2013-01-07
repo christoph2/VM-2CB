@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *   (C) 2007-2013 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -22,59 +22,60 @@
  */
 
 #include "VM.h"
+#include <stdio.h>
 
-uint16  VM_SysVarYear, VM_SysVarMonth, VM_SysVarDay, VM_SysVarHour, VM_SysVarDow;
-uint16  VM_SysVarMinute, VM_SysVarSecond, VM_SysVarDst, VM_SysVarZone, VM_SysVarDcfErrCnt;
-uint32  VM_SysVarTimerMS, VM_SysVarCnt1, VM_SysVarCnt2, VM_SysVarCnt3;
-uint32  VM_SysVarCnt4, VM_SysVarFreq1, VM_SysVarFreq2;
-
-
-uint8 *  VM_UserRAM;
-uint8 *  VM_UserCode, * VM_UserConstants;
-uint8    VM_OperandB;
-uint16   VM_OperandW;
-uint16          VM_MemoryUsage;
-VM_TCBType *    VM_CurrentThread;
+uint16 VM_SysVarYear, VM_SysVarMonth, VM_SysVarDay, VM_SysVarHour, VM_SysVarDow;
+uint16 VM_SysVarMinute, VM_SysVarSecond, VM_SysVarDst, VM_SysVarZone, VM_SysVarDcfErrCnt;
+uint32 VM_SysVarTimerMS, VM_SysVarCnt1, VM_SysVarCnt2, VM_SysVarCnt3;
+uint32 VM_SysVarCnt4, VM_SysVarFreq1, VM_SysVarFreq2;
 
 
-void *      VM_GetConstantPtr(uint16 addr)
+uint8 * VM_UserRAM;
+uint8 * VM_UserCode, * VM_UserConstants;
+uint8 VM_OperandB;
+uint16 VM_OperandW;
+uint16 VM_MemoryUsage;
+VM_TCBType * VM_CurrentThread;
+
+
+void * VM_GetConstantPtr(uint16 addr)
 {
   return NULL;
 }
 
 
-uint16 *    VM_GetCodePtr(uint16 addr)
+uint16 * VM_GetCodePtr(uint16 addr)
 {
   return NULL;
 }
 
 
-void    VM_PushW(sint16 w)
+void VM_PushW(sint16 w)
 {
 
 }
 
 
-sint16  VM_PopW(void)
+sint16 VM_PopW(void)
 {
   return NULL;
 }
 
 
-void    VM_PushL(sint32 l)
+void VM_PushL(sint32 l)
 {
 
 }
 
 
-sint32  VM_PopL(void)
+sint32 VM_PopL(void)
 {
 
   return NULL;
 }
 
 
-void    VM_PushF(float64 f)
+void VM_PushF(float64 f)
 {
 
 
@@ -86,3 +87,20 @@ float64 VM_PopF(void)
 
   return NULL;
 }
+
+void setRAMPointer(unsigned char * ptr)
+{
+//	printf("setRAMPointer() called.\n");
+	VM_UserRAM = ptr;
+}
+
+void setCodePointer(unsigned char * ptr)
+{
+	VM_UserCode = ptr;
+}
+
+void setConstPointer(unsigned char * ptr)
+{
+	VM_UserConstants = ptr;
+}
+

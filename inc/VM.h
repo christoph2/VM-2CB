@@ -98,6 +98,13 @@ boolean VM_BlankCheck(void);
 void *      VM_GetConstantPtr(uint16 addr);
 uint16 *    VM_GetCodePtr(uint16 addr);
 
+#if defined(_MSC_VER)
+/* Functions needed for testing. */
+void setRAMPointer(unsigned char * ptr);
+void setCodePointer(unsigned char * ptr);
+void setConstPointer(unsigned char * ptr);
+#endif /* _MSC_VER */
+
 
 /*
 **  Stack-Operations.

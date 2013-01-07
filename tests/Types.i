@@ -16,3 +16,11 @@ typedef /*@signed-integral-type@*/ int_least16_t    sint16_least;
 typedef /*@unsigned-integral-type@*/ uint_least16_t uint16_least;
 typedef /*@signed-integral-type@*/ int_least32_t    sint32_least;
 typedef /*@unsigned-integral-type@*/ uint_least32_t uint32_least;
+
+%include "carrays.i"
+%array_class(unsigned char, byteArray);
+
+void setRAMPointer(unsigned char * ptr);
+void setCodePointer(unsigned char * ptr);
+void setConstPointer(unsigned char * ptr);
+
