@@ -37,36 +37,40 @@ uint8 VM_OperandB;
 uint16 VM_OperandW;
 uint16 VM_MemoryUsage;
 VM_TCBType * VM_CurrentThread;
+uint16 VM_SP = (uint16)0x0000;
 
 
 void VM_PushW(sint16 w)
 {
 
+    VM_SP += 2U;
 }
 
 
 sint16 VM_PopW(void)
 {
-  return NULL;
+    VM_SP -= 2U;
+    return NULL;
 }
 
 
 void VM_PushL(sint32 l)
 {
-
+    VM_SP += 4U;
 }
 
 
 sint32 VM_PopL(void)
 {
 
-  return NULL;
+    VM_SP-= 4U;
+    return NULL;
 }
 
 
 void VM_PushF(float64 f)
 {
-
+    VM_SP += sizeof(float64);
 
 }
 
@@ -74,21 +78,22 @@ void VM_PushF(float64 f)
 float64 VM_PopF(void)
 {
 
-  return NULL;
+    VM_SP -= sizeof(float64);
+    return NULL;
 }
 
 void setRAMPointer(unsigned char * ptr)
 {
-	VM_UserRAM = ptr;
+    VM_UserRAM = ptr;
 }
 
 void setCodePointer(uint16 * ptr)
 {
-	VM_UserCode = (uint8*)ptr;
+    VM_UserCode = (uint8*)ptr;
 }
 
 void setConstPointer(uint8 * ptr)
 {
-	VM_UserConstants = ptr;
+    VM_UserConstants = ptr;
 }
 
