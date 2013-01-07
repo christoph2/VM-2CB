@@ -12,6 +12,14 @@ typedef union tagALType {
     float64 Float;
 } ALType;
 
+void VM_Add(void), VM_Sub(void), VM_Mul(void), VM_Div(void), VM_Mod(void);
+void VM_And(void), VM_Nand(void), VM_Or(void), VM_Nor(void), VM_Xor(void), VM_Nxor(void);
+void VM_Equ(void), VM_Neq(void), VM_Hi(void), VM_His(void), VM_Lo(void), VM_Los(void);
+void VM_Shl(void), VM_Shr(void), VM_Asr(void), VM_Rol(void), VM_Ror(void);
+
+void VM_CastLongToInt(void), VM_CastIntToLong(void);
+void VM_CastFloatToInt(void), VM_CastFloatToLong(void);
+void VM_CastIntToFloat(void), VM_CastLongToFloat(void);
 
 void AddInt(const ALType * Param1, const ALType * Param2, ALType * Result);
 void AddLong(const ALType * Param1, const ALType * Param2, ALType * Result);
@@ -90,6 +98,15 @@ void RolLong(const ALType * Param1, const ALType * Param2, ALType * Result);
 void RorInt(const ALType * Param1, const ALType * Param2, ALType * Result);
 void RorLong(const ALType * Param1, const ALType * Param2, ALType * Result);
 %}
+
+void VM_Add(void), VM_Sub(void), VM_Mul(void), VM_Div(void), VM_Mod(void);
+void VM_And(void), VM_Nand(void), VM_Or(void), VM_Nor(void), VM_Xor(void), VM_Nxor(void);
+void VM_Equ(void), VM_Neq(void), VM_Hi(void), VM_His(void), VM_Lo(void), VM_Los(void);
+void VM_Shl(void), VM_Shr(void), VM_Asr(void), VM_Rol(void), VM_Ror(void);
+
+void VM_CastLongToInt(void), VM_CastIntToLong(void);
+void VM_CastFloatToInt(void), VM_CastFloatToLong(void);
+void VM_CastIntToFloat(void), VM_CastLongToFloat(void);
 
 void AddInt(const ALType * Param1, const ALType * Param2, ALType * Result);
 void AddLong(const ALType * Param1, const ALType * Param2, ALType * Result);
