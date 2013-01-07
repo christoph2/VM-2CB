@@ -27,6 +27,4 @@ typedef /*@unsigned-integral-type@*/ uint_least32_t uint32_least;
 void setRAMPointer(unsigned char * ptr);
 void setCodePointer(unsigned short * ptr);
 void setConstPointer(unsigned char * ptr);
-void * VM_GetConstantPtr(unsigned short addr);
-unsigned short * VM_GetCodePtr(unsigned short addr);
 

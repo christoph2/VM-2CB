@@ -39,18 +39,6 @@ uint16 VM_MemoryUsage;
 VM_TCBType * VM_CurrentThread;
 
 
-void * VM_GetConstantPtr(uint16 addr)
-{
-  return VM_UserConstants + addr;
-}
-
-
-uint16 * VM_GetCodePtr(uint16 addr)
-{
-  return (uint16*)(VM_UserCode + addr);
-}
-
-
 void VM_PushW(sint16 w)
 {
 
@@ -91,7 +79,6 @@ float64 VM_PopF(void)
 
 void setRAMPointer(unsigned char * ptr)
 {
-//	printf("setRAMPointer() called.\n");
 	VM_UserRAM = ptr;
 }
 
