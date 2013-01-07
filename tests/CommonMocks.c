@@ -98,3 +98,8 @@ int dummy(void)
     return 0;
 }
 
+void * VM_GetConstantPtr(uint16 addr)
+{
+    return VM_UserConstants + addr;
+}
+
