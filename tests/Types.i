@@ -36,12 +36,14 @@ extern uint32 VM_SysVarTimerMS, VM_SysVarCnt1, VM_SysVarCnt2, VM_SysVarCnt3;
 extern uint32 VM_SysVarCnt4, VM_SysVarFreq1, VM_SysVarFreq2;
 
 %{
-
+uint16_t getSP(void);
 %}
+
 void    VM_PushW(sint16 w);
 sint16  VM_PopW(void);
 void    VM_PushL(sint32 l);
 sint32  VM_PopL(void);
 void    VM_PushF(float64 f);
 float64 VM_PopF(void);
+uint16 getSP(void);
 

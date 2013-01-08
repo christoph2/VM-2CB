@@ -78,6 +78,11 @@ float64 VM_PopF(void)
     return FREF(VM_UserRAM, (VM_SP -= sizeof(float64)));
 }
 
+uint16 getSP(void)
+{
+    return VM_SP;
+}
+
 void setRAMPointer(unsigned char * ptr)
 {
     VM_UserRAM = ptr;
