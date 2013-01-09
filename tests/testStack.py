@@ -11,6 +11,7 @@ def main():
   for w in values:
     v.VM_PushW(w)
     
+  v.VM_Sub()
   while v.getSP():
     x = v.VM_PopW()
     print x

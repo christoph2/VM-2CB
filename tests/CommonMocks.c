@@ -108,3 +108,13 @@ void * VM_GetConstantPtr(uint16 addr)
     return VM_UserConstants + addr;
 }
 
+void setOperandB(uint8_t b)
+{
+    VM_OperandB = b;
+}
+
+void setOperandW(uint16_t w)
+{
+    VM_OperandW = w;
+}
+
