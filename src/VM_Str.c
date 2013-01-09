@@ -32,8 +32,8 @@
 
 
 typedef struct tagStr {
-    uint8   data[MAX_STR_LEN];
     uint8   len;
+    uint8   data[MAX_STR_LEN];
 } Str;
 
 
