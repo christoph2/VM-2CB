@@ -600,6 +600,13 @@ void VM_SetCodePage(uint16 pc)
     HAL_FLASH_SELECT_PAGE((uint8)((pc / (FLS_PAGE_SIZE / (uint16)2)) + FLS_PPAGE_BASE_CODE));
 }
 
+#if defined(_MSC_VER)
+int dummy(void)
+{
+    return 0;
+}
+#endif /* _MSC_VER */
+
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_CORE_STOP_SEC_CODE
     #include "MemMap.h"
