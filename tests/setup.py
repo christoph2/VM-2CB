@@ -46,7 +46,6 @@ def makeExtension(name):
         sources = [
                 '%s.i' % nt,
                 '../src/%s.c' % nt,
-                '../src/VM_Excp.c',
                 '../src/Utl.c',
                 'CommonMocks.c',
         ]
@@ -75,7 +74,6 @@ setup(
       makeExtension('VM_Cntr'),
       makeExtension('VM_Com'),
       #makeExtension('Vm_Core'),
-      makeExtension('VM_Excp'),
       makeExtension('VM_Hm'),
       makeExtension('VM_Iic'),
       makeExtension('VM_Lcd'),

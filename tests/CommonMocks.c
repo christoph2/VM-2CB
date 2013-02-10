@@ -40,6 +40,9 @@ VM_TCBType * VM_CurrentThread;
 uint16 VM_SP = (uint16)0x0000;
 
 
+static uint8 lastException = 0;
+static uint8 lastStatus = 0;
+
 void VM_PushW(sint16 w)
 {
     WREF(VM_UserRAM, VM_SP) = (uint16)w;
@@ -116,5 +119,33 @@ void setOperandB(uint8_t b)
 void setOperandW(uint16_t w)
 {
     VM_OperandW = w;
+}
+
+
+void Exception(uint8 code)
+{
+    lastException = code;
+}
+
+void ShowStatus(uint8 code)
+{
+    lastStatus = code;
+}
+
+
+uint8 getLastException(void)
+{
+    uint8 tmp = lastException;
+
+    lastException = 0;
+    return tmp;
+}
+
+uint8 getLastStatus(void)
+{
+    uint8 tmp = lastStatus;
+
+    lastStatus = 0;
+    return tmp;
 }
 

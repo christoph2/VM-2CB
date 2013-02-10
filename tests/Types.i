@@ -49,6 +49,8 @@ extern uint16_t VM_SysVarYear, VM_SysVarMonth, VM_SysVarDay, VM_SysVarHour, VM_S
 extern uint16_t VM_SysVarMinute, VM_SysVarSecond, VM_SysVarDst, VM_SysVarZone, VM_SysVarDcfErrCnt;
 extern uint32_t VM_SysVarTimerMS, VM_SysVarCnt1, VM_SysVarCnt2, VM_SysVarCnt3;
 extern uint32_t VM_SysVarCnt4, VM_SysVarFreq1, VM_SysVarFreq2;
+uint8_t getLastException(void);
+uint8_t getLastStatus(void);
 %}
 
 void    VM_PushW(sint16 w);
@@ -58,4 +60,6 @@ sint32  VM_PopL(void);
 void    VM_PushF(float f);
 float64 VM_PopF(void);
 uint16 getSP(void);
+uint8_t getLastException(void);
+uint8_t getLastStatus(void);
 
