@@ -20,6 +20,8 @@ typedef /*@unsigned-integral-type@*/ uint_least16_t uint16_least;
 typedef /*@signed-integral-type@*/ int_least32_t    sint32_least;
 typedef /*@unsigned-integral-type@*/ uint_least32_t uint32_least;
 
+typedef double float64;
+
 %include "carrays.i"
 %array_class(unsigned char, byteArray);
 %array_class(unsigned short, codeArray);
@@ -53,7 +55,7 @@ void    VM_PushW(sint16 w);
 sint16  VM_PopW(void);
 void    VM_PushL(sint32 l);
 sint32  VM_PopL(void);
-void    VM_PushF(float64 f);
+void    VM_PushF(float f);
 float64 VM_PopF(void);
 uint16 getSP(void);
 
