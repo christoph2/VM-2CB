@@ -470,9 +470,8 @@ void VM_Div(void)
     ArithmetricOperation(DivTable);
 }
 
-
 void DivInt(const ALType * Param1, const ALType * Param2, ALType * Result)
-{
+{	    
     CC_ASSERT(Param2->Int != (sint16)0, ERROR_DIV0);
 
     Result->Int = Param1->Int / Param2->Int;
