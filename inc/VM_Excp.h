@@ -49,6 +49,7 @@ extern "C"
     _BEGIN_BLOCK              \
     if (!(expr)) {            \
         Exception((code));    \
+	return;		      \
     }                         \
     _END_BLOCK
 
