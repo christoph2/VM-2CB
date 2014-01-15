@@ -5,8 +5,8 @@ options {
 // debug = false;
    output = AST;
    ASTLabelType = CommonTree;
-   backtrack = true;
-   memoize = true;
+//   backtrack = true;
+//   memoize = true;
 }
 
 tokens {
