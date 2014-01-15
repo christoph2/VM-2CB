@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *   (C) 2007-2014 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -24,6 +24,12 @@
 #if !defined(__HAL_H)
 #define __HAL_H
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif  /* __cplusplus */
+
+
 #if defined(_MSC_VER)
 #include "hal/windows/hal.h"
 #include "HAL-Templates/windows/HAL_Defines.h"
@@ -32,5 +38,9 @@
 #include "hal/windows/hal.h"
 #error GCC!!!
 #endif
+
+#if defined(__cplusplus)
+}
+#endif  /* __cplusplus */
 
 #endif /* __HAL_H */
