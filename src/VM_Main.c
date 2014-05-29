@@ -21,10 +21,8 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include <WinSock2.h>
+//#include <WinSock2.h>
 #include "VM_Hm.h"
-
-#include "Com_WinSock.h"
 
 /*
     TODO: Endianess als Cfg.-Parameter!
@@ -39,10 +37,7 @@ void Fls_Test(void);
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-// VHostmode Server Port: 42244.
-
-boolean StartServer(void);
-boolean ShutdownServer(void);
+#include "win/VHm.h"
 
 int main(void)
 {
@@ -50,9 +45,13 @@ int main(void)
 
     //Fls_Test();
 
-    if (StartServer()) {
-        ShutdownServer();
+    if (Vhm_StartServer()) {
+        //Vhm_ShutdownServer();
     }
+
+//    if (StartServer()) {
+//        ShutdownServer();
+//    }
     Vm_Init_Phase0();
 
     TMR_Init();
@@ -77,11 +76,11 @@ void Vm_Init_Phase0(void)
     HAL_INIT_PHASE0();
 }
 
-static SOCKET so;
+//static ComWinsock_SocketType so;
 
+#if 0
 boolean StartServer(void)
 {
-
     if (ComWinsock_InitWinsock()) {
 
         so = ComWinsock_CreateTCPSocket();
@@ -90,7 +89,7 @@ boolean StartServer(void)
         }
 
         if (!ComWinsock_ReuseSocket(so)) {
-            closesocket(so);
+            ComWinsock_CloseSocket(so);
             return FALSE;
         }
 
@@ -115,8 +114,9 @@ boolean StartServer(void)
 boolean ShutdownServer(void)
 {
     ComWinsock_DeinitWinsock();
-    closesocket(so);
+    ComWinsock_CloseSocket(so);
 }
+#endif
 
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_MAIN_STOP_SEC_CODE
