@@ -65,6 +65,7 @@ void Hm_Dispatcher(void)
     FOREVER {
         ch = HAL_COM0_GETCHAR();
 
+        Vhm_Sleep(50);
         if (ch <= (uint8)(SIZEOF_ARRAY(FuncTab))) {
             FuncTab[ch]();
         } else if (ch == HM_CMD_RESET) {
@@ -235,7 +236,7 @@ boolean Hm_ButtonBootstrapMode(void)
 
 boolean Hm_ButtonHostMode(void)
 {
-    return FALSE;
+    return TRUE;    /* TODO: Add real check!!! */
 }
 
 
