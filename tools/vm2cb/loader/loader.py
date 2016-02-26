@@ -63,6 +63,7 @@ class Loader(object):
                 #print hex(w),
                 arr.append(w & 0xff)    # Swap Bytes???
                 arr.append((w >> 8) & 0xff)
+
                 
             self._primitives.exchangeBytes(arr, defs.BLOCK_SIZE)
             percentage = ((i + 16) * 100) / num_code

@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *   (C) 2007-2016 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -31,12 +31,13 @@ STATIC const uint8 BitTab8[8] = {
 #define NIBBLE_PORT_MASK    ((uint8)0x03)       /* 4 Nibble-Ports. */
 #define BYTE_PORT_MASK      ((uint8)0x01)       /* 2 Byte-Ports. */
 
-STATIC uint8 dummy_port;
-
 #if VM_MEMORY_MAPPING == STD_ON
     #define VM_PORTS_START_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
+
+static uint8 HAL_BYTE_PORT0, HAL_BYTE_PORT_DDR0;
+static uint8 HAL_BYTE_PORT1, HAL_BYTE_PORT_DDR1;
 
 
 void VM_InitPorts(void)
@@ -309,9 +310,9 @@ void VM_ToggleSinglePort(void)
 void VM_PulseSinglePort(void)
 {
 /*
-**	XOR()
-**	Delay()
-**	XOR()
+**      XOR()
+**      Delay()
+**      XOR()
 */
     CPU_NO_OPERATION();
 }

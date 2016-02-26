@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *   (C) 2007-2014 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -41,17 +41,17 @@
 #define THREAD_PTR(i)       (VM_TCBType *)(void *)(VM_SystemRAM + ((i) * TCB_SIZE))
 #define THREAD_INIT_PTR(i)  (uint8 *)(VM_UserConstants + 2 + (THREAD_INIT_SIZE * (i)))
 
-#define FETCH(op)                                                           \
-    _BEGIN_BLOCK                                                            \
-    VM_ProgramCounter = VM_CurrentThread->T_PC++;                           \
-    VM_SetCodePage(VM_ProgramCounter);                                      \
-    op = (uint16) * ((uint16 *)(FLS_PAGE_ADDR + (VM_ProgramCounter << 1))); \
+#define FETCH(op)                                                               \
+    _BEGIN_BLOCK                                                                \
+        VM_ProgramCounter = VM_CurrentThread->T_PC++;                           \
+        VM_SetCodePage(VM_ProgramCounter);                                      \
+        op = (uint16) * ((uint16 *)(FLS_PAGE_ADDR + (VM_ProgramCounter << 1))); \
     _END_BLOCK
 
-#define YIELD()                                 \
-    _BEGIN_BLOCK                                \
-    VM_CurrentThread->T_PC    -= ((uint8)1);    \
-    VM_OpsToExecute            = ((uint8)0x01); \
+#define YIELD()                                     \
+    _BEGIN_BLOCK                                    \
+        VM_CurrentThread->T_PC    -= ((uint8)1);    \
+        VM_OpsToExecute            = ((uint8)0x01); \
     _END_BLOCK
 
 /*
@@ -400,16 +400,16 @@ void VM_Return(void)
 
 /*
    _Return::
-    ldd		T_BP,x
-    addd	_UserStackStart
-    tfr	d,y
-    ldd		-2,y
-    std		T_PC,x
-    ldd		T_BP,x
-    subd	_operandw	; Stack-Cleanup
-    std		T_SP,x
-    ldd		-4,y
-    std		T_BP,x
+    ldd         T_BP,x
+    addd        _UserStackStart
+    tfr d,y
+    ldd         -2,y
+    std         T_PC,x
+    ldd         T_BP,x
+    subd        _operandw       ; Stack-Cleanup
+    std         T_SP,x
+    ldd         -4,y
+    std         T_BP,x
     rts
  */
 
@@ -443,30 +443,30 @@ void VM_ReturnValue(void)
 
 /*
    _ReturnValue::
-    ldab	_operandb	; 0=Int, 1=long; 2=float;
-    cmpb	#0
-    beq		rv_int
-    cmpb	#1
-    beq	rv_long
-    cmpb	#2
-    beq		rv_float
+    ldab        _operandb       ; 0=Int, 1=long; 2=float;
+    cmpb        #0
+    beq         rv_int
+    cmpb        #1
+    beq rv_long
+    cmpb        #2
+    beq         rv_float
 
    rv_int:
-    jsr		_popw
+    jsr         _popw
     pshd
-    bsr		_RetCleanup
+    bsr         _RetCleanup
     puld
-    jsr		_pushw
-    bra		rv_exit
+    jsr         _pushw
+    bra         rv_exit
    rv_long:
-    jsr		_popl
-    bsr		_RetCleanup
-    jsr		_pushl
-    bra		rv_exit
+    jsr         _popl
+    bsr         _RetCleanup
+    jsr         _pushl
+    bra         rv_exit
    rv_float:
-    jsr		_popl
-    bsr		_RetCleanup
-    jsr		_pushl
+    jsr         _popl
+    bsr         _RetCleanup
+    jsr         _pushl
    rv_exit:
     rts
  */
@@ -484,16 +484,16 @@ STATIC void VM_RetCleanup(void)
     VM_CurrentThread->T_BP = *(fp - 2);
     /*
        _RetCleanup:
-       ldd		T_BP,x
-       addd	_UserStackStart
-       tfr		d,y
-       ldd		-2,y
-       std		T_PC,x
-       ldd		T_BP,x
-       subd	_operandw	; Stack-Cleanup
-       std		T_SP,x
-       ldd		-4,y
-       std		T_BP,x
+       ldd              T_BP,x
+       addd     _UserStackStart
+       tfr              d,y
+       ldd              -2,y
+       std              T_PC,x
+       ldd              T_BP,x
+       subd     _operandw       ; Stack-Cleanup
+       std              T_SP,x
+       ldd              -4,y
+       std              T_BP,x
        rts
 
      */
@@ -611,3 +611,4 @@ int dummy(void)
     #define VM_CORE_STOP_SEC_CODE
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
+
