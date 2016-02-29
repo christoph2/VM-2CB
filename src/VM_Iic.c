@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- * (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ * (C) 2007-2016 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -22,6 +22,7 @@
  */
 
 #include "VM_Iic.h"
+#include "Hal.h"
 
 STATIC void I2c_Init(void), I2c_Start(void), I2c_Stop(void), I2c_Write(void);
 STATIC void I2c_Read(void), I2c_ReadLast(void), I2c_Ready(void);

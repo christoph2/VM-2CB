@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *   (C) 2007-2016 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -23,6 +23,7 @@
 
 #include "VM_Hm.h"
 #include "VM_Excp.h"
+#include "Hal.h"
 
 STATIC uint32   Hm_ReadLong(void);
 STATIC uint16   Hm_ReadWordLE(void), Hm_ReadWordBE(void);

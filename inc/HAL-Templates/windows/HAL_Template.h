@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *  (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *  (C) 2007-2016 by Christoph Schueler <github.com/Christoph2,
  *                                       cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -29,8 +29,8 @@
 #define CPU_NO_OPERATION()
 
 /* TODO: CriticalSections und 'Vm_Intr' Modul! */
-#define CPU_DISABLE_ALL_INTERRUPTS()
-#define CPU_ENABLE_ALL_INTERRUPTS()
+#define CPU_DISABLE_ALL_INTERRUPTS()                (dummy())
+#define CPU_ENABLE_ALL_INTERRUPTS()                 (dummy())
 
 #define HAL_RESET_MCU()
 
@@ -57,7 +57,7 @@
 #define HAL_COM0_SEND(buffer, length)
 #define HAL_COM0_SETFORMAT(baudrate, parity, nbits)
 #define HAL_COM0_SENDBREAK()
-#define HAL_COM0_PUTSTRING(str)                         
+#define HAL_COM0_PUTSTRING(buffer)                         (Hal_SendString(buffer))
 
 #define HAL_COM1_INIT()
 #define HAL_COM1_SETBAUDRATE(rate)

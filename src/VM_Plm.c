@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *   (C) 2007-2016 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -22,6 +22,7 @@
  */
 
 #include "VM_Plm.h"
+#include "Hal.h"
 
 /*
 ** Oktave von A (220Hz) bis GIS1 (415,4Hz) auf der Zeitbasis 2 (800ns).
@@ -86,7 +87,7 @@ STATIC void Plm_SetPL(void)
 {
     uint16 length = (uint16)VM_PopW();
     uint8 channel = (uint8)VM_PopW();
-    
+
     HAL_PLM_SETPL(channel, length);
 }
 

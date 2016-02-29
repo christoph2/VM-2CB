@@ -23,6 +23,7 @@
 
 //#include <WinSock2.h>
 #include "VM_Hm.h"
+#include "Hal.h"
 
 /*
     TODO: Endianess als Cfg.-Parameter!
@@ -49,9 +50,6 @@ int main(void)
         //Vhm_ShutdownServer();
     }
 
-//    if (StartServer()) {
-//        ShutdownServer();
-//    }
     Vm_Init_Phase0();
 
     TMR_Init();

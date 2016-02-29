@@ -26,3 +26,29 @@
 
 uint8 dummy_port;
 
+
+void Hal_SendString(char const * const buffer)
+{
+
+}
+
+void dummy(void)
+{
+
+}
+
+void Vhm_Sleep(int ms)
+{
+
+}
+
+void Vhm_StartServer(void)
+{
+
+}
+
+
+void Vhm_ShutdownServer(void)
+{
+
+}

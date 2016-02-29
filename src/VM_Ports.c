@@ -22,6 +22,7 @@
  */
 
 #include "VM_Ports.h"
+#include "Hal.h"
 
 STATIC const uint8 BitTab8[8] = {
     (uint8)0x01, (uint8)0x02, (uint8)0x04, (uint8)0x08, (uint8)0x10, (uint8)0x20, (uint8)0x40, (uint8)0x80

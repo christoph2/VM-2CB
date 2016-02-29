@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *   (C) 2007-2016 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -22,6 +22,7 @@
  */
 
 #include "VM_Can.h"
+#include "Hal.h"
 
 STATIC void Can_Init(void), Can_Ready(void), Can_Error(void);
 STATIC void Can_Send(void), Can_Publish(void), Can_RtrCount(void);
@@ -65,7 +66,7 @@ void Can_Init(void)
 void Can_Ready(void)
 {
     uint8  channel = (uint8)VM_PopW();              /*channel */
-   
+
     VM_PushW((sint16)HAL_CAN_READY(channel));
 }
 
@@ -101,7 +102,7 @@ void Can_Publish(void)
 void Can_RtrCount(void)
 {
     uint8  channel = (uint8)VM_PopW();              /*channel */
-    
+
     VM_PushW((sint16)HAL_CAN_RTRCOUNT());
 }
 

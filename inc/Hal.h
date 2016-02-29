@@ -36,7 +36,12 @@ extern "C"
 #include "HAL-Templates/windows/HAL_Template.h"
 #elif defined(__GNUC__)
 #include "hal/windows/hal.h"
+#include "HAL-Templates/windows/HAL_Defines.h"
+#include "HAL-Templates/windows/HAL_Template.h"
 #endif
+
+
+void Hal_SendString(char const * const buffer);
 
 #if defined(__cplusplus)
 }

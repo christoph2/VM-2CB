@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *   (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ *   (C) 2007-2016 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
@@ -21,6 +21,7 @@
  *  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 #include "VM_Com.h"
+#include "Hal.h"
 
 STATIC void Hwcom_Init(void), Hwcom_SetSpeed(void), Hwcom_SetBuffer(void);
 STATIC void Hwcom_Flush(void), Hwcom_Ready(void), Hwcom_Put(void);
@@ -118,7 +119,7 @@ void Hwcom_Get(void)
     uint8 ch;
 
     ch = HAL_COM0_GETCHAR();
-    
+
     VM_PushW((sint16)ch);
 }
 
@@ -128,7 +129,7 @@ void Hwcom_Ready(void)
     boolean ready;
 
     ready = HAL_COM0_READY();
-    
+
     (void)VM_PushW((sint16)(ready == TRUE ? CC_TRUE : CC_FALSE));
 }
 
