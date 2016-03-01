@@ -3,8 +3,10 @@
 
 language: c
 sudo: required
-install:
+script:
   - autoreconf -iv
+  - configure
+  - make test
 
 os:
   - linux
