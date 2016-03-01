@@ -6,7 +6,7 @@ sudo: required
 script:
   - autoreconf -iv
   - configure
-  - make test
+  - make check
 
 os:
   - linux
