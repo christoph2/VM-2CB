@@ -3,3 +3,6 @@
 
 language: c
 
+install:
+  - autoreconf -iv
+
