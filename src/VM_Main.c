@@ -38,7 +38,7 @@ void Fls_Test(void);
     #include "MemMap.h"
 #endif /* VM_MEMORY_MAPPING */
 
-#include "win/VHm.h"
+#include "VHm.h"
 
 int main(void)
 {
