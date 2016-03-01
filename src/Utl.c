@@ -1,7 +1,7 @@
 /*
  * k_os (Konnex Operating-System based on the OSEK/VDX-Standard).
  *
- * (C) 2007-2012 by Christoph Schueler <github.com/Christoph2,
+ * (C) 2007-2016 by Christoph Schueler <github.com/Christoph2,
  *                                      cpu12.gems@googlemail.com>
  *
  * All Rights Reserved
@@ -239,7 +239,7 @@ void Utl_StrRev(uint8 * str)
 
 const uint8 * Utl_StrChr(const uint8 * str, uint8 ch)
 {
-    CC_ASSERT(str != (void *)NULL, ERROR_NULLPTR);
+    CC_ASSERT_RET(str != (void *)NULL, ERROR_NULLPTR);
 
     while (*str) {
         if (*(str++) == ch) {
