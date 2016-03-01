@@ -5,7 +5,7 @@ language: c
 sudo: required
 script:
   - autoreconf -iv
-  - configure
+  - ./configure
   - make check
 
 os:
