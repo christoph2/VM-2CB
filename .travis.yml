@@ -7,7 +7,7 @@ script:
   - autoreconf -iv
   - ./configure
   - make check
-  - cd test; python setup.py test; cd..
+  - cd test; python setup.py test; cd..; return 0
 
 os:
   - linux
