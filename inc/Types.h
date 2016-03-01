@@ -1,7 +1,7 @@
 /*
  *   2-CB (C-Control-II kompatible Virtuelle Maschine).
  *
- *  (C) 2007-2012 by Christoph Schueler <cpu12.gems@googlemail.com>
+ *  (C) 2007-2016 by Christoph Schueler <cpu12.gems@googlemail.com>
  *
  *   All Rights Reserved
  *
@@ -134,7 +134,7 @@ typedef int             PtrDiffType;
     if (!(expr)) {                         \
         return (value);                    \
     }                                      \
-    _END_BLOCK                             
+    _END_BLOCK
 
 typedef void (*VoidFunctionType)(void);
 
@@ -149,8 +149,6 @@ typedef void (*VoidFunctionType)(void);
 
 #define _BEGIN_BLOCK    do {
 #define _END_BLOCK      } while (0)
-
-typedef void (*VoidFunctionType)(void);
 
 #define TO_STRING_2(s)          # s
 #define TO_STRING(s)            TO_STRING_2(s)
@@ -265,7 +263,7 @@ typedef void (*VoidFunctionType)(void);
 #define BEYOND_ARRAY(arr)           ((arr) + SIZE_OF_ARRAY((arr)))
 
 #if !defined(_countof)
-#define _countof(arr)		    SIZEOF_ARRAY(arr)
+#define _countof(arr)               SIZEOF_ARRAY(arr)
 #endif
 
 
