@@ -8,7 +8,7 @@ setup(
     version=0.1,
                         
     # This tells setup how to find our unit tests.
-    test_suite = "test.examp_unittest",
+    test_suite = "examp_unittest",
                                     
     # Describes how to build the actual extension module from C source files.
     ext_modules = [
