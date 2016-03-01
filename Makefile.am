@@ -8,4 +8,4 @@ vm2cb_SOURCES = Hal.c Hw_Cfg.c Utl.c VM_Al.c VM_Cal.c VM_Can.c\
 	VM_SysMsg.c VM_Tmr.c VM_Twb.c
 AM_CFLAGS = -std=c99 -ggdb -gdwarf-2 -I ./inc -Wextra
 AM_LDFLAGS = -lm
-
+TESTS = testme.py

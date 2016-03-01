@@ -16,7 +16,6 @@ dnl python checks (you can change the required python version bellow)
 
 #ax_python_devel
 
-
 # Use libtool to link libraries and modules
 LT_INIT
 
